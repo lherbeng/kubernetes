@@ -21,11 +21,10 @@ Open Powershell in administrator
 ![image](https://github.com/lherbeng/kubernetes/assets/72662912/e617f86c-1825-4aed-865d-86fa44464a1c)
 
 
-<!-- Cod Box Copy begin -->
-Get-NetAdapter
 
+Get-NetAdapter
 Import-Module Hyper-V
 $ethernet = Get-NetAdapter -Name "Ethernet 2"
 New-VMSwitch -Name "virtual-network" -NetAdapterName $ethernet.Name -AllowManagementOS $true -Notes "shared virtual network interface"
-<!-- Cod Box Copy end -->
+
 
