@@ -27,3 +27,10 @@ Open Powershell in administrator
 - New-VMSwitch -Name "virtual-network" -NetAdapterName $ethernet.Name -AllowManagementOS $true -Notes "shared virtual network interface"
 
 # ***Hyper-V : Create our machines***
+
+Open your Hyper-V Manager
+
+![image](https://github.com/lherbeng/kubernetes/assets/72662912/7de94edf-7296-4374-a95e-4aedfb4d4970)
+
+
+
