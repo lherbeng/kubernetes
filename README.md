@@ -20,4 +20,12 @@ Open Powershell in administrator
 
 ![image](https://github.com/lherbeng/kubernetes/assets/72662912/a8abb52c-33ba-4a05-8141-de3473a0503c)
 
+<!-- Cod Box Copy begin -->
+<link href="prism/prism.min.css" rel="stylesheet" />
+<link href="code-box-copy/css/code-box-copy.css" rel="stylesheet" />
+<script src="js/jquery.min.js"></script>
+<script src="prism/prism.min.js"></script>
+<script src="clipboard/clipboard.min.js"></script>
+<script src="code-box-copy/js/code-box-copy.js"></script>
+<!-- Cod Box Copy end -->
 
