@@ -26,4 +26,4 @@ Open Powershell in administrator
 - $ethernet = Get-NetAdapter -Name "Ethernet 2"
 - New-VMSwitch -Name "virtual-network" -NetAdapterName $ethernet.Name -AllowManagementOS $true -Notes "shared virtual network interface"
 
-
+# ***Hyper-V : Create our machines***
