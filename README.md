@@ -28,10 +28,13 @@ Open Powershell in administrator
 
 # ***Hyper-V : Create our machines***
 
-Open your Hyper-V Manager
+Open your Hyper-V Manager and you can see that our Virtual Network Switch was created. You can use Hyper-V GUI to create a switch as well.
 
 ![image](https://github.com/lherbeng/kubernetes/assets/72662912/7de94edf-7296-4374-a95e-4aedfb4d4970)
 
+Download [Ubuntu 22.04.3](https://ubuntu.com/download/server).
+
+![image](https://github.com/lherbeng/kubernetes/assets/72662912/72518911-4079-4aa5-a87b-87fb85497964)
 
 
 
