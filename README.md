@@ -18,14 +18,14 @@ Every virtual machine needs to be able to reach each other on the network a) Thi
 In order for us to create virtual machines all on the same network, I am going to create a virtual switch in Hyper-v
 Open Powershell in administrator
 
-![image](https://github.com/lherbeng/kubernetes/assets/72662912/a8abb52c-33ba-4a05-8141-de3473a0503c)
+![image](https://github.com/lherbeng/kubernetes/assets/72662912/e617f86c-1825-4aed-865d-86fa44464a1c)
+
 
 <!-- Cod Box Copy begin -->
-<link href="prism/prism.min.css" rel="stylesheet" />
-<link href="code-box-copy/css/code-box-copy.css" rel="stylesheet" />
-<script src="js/jquery.min.js"></script>
-<script src="prism/prism.min.js"></script>
-<script src="clipboard/clipboard.min.js"></script>
-<script src="code-box-copy/js/code-box-copy.js"></script>
+Get-NetAdapter
+
+Import-Module Hyper-V
+$ethernet = Get-NetAdapter -Name "Ethernet 2"
+New-VMSwitch -Name "virtual-network" -NetAdapterName $ethernet.Name -AllowManagementOS $true -Notes "shared virtual network interface"
 <!-- Cod Box Copy end -->
 
