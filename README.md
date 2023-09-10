@@ -72,7 +72,11 @@ New-VM `
 -SwitchName "virtual-network" `
 -VHDPath "c:\temp\vms\linux-0\linux-0.vhdx" `
 -Path "c:\temp\vms\linux-0\"
+```
 
+![image](https://github.com/lherbeng/kubernetes/assets/72662912/bdb20590-a5df-4f76-a14d-20e8912e6711)
+
+```
 New-VM `
 -Name "linux-1" `
 -Generation 1 `
@@ -80,7 +84,9 @@ New-VM `
 -SwitchName "virtual-network" `
 -VHDPath "c:\temp\vms\linux-1\linux-1.vhdx" `
 -Path "c:\temp\vms\linux-1\"
+```
 
+```
 New-VM `
 -Name "linux-2" `
 -Generation 1 `
