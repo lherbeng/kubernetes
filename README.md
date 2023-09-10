@@ -110,7 +110,6 @@ Open up the Hyper-V Manager and you'll be able to see the 3 VMs and all are off
 
 ![image](https://github.com/lherbeng/kubernetes/assets/72662912/85ebac24-f835-4ca4-948d-80c7d2b1fa10)
 
-To change the memory allocation of a running virtual machine, 
 
 Setup a DVD drive that holds the iso file for Ubuntu Server
 
@@ -124,3 +123,11 @@ Set-VMDvdDrive -VMName "linux-2" -ControllerNumber 1 -Path "C:\temp\ubuntu-22.04
 
 Start our VM's
 
+
+To change the memory allocation of a running virtual machine, Shut down the virtual machine:
+
+![image](https://github.com/lherbeng/kubernetes/assets/72662912/88a3beff-69a0-4dc4-9c37-f31b74fab399)
+
+To set the memory allocation for your virtual machine to 6GB using the Set-VMMemory cmdlet in PowerShell, you can use the following command:
+
+![image](https://github.com/lherbeng/kubernetes/assets/72662912/852e852c-bfca-4e81-9de2-55dd37fcc12b)
