@@ -87,13 +87,7 @@ New-VM `
 -MemoryStartupBytes 2048MB `
 -SwitchName "virtual-network" `
 -VHDPath "c:\temp\vms\linux-2\linux-2.vhdx" `
--Path "c:\temp\vms\linux-2\"mkdir c:\temp\vms\linux-0\
-mkdir c:\temp\vms\linux-1\
-mkdir c:\temp\vms\linux-2\
-
-New-VHD -Path c:\temp\vms\linux-0\linux-0.vhdx -SizeBytes 20GB
-New-VHD -Path c:\temp\vms\linux-1\linux-1.vhdx -SizeBytes 20GB
-New-VHD -Path c:\temp\vms\linux-2\linux-2.vhdx -SizeBytes 20GB
+-Path "c:\temp\vms\linux-2\"
 ```
 
 
