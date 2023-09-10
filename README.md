@@ -147,6 +147,37 @@ Choose Ubuntu Server
 
 ![image](https://github.com/lherbeng/kubernetes/assets/72662912/d71ad16d-e249-471f-acfa-2cec7bd56358)
 
+DHCPv4 automatically provided IP, make sure your Ethernet cable is connected
+
+![image](https://github.com/lherbeng/kubernetes/assets/72662912/8583b983-0f38-4cc9-83b1-c006dd3cde93)
+
+Leave Proxy address blank
+
+![image](https://github.com/lherbeng/kubernetes/assets/72662912/e86acfb1-848e-4489-85ba-ed1f74029fa7)
+
+Click Done
+
+![image](https://github.com/lherbeng/kubernetes/assets/72662912/9098e381-ad8f-4259-a556-e32a8305528b)
+
+User an Entire Disk 30GB
+
+![image](https://github.com/lherbeng/kubernetes/assets/72662912/ecb6b7d3-11c1-41e1-bc95-7c8c13207a6a)
+
+It gives you the summary of the Filesystem
+
+![image](https://github.com/lherbeng/kubernetes/assets/72662912/910a1808-f86c-4b71-ac3e-f88209ae9916)
+
+Enter the server's information
+
+![image](https://github.com/lherbeng/kubernetes/assets/72662912/9b725c08-2bab-4d42-b9a1-b43758241410)
+
+Do not select OpenSSH Server
+
+![image](https://github.com/lherbeng/kubernetes/assets/72662912/b1ab0f90-b329-4e83-a738-19af8f2a9049)
+
+Do not install any package, we need docker but we're going to install it manually as we need the latest package
+
+![image](https://github.com/lherbeng/kubernetes/assets/72662912/ed7433dc-f9f7-4914-8971-8a98d10e26cf)
 
 
 If you encounter the error below:
