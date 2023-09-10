@@ -191,6 +191,9 @@ Go to Hyper-V > right click on the machine > Turn Off the machine > then Start t
 
 ![image](https://github.com/lherbeng/kubernetes/assets/72662912/99b5f6d4-7b6d-417c-9b55-1d084cf4a110)
 
+When it's done, it will ask you the username and password.
+
+![image](https://github.com/lherbeng/kubernetes/assets/72662912/486ad003-922c-4d8d-918d-98cfd8ce73ec)
 
 If you encounter the error below:
 
