@@ -115,7 +115,9 @@ To change the memory allocation of a running virtual machine,
 Setup a DVD drive that holds the iso file for Ubuntu Server
 
 ```
-Set-VMDvdDrive -VMName "linux-0" -ControllerNumber 1 -Path "C:\temp\"
-Set-VMDvdDrive -VMName "linux-1" -ControllerNumber 1 -Path "C:\temp\"
-Set-VMDvdDrive -VMName "linux-2" -ControllerNumber 1 -Path "C:\temp\"
+Set-VMDvdDrive -VMName "linux-0" -ControllerNumber 1 -Path "C:\temp\ubuntu-22.04.3-live-server-amd64.iso"
+Set-VMDvdDrive -VMName "linux-1" -ControllerNumber 1 -Path "C:\temp\ubuntu-22.04.3-live-server-amd64.iso"
+Set-VMDvdDrive -VMName "linux-2" -ControllerNumber 1 -Path "C:\temp\ubuntu-22.04.3-live-server-amd64.iso"
 ```
+
+![image](https://github.com/lherbeng/kubernetes/assets/72662912/fc998e01-9675-46c8-b3b1-03e416cd3ec5)
