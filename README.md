@@ -123,6 +123,13 @@ Set-VMDvdDrive -VMName "linux-2" -ControllerNumber 1 -Path "C:\temp\ubuntu-22.04
 
 Start our VM's
 
+```
+Start-VM -Name "linux-0"
+Start-VM -Name "linux-1"
+Start-VM -Name "linux-2"
+```
+
+![image](https://github.com/lherbeng/kubernetes/assets/72662912/ba5b8206-cd59-4f14-9fcd-afe4a76d4c7a)
 
 To change the memory allocation of a running virtual machine, Shut down the virtual machine:
 
