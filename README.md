@@ -121,3 +121,6 @@ Set-VMDvdDrive -VMName "linux-2" -ControllerNumber 1 -Path "C:\temp\ubuntu-22.04
 ```
 
 ![image](https://github.com/lherbeng/kubernetes/assets/72662912/fc998e01-9675-46c8-b3b1-03e416cd3ec5)
+
+Start our VM's
+
