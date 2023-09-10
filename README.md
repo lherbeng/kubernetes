@@ -141,6 +141,13 @@ To set the memory allocation for your virtual machine to 6GB using the Set-VMMem
 
 Now we can open up Hyper-v Manager and see our infrastructure. Double click on machine to setup Ubuntu.
 
+![image](https://github.com/lherbeng/kubernetes/assets/72662912/71a34435-8a96-45df-82bd-04cf027a008a)
+
+Choose Ubuntu Server
+
+![image](https://github.com/lherbeng/kubernetes/assets/72662912/d71ad16d-e249-471f-acfa-2cec7bd56358)
+
+
 
 If you encounter the error below:
 
