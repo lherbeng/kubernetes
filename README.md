@@ -110,6 +110,8 @@ Open up the Hyper-V Manager and you'll be able to see the 3 VMs and all are off
 
 ![image](https://github.com/lherbeng/kubernetes/assets/72662912/85ebac24-f835-4ca4-948d-80c7d2b1fa10)
 
+To change the memory allocation of a running virtual machine, 
+
 Setup a DVD drive that holds the iso file for Ubuntu Server
 
 ```
