@@ -38,9 +38,21 @@ Download [Ubuntu 22.04.3](https://ubuntu.com/download/server).
 
 Create 3 directory for your 3 VMs.
 
+```
+mkdir c:\temp\vms\linux-0\
+mkdir c:\temp\vms\linux-1\
+mkdir c:\temp\vms\linux-2\
+```
+
 ![image](https://github.com/lherbeng/kubernetes/assets/72662912/413dfc45-3493-41f0-876e-bf8f178b5dbf)
 
 Create a Virtual Hard Drive for each respected folder. Open a powershell as you need administrator Privileges.
+
+```
+New-VHD -Path c:\temp\vms\linux-0\linux-0.vhdx -SizeBytes 30GB
+New-VHD -Path c:\temp\vms\linux-1\linux-1.vhdx -SizeBytes 30GB
+New-VHD -Path c:\temp\vms\linux-2\linux-2.vhdx -SizeBytes 30GB
+```
 
 ![image](https://github.com/lherbeng/kubernetes/assets/72662912/0291dd97-c61b-4355-9d5f-32dfcb08cc0b)
 
