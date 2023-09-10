@@ -86,6 +86,8 @@ New-VM `
 -Path "c:\temp\vms\linux-1\"
 ```
 
+![image](https://github.com/lherbeng/kubernetes/assets/72662912/f31c5155-999f-47b3-ad69-cd9b46dd9f1f)
+
 ```
 New-VM `
 -Name "linux-2" `
