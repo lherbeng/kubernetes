@@ -36,6 +36,9 @@ Download [Ubuntu 22.04.3](https://ubuntu.com/download/server).
 
 ![image](https://github.com/lherbeng/kubernetes/assets/72662912/72518911-4079-4aa5-a87b-87fb85497964)
 
+Create 3 directory for your 3 VMs.
+
+![image](https://github.com/lherbeng/kubernetes/assets/72662912/413dfc45-3493-41f0-876e-bf8f178b5dbf)
 
 
 
