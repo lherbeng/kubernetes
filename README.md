@@ -1,4 +1,4 @@
-## This guide follows the general instructions of running a manual rancher install and running our own infrastructure on Hyper-v
+# This guide follows the general instructions of running a manual rancher install and running our own infrastructure on Hyper-v
 
 # ***Hyper-V : Prepare our infrastructure***
 
