@@ -40,5 +40,14 @@ Create 3 directory for your 3 VMs.
 
 ![image](https://github.com/lherbeng/kubernetes/assets/72662912/413dfc45-3493-41f0-876e-bf8f178b5dbf)
 
+Create a Virtual Hard Drive for each respected folder. Open a powershell as you need administrator Privileges.
+
+![image](https://github.com/lherbeng/kubernetes/assets/72662912/0291dd97-c61b-4355-9d5f-32dfcb08cc0b)
+
+![image](https://github.com/lherbeng/kubernetes/assets/72662912/d1325cf7-0987-4a75-ac7f-e486e097dd9f)
+
+![image](https://github.com/lherbeng/kubernetes/assets/72662912/46124659-c16a-407a-a0a3-59b85b64198f)
+
+
 
 
