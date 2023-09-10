@@ -48,6 +48,14 @@ Create a Virtual Hard Drive for each respected folder. Open a powershell as you 
 
 ![image](https://github.com/lherbeng/kubernetes/assets/72662912/46124659-c16a-407a-a0a3-59b85b64198f)
 
+```
+mkdir c:\temp\vms\linux-0\
+mkdir c:\temp\vms\linux-1\
+mkdir c:\temp\vms\linux-2\
 
+New-VHD -Path c:\temp\vms\linux-0\linux-0.vhdx -SizeBytes 20GB
+New-VHD -Path c:\temp\vms\linux-1\linux-1.vhdx -SizeBytes 20GB
+New-VHD -Path c:\temp\vms\linux-2\linux-2.vhdx -SizeBytes 20GB
+```
 
 
