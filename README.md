@@ -179,6 +179,18 @@ Do not install any package, we need docker but we're going to install it manuall
 
 ![image](https://github.com/lherbeng/kubernetes/assets/72662912/ed7433dc-f9f7-4914-8971-8a98d10e26cf)
 
+If the installation is complete, you will see the reboot now button.
+
+![image](https://github.com/lherbeng/kubernetes/assets/72662912/8ef3c88d-801d-4730-b670-84dce20ffec4)
+
+If you encounter the error below, try to close the window.
+
+![image](https://github.com/lherbeng/kubernetes/assets/72662912/51b1d583-7eee-4005-bba6-3d9a2bff26b4)
+
+Go to Hyper-V > right click on the machine > Turn Off the machine > then Start the machine
+
+![image](https://github.com/lherbeng/kubernetes/assets/72662912/99b5f6d4-7b6d-417c-9b55-1d084cf4a110)
+
 
 If you encounter the error below:
 
