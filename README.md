@@ -138,3 +138,16 @@ To change the memory allocation of a running virtual machine, Shut down the virt
 To set the memory allocation for your virtual machine to 6GB using the Set-VMMemory cmdlet in PowerShell, you can use the following command:
 
 ![image](https://github.com/lherbeng/kubernetes/assets/72662912/852e852c-bfca-4e81-9de2-55dd37fcc12b)
+
+Now we can open up Hyper-v Manager and see our infrastructure. Double click on machine to setup Ubuntu.
+
+
+If you encounter the error below:
+
+![image](https://github.com/lherbeng/kubernetes/assets/72662912/6ba9dc68-25df-433c-8067-ac6fb4cbe8e3)
+
+Try to stop the VM and execute the following command:
+
+![image](https://github.com/lherbeng/kubernetes/assets/72662912/8f86a95e-3b88-402a-8907-70fe2dfeb4f7)
+
+
