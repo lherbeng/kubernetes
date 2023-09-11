@@ -197,6 +197,9 @@ When it's done, it will ask you the username and password.
 
 Do the same thing in 2 vms.
 
+![image](https://github.com/lherbeng/kubernetes/assets/72662912/75511215-ed5b-401d-ae77-82ff19e4cb25)
+
+
 
 
 If you encounter the error below:
