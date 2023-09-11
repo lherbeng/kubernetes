@@ -195,10 +195,13 @@ When it's done, it will ask you the username and password.
 
 ![image](https://github.com/lherbeng/kubernetes/assets/72662912/486ad003-922c-4d8d-918d-98cfd8ce73ec)
 
-Do the same thing in 2 vms.
+Do the same thing in linux2 vm.
 
 ![image](https://github.com/lherbeng/kubernetes/assets/72662912/75511215-ed5b-401d-ae77-82ff19e4cb25)
 
+Enter the username and password
+
+![image](https://github.com/lherbeng/kubernetes/assets/72662912/5914dfe8-8a0f-43b4-a214-13fa8528968c)
 
 
 
