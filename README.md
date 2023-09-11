@@ -195,7 +195,11 @@ When it's done, it will ask you the username and password.
 
 ![image](https://github.com/lherbeng/kubernetes/assets/72662912/486ad003-922c-4d8d-918d-98cfd8ce73ec)
 
-<h1 style="color:red;">If you encounter the error below:</h1>
+Do the same thing in 2 vms.
+
+
+
+If you encounter the error below:
 
 ![image](https://github.com/lherbeng/kubernetes/assets/72662912/6ba9dc68-25df-433c-8067-ac6fb4cbe8e3)
 
