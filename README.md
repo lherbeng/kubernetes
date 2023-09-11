@@ -211,6 +211,16 @@ Enter the username and password
 
 ![image](https://github.com/lherbeng/kubernetes/assets/72662912/ff29b938-6e17-4ebc-9030-030a97a51600)
 
+
+If you encounter the error below:
+
+![image](https://github.com/lherbeng/kubernetes/assets/72662912/6ba9dc68-25df-433c-8067-ac6fb4cbe8e3)
+
+Try to stop the VM and execute the following command:
+
+![image](https://github.com/lherbeng/kubernetes/assets/72662912/8f86a95e-3b88-402a-8907-70fe2dfeb4f7)
+
+
 # ***Hyper-V : Setup SSH for our machines***
 
 Now in this demo, because I need to copy rancher bootstrap commands to each VM, it would be easier to do so using SSH. So let's connect to each VM in Hyper-V and setup SSH.
@@ -226,14 +236,3 @@ sudo systemctl enable ssh
 sudo ufw allow ssh
 sudo systemctl start ssh
 ```
-
-
-If you encounter the error below:
-
-![image](https://github.com/lherbeng/kubernetes/assets/72662912/6ba9dc68-25df-433c-8067-ac6fb4cbe8e3)
-
-Try to stop the VM and execute the following command:
-
-![image](https://github.com/lherbeng/kubernetes/assets/72662912/8f86a95e-3b88-402a-8907-70fe2dfeb4f7)
-
-
