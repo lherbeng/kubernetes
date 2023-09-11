@@ -211,6 +211,22 @@ Enter the username and password
 
 ![image](https://github.com/lherbeng/kubernetes/assets/72662912/ff29b938-6e17-4ebc-9030-030a97a51600)
 
+# ***Hyper-V : Setup SSH for our machines***
+
+Now in this demo, because I need to copy rancher bootstrap commands to each VM, it would be easier to do so using SSH. So let's connect to each VM in Hyper-V and setup SSH.
+
+This is because copy+paste does not work without Enhanced Session mode in Ubuntu Server.
+
+Let's temporarily turn on SSH on each server:
+
+```
+sudo apt update
+sudo apt install -y nano net-tools openssh-server
+sudo systemctl enable ssh
+sudo ufw allow ssh
+sudo systemctl start ssh
+```
+
 
 If you encounter the error below:
 
