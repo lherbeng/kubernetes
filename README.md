@@ -237,4 +237,19 @@ sudo ufw allow ssh
 sudo systemctl start ssh
 ```
 
+# ***Setup Docker***
+
+It is required that every machine that needs to join our cluster, has docker running on it.
+Firstly, rancher will use docker to run it's agent as well as bootstrap the cluster.
+
+Install docker on each VM:
+
+```
+curl -sSL https://get.docker.com/ | sh
+sudo usermod -aG docker $(whoami)
+sudo service docker start
+```
+
+
+
 
