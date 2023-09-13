@@ -250,6 +250,11 @@ sudo usermod -aG docker $(whoami)
 sudo service docker start
 ```
 
+![image](https://github.com/lherbeng/kubernetes/assets/72662912/17b12cad-3150-4d86-a280-4d4370009679)
+
+![image](https://github.com/lherbeng/kubernetes/assets/72662912/59bcba92-61e3-43f5-bd5c-b6f631bbb997)
+
+
 
 
 
