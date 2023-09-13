@@ -237,8 +237,4 @@ sudo ufw allow ssh
 sudo systemctl start ssh
 ```
 
-ifconfig is a command-line utility commonly used in Unix-like operating systems, including Linux, to configure and display information about network interfaces on a system. To install it, please use the command below:
 
-```
-sudo apt install net-tools
-```
