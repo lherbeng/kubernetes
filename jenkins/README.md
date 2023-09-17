@@ -36,13 +36,22 @@ This is the Debian package repository of Jenkins to automate installation and up
 - Docker Pipeline
 - Rancher
 
-Create a slave or agent for workernode1
+***Create a slave or agent for workernode1***
 
 ![image](https://github.com/lherbeng/kubernetes/assets/72662912/9ca80346-1a7b-4ef7-94ed-7b26cf54c8f5)
 
 
+***Manually Create the Remote Root Directory:***
 
+The "Remote root directory" in the context of creating a Jenkins agent (also known as a Jenkins slave) is the directory path on the agent machine where Jenkins will store and execute job-related files and workspace for jobs running on that agent. It's essentially the workspace directory for the agent.
 
+Before configuring the Jenkins agent, log in to the agent machine and create the "Remote root directory" manually. You can use the mkdir command to create the directory. 
+
+![image](https://github.com/lherbeng/kubernetes/assets/72662912/8450152d-ce29-4e08-8d07-0a45a3b37dee)
+
+***Remote Root Directory is Mandory***
+
+![image](https://github.com/lherbeng/kubernetes/assets/72662912/6b78b0c4-29d0-4fcb-b564-86b721804b63)
 
 
 
