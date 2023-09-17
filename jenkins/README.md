@@ -36,6 +36,11 @@ This is the Debian package repository of Jenkins to automate installation and up
 - Docker Pipeline
 - Rancher
 
+Create a slave or agent for workernode1
+
+![image](https://github.com/lherbeng/kubernetes/assets/72662912/9ca80346-1a7b-4ef7-94ed-7b26cf54c8f5)
+
+
 
 
 
