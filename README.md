@@ -254,7 +254,10 @@ sudo service docker start
 
 ![image](https://github.com/lherbeng/kubernetes/assets/72662912/59bcba92-61e3-43f5-bd5c-b6f631bbb997)
 
+# ***Setup Jenkins***
 
+![image](https://github.com/lherbeng/kubernetes/assets/72662912/cf842cda-f801-4df8-96ef-81191934068d)
 
+![image](https://github.com/lherbeng/kubernetes/assets/72662912/1fd88e09-1cdd-42f4-a06f-b2aa03f96e0d)
 
 
