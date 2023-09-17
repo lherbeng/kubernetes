@@ -1,4 +1,6 @@
 #!/bin/bash
+JENKINS_SERVER = 'http://192.168.254.182'
+JENKINS_PORT = 8080
 
 # Install Java (required for Jenkins agent)
 sudo apt update
