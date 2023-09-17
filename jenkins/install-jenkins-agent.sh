@@ -10,7 +10,7 @@ sudo apt install default-jdk -y
 sudo mkdir -p /var/lib/jenkins/agent
 
 # Download Jenkins agent JAR file
-wget http://your-jenkins-server:port/jnlpJars/agent.jar -O /var/lib/jenkins/agent/agent.jar
+wget "${JENKINS_SERVER}:${JENKINS_PORT}/jnlpJars/agent.jar" -O /var/lib/jenkins/agent/agent.jar
 # Replace "your-jenkins-server," "port," and "agent-name" with your Jenkins server's information.
 
 # Create a Jenkins agent service file
