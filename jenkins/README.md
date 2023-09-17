@@ -12,25 +12,25 @@ This is the Debian package repository of Jenkins to automate installation and up
 
 ![image](https://github.com/lherbeng/kubernetes/assets/72662912/f33d98f9-d457-487b-ac27-4e84519e25f1)
 
-3. To get the password via command line
+***To get the password via command line***
 
 ![image](https://github.com/lherbeng/kubernetes/assets/72662912/22de9f9e-14c8-4a43-b507-d4466f0c241e)
 
-4. Select Install suggested plugins
+***Select Install suggested plugins***
 
 ![image](https://github.com/lherbeng/kubernetes/assets/72662912/0bd8d5e1-f33d-4e92-9909-73ead1558aaa)
 
-5. Create First Admin User
+***Create First Admin User***
 
 ![image](https://github.com/lherbeng/kubernetes/assets/72662912/763b8466-38cf-4989-bf40-760e9a315341)
 
-6. Jenkins URL
+***Jenkins URL***
 
 ![image](https://github.com/lherbeng/kubernetes/assets/72662912/f30cd2f7-d1fd-4717-9139-aaabf69bca38)
 
-7. Click on "Manage Jenkins" > "Manage Plugins" > "Available."
+***Click on "Manage Jenkins" > "Manage Plugins" > "Available.***
 
-8. Search for and install the following plugins:
+***Search for and install the following plugins:***
    
 - Kubernetes
 - Docker Pipeline
