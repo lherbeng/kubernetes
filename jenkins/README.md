@@ -49,7 +49,7 @@ Before configuring the Jenkins agent, log in to the agent machine and create the
 
 ![image](https://github.com/lherbeng/kubernetes/assets/72662912/8450152d-ce29-4e08-8d07-0a45a3b37dee)
 
-***Remote Root Directory is Mandory***
+***Remote Root Directory is Mandatory***
 
 ![image](https://github.com/lherbeng/kubernetes/assets/72662912/6b78b0c4-29d0-4fcb-b564-86b721804b63)
 
