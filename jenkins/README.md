@@ -1,4 +1,4 @@
-# ***Setup Jenkins***
+# Setup Jenkins
 
 This is the Debian package repository of Jenkins to automate installation and upgrade [Jenkins Debian Packages](https://pkg.origin.jenkins.io/debian-stable/).
 
