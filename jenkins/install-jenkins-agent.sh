@@ -1,6 +1,7 @@
 #!/bin/bash
-JENKINS_SERVER ='http://192.168.254.182'
-JENKINS_PORT =8080
+JENKINS_SERVER='http://192.168.254.182'
+JENKINS_PORT=8080
+AGENT_SECRET='9c9512ee450398a18ff0b00aa4388bc2dbc4e58fc112ec9fcf741d4fced037c3'
 
 # Install Java (required for Jenkins agent)
 sudo apt update
@@ -11,7 +12,6 @@ sudo mkdir -p /var/lib/jenkins/agent
 
 # Download Jenkins agent JAR file
 wget "${JENKINS_SERVER}:${JENKINS_PORT}/jnlpJars/agent.jar" -O /var/lib/jenkins/agent/agent.jar
-# Replace "your-jenkins-server," "port," and "agent-name" with your Jenkins server's information.
 
 # Create a Jenkins agent service file
 sudo tee /etc/systemd/system/jenkins-agent.service <<EOF
@@ -20,8 +20,7 @@ Description=Jenkins Agent
 After=network.target
 
 [Service]
-ExecStart=/usr/bin/java -jar /var/lib/jenkins/agent/agent.jar -jnlpUrl http://your-jenkins-server:port/computer/agent-name/slave-agent.jnlp
-# Replace "your-jenkins-server," "port," and "agent-name" with your Jenkins server's information.
+ExecStart=/usr/bin/java -jar /var/lib/jenkins/agent/agent.jar -jnlpUrl ${JENKINS_SERVER}:${JENKINS_PORT}/computer/agent-name/slave-agent.jnlp -secret ${AGENT_SECRET}
 
 User=jenkins-agent
 Restart=always
