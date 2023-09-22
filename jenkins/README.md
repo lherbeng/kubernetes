@@ -67,6 +67,10 @@ click workernode1-agent
 
 ![image](https://github.com/lherbeng/kubernetes/assets/72662912/3a16a98c-572a-44b4-9755-66c8883adc94)
 
+It will show you on how to Run from agent command line
 
+![image](https://github.com/lherbeng/kubernetes/assets/72662912/b2e126ef-6aa3-4663-b094-f9f7227e7438)
+
+![image](https://github.com/lherbeng/kubernetes/assets/72662912/4cbc0392-5098-4d0a-babf-343311a017cb)
 
 
