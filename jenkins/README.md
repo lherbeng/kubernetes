@@ -61,7 +61,7 @@ Before configuring the Jenkins agent, log in to the agent machine and create the
 
 Hit save button when you're done
 
-![image](https://github.com/lherbeng/kubernetes/assets/72662912/c099b24a-8648-484d-88e9-c00e7ec82a90)
+![image](https://github.com/lherbeng/kubernetes/assets/72662912/de8582de-1719-4293-9de3-dd65a6375ea6)
 
 click workernode1-agent
 
