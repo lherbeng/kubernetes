@@ -42,6 +42,8 @@ Select "Set up an agent"
 
 ![image](https://github.com/lherbeng/kubernetes/assets/72662912/6b3ed470-e15d-47fd-bac7-1d43b1ab7f1f)
 
+Enter workernode1-agent for the Node name then hit create button
+
 ![image](https://github.com/lherbeng/kubernetes/assets/72662912/1395038c-70dc-462c-8953-85250008b425)
 
 
