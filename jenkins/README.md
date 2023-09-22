@@ -38,6 +38,11 @@ This is the Debian package repository of Jenkins to automate installation and up
 
 ***Create a slave or agent for workernode1***
 
+Select "Set up an agent"
+
+![image](https://github.com/lherbeng/kubernetes/assets/72662912/6b3ed470-e15d-47fd-bac7-1d43b1ab7f1f)
+
+
 ![image](https://github.com/lherbeng/kubernetes/assets/72662912/9ca80346-1a7b-4ef7-94ed-7b26cf54c8f5)
 
 
