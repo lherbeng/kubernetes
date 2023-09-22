@@ -63,6 +63,9 @@ Hit save button when you're done
 
 ![image](https://github.com/lherbeng/kubernetes/assets/72662912/c099b24a-8648-484d-88e9-c00e7ec82a90)
 
+click workernode1-agent
+
+![image](https://github.com/lherbeng/kubernetes/assets/72662912/3a16a98c-572a-44b4-9755-66c8883adc94)
 
 
 
