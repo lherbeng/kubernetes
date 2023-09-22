@@ -1,1 +1,2 @@
 
+kubectl get configmap prometheus-server -n <namespace> -o jsonpath='{.data["prometheus.yaml"]}' | less
