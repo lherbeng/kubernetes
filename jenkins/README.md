@@ -73,7 +73,7 @@ It will show you on how to Run from agent command line
 
 ![image](https://github.com/lherbeng/kubernetes/assets/72662912/4cbc0392-5098-4d0a-babf-343311a017cb)
 
-## Create a pipeline
+## Configure Jenkins for GitHub Integration
 
 In your Jenkins dashboard, click on "Manage Jenkins" in the left sidebar.
 
@@ -102,6 +102,18 @@ Paste the token you created in Github and enter the github-PAT for the ID then h
 Under Credentials select github-PAT then hit Test connection button. Credentials verified for user lherbeng, rate limit: 4999. It specifies the rate limit and how many API calls I have left. It's set to 5000 and I just used one to test connection so have 4999 api calls remaining before I'm rate limited.
 
 ![image](https://github.com/lherbeng/kubernetes/assets/72662912/c542b6df-5fcb-4945-adf0-66c7151205be)
+
+## Create a pipeline
+
+In your Jenkins dashboard, click on "New Item."
+
+![image](https://github.com/lherbeng/kubernetes/assets/72662912/6697ba3e-a277-42d8-a0e6-651d7e1be3a7)
+
+Enter a name for your pipeline job (e.g., "My Jenkins Agent Installation"). Select "Pipeline" as the project type and click "OK."
+
+![image](https://github.com/lherbeng/kubernetes/assets/72662912/ea793dc4-741e-44d7-bb06-d1c47bb3c99f)
+
+## Configure the Pipeline Job
 
 
 
