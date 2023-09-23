@@ -89,4 +89,19 @@ In the "Available" tab, search for and install the "GitHub plugin" plugin. This 
 
 Once the plugin is installed, go to "Manage Jenkins" > "Configure System."
 
+![image](https://github.com/lherbeng/kubernetes/assets/72662912/c9c27ffc-b0bd-412e-a80b-7dbd74ba0831)
+
 Scroll down to the "GitHub" section and configure the GitHub server settings. You'll need to provide your GitHub credentials (or a Personal Access Token) and click "Add GitHub Server."
+
+![image](https://github.com/lherbeng/kubernetes/assets/72662912/c8629dfd-b691-40ea-80a5-b2b090f3449f)
+
+Paste the token you created in Github and enter the github-PAT for the ID then hit save button.
+
+![image](https://github.com/lherbeng/kubernetes/assets/72662912/96d53148-7f61-4a5a-9a4d-7f2d758fb2eb)
+
+Under Credentials select github-PAT then hit Test connection button. Credentials verified for user lherbeng, rate limit: 4999. It specifies the rate limit and how many API calls I have left. It's set to 5000 and I just used one to test connection so have 4999 api calls remaining before I'm rate limited.
+
+![image](https://github.com/lherbeng/kubernetes/assets/72662912/c542b6df-5fcb-4945-adf0-66c7151205be)
+
+
+
