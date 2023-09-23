@@ -123,9 +123,10 @@ In the "Pipeline" section, select the "Pipeline script from SCM" option. Choose 
 
 ![image](https://github.com/lherbeng/kubernetes/assets/72662912/67060c46-6000-45ec-8c9c-1f52b0551ca2)
 
-Under "Branches to build," enter the branch name you want to build (usually "main" or "master").
+Under "Branches to build," enter the branch name you want to build (usually "main" or "master"). In the "Script Path," specify the path to your Jenkinsfile in the repository (e.g., Jenkinsfile). Click "Save" to save your job configuration.
 
-![image](https://github.com/lherbeng/kubernetes/assets/72662912/fa0fcc29-6466-49ef-a4f4-da11d3ff757f)
+![image](https://github.com/lherbeng/kubernetes/assets/72662912/a0739398-2ef1-4e71-8e1f-9850dc21bfdb)
+
 
 
 
