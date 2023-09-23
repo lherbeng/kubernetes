@@ -117,5 +117,15 @@ Enter a name for your pipeline job (e.g., "My Jenkins Agent Installation"). Sele
 
 In the "General" section, you can provide a description for your pipeline job.
 
+![image](https://github.com/lherbeng/kubernetes/assets/72662912/cd100a99-aa4f-40d6-b9f1-90c87a747a6a)
+
+In the "Pipeline" section, select the "Pipeline script from SCM" option. Choose "Git" as the SCM. In the "Repository URL," enter the URL of your GitHub repository where the Jenkinsfile and Bash script are stored.
+
+![image](https://github.com/lherbeng/kubernetes/assets/72662912/67060c46-6000-45ec-8c9c-1f52b0551ca2)
+
+Under "Branches to build," enter the branch name you want to build (usually "main" or "master").
+
+![image](https://github.com/lherbeng/kubernetes/assets/72662912/fa0fcc29-6466-49ef-a4f4-da11d3ff757f)
+
 
 
