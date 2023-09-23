@@ -75,3 +75,18 @@ It will show you on how to Run from agent command line
 
 ## Create a pipeline
 
+In your Jenkins dashboard, click on "Manage Jenkins" in the left sidebar.
+
+![image](https://github.com/lherbeng/kubernetes/assets/72662912/445e727e-557b-4dd9-bf81-963a962bbe3e)
+
+Click on "Manage Plugins.
+
+![image](https://github.com/lherbeng/kubernetes/assets/72662912/9a14772c-8dab-4ee0-be53-d1d7e813f2b2)
+
+In the "Available" tab, search for and install the "GitHub plugin" plugin. This plugin integrates GitHub to Jenkins.
+
+![image](https://github.com/lherbeng/kubernetes/assets/72662912/35123cd5-af2d-401c-954c-72d49b38ef38)
+
+Once the plugin is installed, go to "Manage Jenkins" > "Configure System."
+
+Scroll down to the "GitHub" section and configure the GitHub server settings. You'll need to provide your GitHub credentials (or a Personal Access Token) and click "Add GitHub Server."
