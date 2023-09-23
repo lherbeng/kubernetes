@@ -115,5 +115,7 @@ Enter a name for your pipeline job (e.g., "My Jenkins Agent Installation"). Sele
 
 ## Configure the Pipeline Job
 
+In the "General" section, you can provide a description for your pipeline job.
+
 
 
