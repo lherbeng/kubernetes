@@ -22,12 +22,15 @@ spec:
 ====
 
 import os
-import psutil
 
 def consume_memory(total_memory_mb):
-    process = psutil.Process(os.getpid())
     total_memory_bytes = total_memory_mb * 1024 * 1024
     data = bytearray(total_memory_bytes)
+    try:
+        while True:
+            os.write(1, data)  # Write to stdout to consume memory
+    except MemoryError:
+        pass  # Memory is exhausted
 
 if __name__ == "__main__":
     total_memory_mb = 15746  # Total memory in megabytes (MB) you want to consume
