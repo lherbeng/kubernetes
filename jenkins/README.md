@@ -73,7 +73,8 @@ It will show you on how to Run from agent command line.
 
 ![image](https://github.com/lherbeng/kubernetes/assets/72662912/4cbc0392-5098-4d0a-babf-343311a017cb)
 
-Run the command in workernode1, go to the 
+Run the command in workernode1, go to the Remote directory /var/lib/jenkins/agents/worker-node-1.
+
 
 
 ## Configure Jenkins for GitHub Integration
