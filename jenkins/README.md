@@ -73,9 +73,21 @@ It will show you on how to Run from agent command line.
 
 ![image](https://github.com/lherbeng/kubernetes/assets/72662912/4cbc0392-5098-4d0a-babf-343311a017cb)
 
-Run the command in workernode1, go to the Remote directory /var/lib/jenkins/agents/worker-node-1.
+Run the command in workernode1, go to the Remote root directory /var/lib/jenkins/agents/worker-node-1.
 
+![image](https://github.com/lherbeng/kubernetes/assets/72662912/ae592421-a244-4e94-8f82-e231215047f5)
 
+If you encounter the Command 'java' not found, but can be installed with error, install the java.
+
+![image](https://github.com/lherbeng/kubernetes/assets/72662912/8cf33e14-5676-44ba-9e19-cbf6e5d09fc0)
+
+Try to re-run the command and you will be able to see that it is connected.
+
+![image](https://github.com/lherbeng/kubernetes/assets/72662912/2d178741-3d32-4d5c-9db1-b27c01210ff0)
+
+Check the Agent workernode1-agent and it is now online, repeat the same process if you want to add another workernode-agent
+
+![image](https://github.com/lherbeng/kubernetes/assets/72662912/ad701a43-ff0f-421e-bc99-0ef4018b8dc1)
 
 ## Configure Jenkins for GitHub Integration
 
