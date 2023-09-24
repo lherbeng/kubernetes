@@ -3,14 +3,12 @@ pipeline {
 
     stages {
         stage('Install RKE2 on Master Node') {
-            agent { label 'Built-In Node' } // Specify the label for the Jenkins master node
             steps {
                 sh './install_rke2_master.sh'
             }
         }
 
         stage('Verify Installation on Master Node') {
-            agent { label 'Built-In Node' } // Specify the label for the Jenkins master node
             steps {
                 script {
                     // Verify RKE2 installation (e.g., kubectl version or other checks)
@@ -20,7 +18,7 @@ pipeline {
         }
 
         stage('Install RKE2 on Worker Node 1') {
-            agent { label 'workernode1-agent' } // Specify the label for the worker node 1
+            agent { label 'workernode1-agent' } // Specify the label for worker node 1
             steps {
                 sh './install_rke2_worker1.sh'
             }
