@@ -103,30 +103,3 @@ Under Credentials select github-PAT then hit Test connection button. Credentials
 
 ![image](https://github.com/lherbeng/kubernetes/assets/72662912/c542b6df-5fcb-4945-adf0-66c7151205be)
 
-## Create a pipeline
-
-In your Jenkins dashboard, click on "New Item."
-
-![image](https://github.com/lherbeng/kubernetes/assets/72662912/6697ba3e-a277-42d8-a0e6-651d7e1be3a7)
-
-Enter a name for your pipeline job (e.g., "My Jenkins Agent Installation"). Select "Pipeline" as the project type and click "OK."
-
-![image](https://github.com/lherbeng/kubernetes/assets/72662912/ea793dc4-741e-44d7-bb06-d1c47bb3c99f)
-
-## Configure the Pipeline Job
-
-In the "General" section, you can provide a description for your pipeline job.
-
-![image](https://github.com/lherbeng/kubernetes/assets/72662912/cd100a99-aa4f-40d6-b9f1-90c87a747a6a)
-
-In the "Pipeline" section, select the "Pipeline script from SCM" option. Choose "Git" as the SCM. In the "Repository URL," enter the URL of your GitHub repository where the Jenkinsfile and Bash script are stored.
-
-![image](https://github.com/lherbeng/kubernetes/assets/72662912/67060c46-6000-45ec-8c9c-1f52b0551ca2)
-
-Under "Branches to build," enter the branch name you want to build (usually "main" or "master"). In the "Script Path," specify the path to your Jenkinsfile in the repository (e.g., Jenkinsfile). Click "Save" to save your job configuration.
-
-![image](https://github.com/lherbeng/kubernetes/assets/72662912/a0739398-2ef1-4e71-8e1f-9850dc21bfdb)
-
-
-
-
