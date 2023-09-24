@@ -25,11 +25,10 @@ Under the "General" section, you can configure parameters and other general sett
 
 In the "Pipeline" section, choose "Pipeline script from SCM" as the definition. This allows you to define the pipeline script in your source code repository.
 
+![image](https://github.com/lherbeng/kubernetes/assets/72662912/09000a2a-6b74-4bef-8233-4dd3be645897)
 
-Select
 
-![image](https://github.com/lherbeng/kubernetes/assets/72662912/617f9d9d-8fc9-4655-99eb-79f5bde8927e)
-
+Select Secret text from the drop down menu > Paste your newly created token in Secret > Enter your preffered ID > Click Save
 
 ![image](https://github.com/lherbeng/kubernetes/assets/72662912/24db037b-9797-42b1-a96c-ca0e06cdf69b)
 
