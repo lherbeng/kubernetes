@@ -32,6 +32,11 @@ Select Secret text from the drop down menu > Paste your newly created token in S
 
 ![image](https://github.com/lherbeng/kubernetes/assets/72662912/24db037b-9797-42b1-a96c-ca0e06cdf69b)
 
+Change the Branches to build from */master to */main > Script Path "rancher/Jenkinsfile" > Hit Save button
+
+![image](https://github.com/lherbeng/kubernetes/assets/72662912/8eade637-452d-44c2-b877-a469c48f9f14)
+
+**Additional Steps**
 
 To create token, go to Settings > Developer Settings > Click Generate new token (classic)
 
