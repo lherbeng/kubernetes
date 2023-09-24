@@ -3,14 +3,12 @@ pipeline {
 
     stages {
         stage('Install RKE2 on Master Node') {
-            agent { label 'Built-In Node' }
             steps {
                 sh './install_rke2_master.sh'
             }
         }
 
         stage('Verify Installation on Master Node') {
-            agent { label 'Built-In Node' }
             steps {
                 script {
                     // Verify RKE2 installation (e.g., kubectl version or other checks)
@@ -35,14 +33,14 @@ pipeline {
                 }
             }
         }
-
+        
         stage('Install RKE2 on Worker Node 2') {
             agent { label 'workernode2-agent' }
             steps {
                 sh './install_rke2_worker2.sh'
             }
         }
-
+        
         stage('Verify Installation on Worker Node 2') {
             agent { label 'workernode2-agent' }
             steps {
@@ -53,7 +51,7 @@ pipeline {
             }
         }
     }     
-
+                    
     post {
         success {
             echo 'RKE2 installation and verification succeeded!'
