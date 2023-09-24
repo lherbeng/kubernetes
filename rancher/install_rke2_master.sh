@@ -1,8 +1,8 @@
 #!/bin/bash
 
 # Set your desired RKE2 and Helm versions
-RKE2_VERSION="v1.22.2+rke2r1"
-HELM_VERSION="v3.7.0"
+RKE2_VERSION="v1.26.9+rke2r1"  
+HELM_VERSION="v3.12.3"
 
 # Install RKE2
 curl -sfL https://get.rke2.io | sh -
