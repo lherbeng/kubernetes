@@ -63,6 +63,10 @@ Hit save button when you're done
 
 ![image](https://github.com/lherbeng/kubernetes/assets/72662912/22acd25d-ac45-4ddb-8bda-0e57afe19b5e)
 
+The workernode1-agent is currently offline.
+
+![image](https://github.com/lherbeng/kubernetes/assets/72662912/b079d703-d353-47a1-bbde-b469ed8780f4)
+
 click workernode1-agent
 
 ![image](https://github.com/lherbeng/kubernetes/assets/72662912/3a16a98c-572a-44b4-9755-66c8883adc94)
@@ -72,6 +76,9 @@ It will show you on how to Run from agent command line
 ![image](https://github.com/lherbeng/kubernetes/assets/72662912/b2e126ef-6aa3-4663-b094-f9f7227e7438)
 
 ![image](https://github.com/lherbeng/kubernetes/assets/72662912/4cbc0392-5098-4d0a-babf-343311a017cb)
+
+
+
 
 ## Configure Jenkins for GitHub Integration
 
