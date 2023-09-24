@@ -4,3 +4,16 @@ kubectl get configmap prometheus-server -n <namespace> -o jsonpath='{.data["prom
 
 ($current_memory_usage / $total_memory) * 100 > 85
 
+memory-pressure-pod.yaml
+
+apiVersion: v1
+kind: Pod
+metadata:
+  name: memory-pressure-pod
+spec:
+  containers:
+  - name: busybox
+    image: busybox
+    command: ["/bin/sh"]
+    args: ["-c", "while true; do dd if=/dev/zero of=/dev/null; done"]
+
