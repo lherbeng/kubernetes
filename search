@@ -17,3 +17,20 @@ spec:
     command: ["/bin/sh"]
     args: ["-c", "while true; do dd if=/dev/zero of=/dev/null; done"]
 
+
+
+====
+
+import os
+import psutil
+
+def consume_memory(total_memory_mb):
+    process = psutil.Process(os.getpid())
+    total_memory_bytes = total_memory_mb * 1024 * 1024
+    data = bytearray(total_memory_bytes)
+
+if __name__ == "__main__":
+    total_memory_mb = 15746  # Total memory in megabytes (MB) you want to consume
+    consume_memory(total_memory_mb)
+
+python consume_memory.py
