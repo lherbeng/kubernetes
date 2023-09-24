@@ -1,2 +1,6 @@
 
 kubectl get configmap prometheus-server -n <namespace> -o jsonpath='{.data["prometheus.yaml"]}' | less
+
+
+($current_memory_usage / $total_memory) * 100 > 85
+
