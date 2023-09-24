@@ -1,0 +1,48 @@
+pipeline {
+    agent none
+
+    stages {
+        stage('Install RKE2 on Master Node') {
+            agent { label 'master-node-agent' }
+            steps {
+                sh './install_rke2_master.sh'
+            }
+        }
+
+        stage('Verify Installation on Master Node') {
+            agent { label 'master-node-agent' }
+            steps {
+                script {
+                    // Verify RKE2 installation (e.g., kubectl version or other checks)
+                    sh 'kubectl version'
+                }
+            }
+        }
+
+        stage('Install RKE2 on Worker Node 1') {
+            agent { label 'workernode1-agent' }
+            steps {
+                sh './install_rke2.sh'
+            }
+        }
+
+        stage('Verify Installation on Worker Node 1') {
+            agent { label 'workernode1-agent' }
+            steps {
+                script {
+                    // Verify RKE2 installation (e.g., kubectl version or other checks)
+                    sh 'kubectl version'
+                }
+            }
+        }
+    }
+
+    post {
+        success {
+            echo 'RKE2 installation and verification succeeded!'
+        }
+        failure {
+            echo 'RKE2 installation or verification failed!'
+        }
+    }
+}
