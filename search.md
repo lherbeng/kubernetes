@@ -83,3 +83,6 @@ Enable the Alert:
 
 Once you've confirmed that the alert is functioning correctly, you can enable it by clicking the "Enabled" toggle in the alert rule settings.
 With this configuration, Grafana will trigger an alert when the CPU or memory usage on a node exceeds 85% for the specified duration. You can customize the threshold, evaluation interval, and notification channels to suit your specific monitoring and alerting needs.
+
+
+(1 - rate(node_cpu_seconds_total{mode="idle"}[1m])) * 100 > 85
