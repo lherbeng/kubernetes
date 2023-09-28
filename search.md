@@ -110,3 +110,6 @@ groups:
           description: "Disk usage on instance {{ $labels.instance }} is above 85%."
 
 
+----
+
+free -m | awk '/Mem:/ {if ($3 / $2 >= 0.85) print "Memory usage exceeds 85%"}'
