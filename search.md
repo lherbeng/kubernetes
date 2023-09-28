@@ -92,3 +92,21 @@ With this configuration, Grafana will trigger an alert when the CPU or memory us
 
 100 * (1 - (node_filesystem_free_bytes{device=~"/dev/.*", mountpoint="/"} / node_filesystem_size_bytes{device=~"/dev/.*", mountpoint="/"}))
 
+
+====
+
+
+groups:
+  - name: disk_alerts
+    rules:
+      - alert: HighDiskUsage
+        expr: |
+          100 * (1 - (node_filesystem_free_bytes{device=~"/dev/.*", mountpoint="/"} / node_filesystem_size_bytes{device=~"/dev/.*", mountpoint="/"})) > 85
+        for: 5m
+        labels:
+          severity: warning
+        annotations:
+          summary: "High Disk Usage (instance {{ $labels.instance }})"
+          description: "Disk usage on instance {{ $labels.instance }} is above 85%."
+
+
