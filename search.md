@@ -86,3 +86,9 @@ With this configuration, Grafana will trigger an alert when the CPU or memory us
 
 
 (1 - rate(node_cpu_seconds_total{mode="idle"}[1m])) * 100 > 85
+
+====
+
+
+100 * (1 - (node_filesystem_free_bytes{device=~"/dev/.*", mountpoint="/"} / node_filesystem_size_bytes{device=~"/dev/.*", mountpoint="/"}))
+
