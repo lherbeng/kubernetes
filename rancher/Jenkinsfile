@@ -6,7 +6,7 @@ pipeline {
             agent { label 'masternode1-agent' } // Specify the label for the Jenkins master node
             steps {
                 sh 'chmod +x ./rancher/install_rke2_master.sh'
-                sh './rancher/install_rke2_master.sh'
+                sh 'sudo ./rancher/install_rke2_master.sh'
             }
         }
 
@@ -24,7 +24,7 @@ pipeline {
             agent { label 'workernode1-agent' } // Specify the label for the worker node 1
             steps {
                 sh 'chmod +x ./rancher/install_rke2_worker1.sh'
-                sh './rancher/install_rke2_worker1.sh'
+                sh 'sudo ./rancher/install_rke2_worker1.sh'
             }
         }
 
@@ -42,7 +42,7 @@ pipeline {
             agent { label 'workernode2-agent' } // Specify the label for worker node 2
             steps {
                 sh 'chmod +x ./rancher/install_rke2_worker2.sh'
-                sh './rancher/install_rke2_worker2.sh'
+                sh 'sudo ./rancher/install_rke2_worker2.sh'
             }
         }
 
