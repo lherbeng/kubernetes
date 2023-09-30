@@ -11,7 +11,7 @@ pipeline {
         }
 
         stage('Verify Installation on Master Node 1') {
-            agent { label 'masternode-agent' } // Specify the label for the Jenkins master node
+            agent { label 'masternode1-agent' } // Specify the label for the Jenkins master node
             steps {
                 script {
                     // Verify RKE2 installation (e.g., kubectl version or other checks)
