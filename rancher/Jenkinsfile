@@ -2,7 +2,7 @@ pipeline {
     agent none
 
     stages {
-        stage('Install RKE2 on Master Node') {
+        stage('Install RKE2 on Master Node 1') {
             agent { label 'masternode1-agent' } // Specify the label for the Jenkins master node
             steps {
                 sh 'chmod +x ./rancher/install_rke2_master.sh'
@@ -10,7 +10,7 @@ pipeline {
             }
         }
 
-        stage('Verify Installation on Master Node') {
+        stage('Verify Installation on Master Node 1') {
             agent { label 'masternode-agent' } // Specify the label for the Jenkins master node
             steps {
                 script {
