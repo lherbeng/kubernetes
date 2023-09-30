@@ -5,8 +5,13 @@ pipeline {
         stage('Install RKE2 on Master Node 1') {
             agent { label 'masternode1-agent' } // Specify the label for the Jenkins master node
             steps {
-                sh 'chmod +x ./install_rke2_master.sh'
-                sh 'sudo ./install_rke2_master.sh'
+                script {
+                    // Navigate to the rancher directory
+                    dir('rancher') {
+                        sh 'chmod +x ./install_rke2_master.sh'
+                        sh 'sudo ./install_rke2_master.sh'
+                    }
+                }
             }
         }
 
@@ -23,8 +28,13 @@ pipeline {
         stage('Install RKE2 on Worker Node 1') {
             agent { label 'workernode1-agent' } // Specify the label for the worker node 1
             steps {
-                sh 'chmod +x ./install_rke2_worker1.sh'
-                sh 'sudo ./install_rke2_worker1.sh'
+                script {
+                    // Navigate to the rancher directory
+                    dir('rancher') {
+                        sh 'chmod +x ./install_rke2_worker1.sh'
+                        sh 'sudo ./install_rke2_worker1.sh'
+                    }
+                }
             }
         }
 
@@ -41,8 +51,13 @@ pipeline {
         stage('Install RKE2 on Worker Node 2') {
             agent { label 'workernode2-agent' } // Specify the label for worker node 2
             steps {
-                sh 'chmod +x ./install_rke2_worker2.sh'
-                sh 'sudo ./install_rke2_worker2.sh'
+                script {
+                    // Navigate to the rancher directory
+                    dir('rancher') {
+                        sh 'chmod +x ./install_rke2_worker2.sh'
+                        sh 'sudo ./install_rke2_worker2.sh'
+                    }
+                }
             }
         }
 
