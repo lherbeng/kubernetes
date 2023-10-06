@@ -10,3 +10,20 @@ groups:
         annotations:
           summary: "High Disk Usage (instance {{ $labels.instance }})"
           description: "Disk usage on instance {{ $labels.instance }} is above 85%."
+
+
+groups:
+  - name: kubernetes
+    rules:
+      - alert: APIServerHighRequestDuration
+        expr: increase(apiserver_request_duration_seconds_sum[5m]) > 10
+        for: 5m
+        labels:
+          severity: warning
+        annotations:
+          summary: "High API Server Request Duration"
+          description: "The API server request duration has been high for the last 5 minutes."
+
+
+
+In this alerting rule, when the API server request duration sum increases by more than 10 seconds over the last 5 minutes continuously, a warning alert will be triggered. You can adjust the threshold (the > 10 part) and the duration (for: 5m) according to your specific performance requirements and tolerance for high request durations.
