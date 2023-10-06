@@ -27,3 +27,5 @@ groups:
 
 
 In this alerting rule, when the API server request duration sum increases by more than 10 seconds over the last 5 minutes continuously, a warning alert will be triggered. You can adjust the threshold (the > 10 part) and the duration (for: 5m) according to your specific performance requirements and tolerance for high request durations.
+
+I questioned Arden of the Unix team about if he could see any problems with the iptables, specifically for ports 443 and 80, but he said he couldn't. He advised running the netstat command to see if the hostname brn was listening on port 80 and port 443, but the output showed that it was not. It looks that the server has not installed the httpd service.
