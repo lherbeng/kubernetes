@@ -99,3 +99,15 @@ expr: kube_deployment_status_replicas_unavailable{app=~"my-app|my-app2"} > 1
 This expression will match deployments with either app=my-app or app=my-app2.
 
 ---
+
+groups:
+  - name: kubernetes
+    rules:
+      - alert: DeploymentReplicaMismatch
+        expr: kube_deployment_status_replicas > kube_deployment_spec_replicas
+        for: 5m
+        labels:
+          severity: warning
+        annotations:
+          summary: "Deployment Replica Mismatch"
+          description: "The current replica count exceeds the desired replica count."
