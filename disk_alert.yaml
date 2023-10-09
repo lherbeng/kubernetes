@@ -64,3 +64,38 @@ rate(apiserver_request_duration_seconds_count[5m]): Similarly, this part calcula
 So, when you use the expression rate(apiserver_request_duration_seconds_sum[5m]) / rate(apiserver_request_duration_seconds_count[5m]) > 0.5, you are essentially checking if, on average, requests to the Kubernetes API server are taking more than 0.5 seconds to complete over the last 5 minutes.
 
 If the result of this expression is true, it means that the average request duration over the last 5 minutes exceeds the threshold of 0.5 seconds, indicating that requests are taking longer to process. This can be a useful condition to trigger an alert, as it suggests that the Kubernetes cluster may be under load or experiencing performance issues.
+
+---
+
+groups:
+  - name: kubernetes
+    rules:
+      - alert: DeploymentReplicasUnavailable
+        expr: kube_deployment_status_replicas_unavailable > 1
+        for: 5m
+        labels:
+          severity: critical
+        annotations:
+          summary: "Deployment Replicas Unavailable"
+          description: "More than 1 replica is unavailable for the deployment."
+
+---
+
+The expression you provided, kube_deployment_status_replicas_unavailable{deployment="my-app-deployment|my-app-deployment2|deployment3"} > 1, is not valid for matching multiple deployments using a list of deployment names separated by | (pipe) within the curly braces. Prometheus does not support such a syntax for label matching.
+
+To monitor multiple deployments with specific labels, you can use a regular expression, as previously mentioned. Here's an example of how you can modify the expression to monitor deployments labeled "my-app-deployment," "my-app-deployment2," and "deployment3" using a regular expression:
+
+expr: kube_deployment_status_replicas_unavailable{deployment=~"my-app-deployment|my-app-deployment2|deployment3"} > 1
+
+---
+
+If you want to monitor multiple deployments with similar labels, you can use a regular expression in your expression to match those deployments.
+For example, if you have deployments labeled with app=my-app and app=my-app2, you can use a regular expression like this:
+
+yaml
+
+expr: kube_deployment_status_replicas_unavailable{app=~"my-app|my-app2"} > 1
+
+This expression will match deployments with either app=my-app or app=my-app2.
+
+---
