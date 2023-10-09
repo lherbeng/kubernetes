@@ -29,3 +29,38 @@ groups:
 In this alerting rule, when the API server request duration sum increases by more than 10 seconds over the last 5 minutes continuously, a warning alert will be triggered. You can adjust the threshold (the > 10 part) and the duration (for: 5m) according to your specific performance requirements and tolerance for high request durations.
 
 I questioned Arden of the Unix team about if he could see any problems with the iptables, specifically for ports 443 and 80, but he said he couldn't. He advised running the netstat command to see if the hostname brn was listening on port 80 and port 443, but the output showed that it was not. It looks that the server has not installed the httpd service.
+
+---
+
+
+groups:
+  - name: kubernetes
+    rules:
+      - alert: APIServerHighRequestDuration
+        expr: rate(apiserver_request_duration_seconds_sum[5m]) / rate(apiserver_request_duration_seconds_count[5m]) > 0.5
+        for: 5m
+        labels:
+          severity: warning
+        annotations:
+          summary: "High Average API Server Request Duration"
+          description: "The average API server request duration has been high for the last 5 minutes."
+
+
+Capacity Planning:
+
+Use insights from the average request duration to inform your capacity planning efforts. If you observe a consistent increase in request duration as the cluster approaches capacity, it may be time to consider scaling your cluster horizontally or vertically to handle the increased load.
+
+
+---
+
+rate(apiserver_request_duration_seconds_sum[5m]): This part calculates the per-second rate of change of the apiserver_request_duration_seconds_sum metric over a 5-minute time window. In other words, it determines how much the sum of request durations is increasing on average per second over the last 5 minutes.
+
+rate(apiserver_request_duration_seconds_count[5m]): Similarly, this part calculates the per-second rate of change of the apiserver_request_duration_seconds_count metric over a 5-minute time window. It calculates how many requests are being processed on average per second over the last 5 minutes.
+
+/: This is a division operator that divides the rate of change of apiserver_request_duration_seconds_sum by the rate of change of apiserver_request_duration_seconds_count. This division calculates the average request duration in seconds over the specified time window.
+
+> 0.5: This is a comparison operator that checks whether the calculated average request duration is greater than 0.5 seconds.
+
+So, when you use the expression rate(apiserver_request_duration_seconds_sum[5m]) / rate(apiserver_request_duration_seconds_count[5m]) > 0.5, you are essentially checking if, on average, requests to the Kubernetes API server are taking more than 0.5 seconds to complete over the last 5 minutes.
+
+If the result of this expression is true, it means that the average request duration over the last 5 minutes exceeds the threshold of 0.5 seconds, indicating that requests are taking longer to process. This can be a useful condition to trigger an alert, as it suggests that the Kubernetes cluster may be under load or experiencing performance issues.
