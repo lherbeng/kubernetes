@@ -1,6 +1,6 @@
 ## RKE2 deployment automation with Jenkins pipeline
 
-**Prerequisite:**
+**Prerequisites:**
 
 - containerd
 - 
