@@ -12,7 +12,7 @@
 - install_rke2_worker1.sh
 - install_rke2_worker2.sh
 - Jenkinsfile
-- install_loadbalancer.sh
+- install_nginx_loadbalancer.sh
 
 **Create a New Jenkins Pipeline Job**
 
