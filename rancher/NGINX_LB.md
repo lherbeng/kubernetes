@@ -48,3 +48,40 @@ Set-VMDvdDrive -VMName "nginx-loadbalancer" -ControllerNumber 1 -Path "C:\temp\u
 
 ![image](https://github.com/lherbeng/kubernetes/assets/72662912/00c46a11-d551-41eb-9115-c101fae4d24d)
 
+**Start our nginx-loadbalancer VM**
+
+```
+Start-VM -Name "nginx-loadbalancer"
+```
+
+![image](https://github.com/lherbeng/kubernetes/assets/72662912/de4f294e-5a7d-4ce8-b667-c0c84982defc)
+
+**Now we can open up Hyper-v Manager and see our infrastructure. Double click on machine to setup Ubuntu.**
+
+**Choose Ubuntu Server**
+
+**DHCPv4 automatically provided IP, make sure your Ethernet cable is connected**
+
+**Leave Proxy address blank**
+
+**Click Done**
+
+**Use an Entire Disk 30GB**
+
+**It gives you the summary of the Filesystem**
+
+**Enter the server's information**
+
+**Do not install any package, we need docker but we're going to install it manually as we need the latest package**
+
+**If the installation is complete, you will see the reboot now button.**
+
+**If you encounter the error below, try to close the window.**
+
+**Go to Hyper-V > right click on the machine > Turn Off the machine > then Start the machine**
+
+**When it's done, it will ask you the username and password.**
+
+
+
+
