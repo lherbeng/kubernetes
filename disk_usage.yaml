@@ -69,3 +69,17 @@ Test the Alert:
 To test the alert, you can manually create a file or fill up the /dev/mapper/vg filesystem to trigger the alert condition. Prometheus should send an alert to Alertmanager, and Alertmanager will notify you through the configured channels.
 
 Please make sure you have backups and proper monitoring practices in place before performing any tests that may fill up a filesystem, as running out of space can lead to system instability.
+
+---
+
+groups:
+  - name: my-alerts
+    rules:
+      - alert: FilesystemUsageTooHigh
+        expr: 100 - node_filesystem_free_bytes{device="/dev/mapper/vg"} / node_filesystem_size_bytes{device="/dev/mapper/vg"} * 100 > 90
+        for: 5m
+        labels:
+          severity: critical
+        annotations:
+          summary: "Filesystem usage is too high"
+          description: "/dev/mapper/vg is {{ printf \"%0.2f\" (100 - node_filesystem_free_bytes{device=\"/dev/mapper/vg"} / node_filesystem_size_bytes{device=\"/dev/mapper/vg"} * 100) }}% full"
