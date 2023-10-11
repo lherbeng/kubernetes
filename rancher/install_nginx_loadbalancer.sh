@@ -60,7 +60,7 @@ http {
             proxy_pass https://rancher_servers_https;
             proxy_set_header Host <rancher UI URL>;
             proxy_ssl_server_name on;
-            proxy_ssl_name <rancher UI URL>;
+            proxy_ssl_name brandonlucasfaye.com;
         }
     }
 }
