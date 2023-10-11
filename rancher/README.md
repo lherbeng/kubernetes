@@ -2,15 +2,17 @@
 
 **Prerequisites:**
 
-- containerd
-- 
-
+- Three Linux nodes, typically virtual machines, in the infrastructure provider of your choice.
+- A load balancer to direct traffic to the two nodes.
+- A DNS record to map a URL to the load balancer. This will become the Rancher server URL, and downstream Kubernetes clusters will need to reach it.
+  
 **Create a script to install the RKE2 in your master and worker node including Jenkinsfile.**
 
 - install_rke2_master.sh
 - install_rke2_worker1.sh
 - install_rke2_worker2.sh
 - Jenkinsfile
+- install_loadbalancer.sh
 
 **Create a New Jenkins Pipeline Job**
 
