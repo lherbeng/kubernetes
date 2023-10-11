@@ -83,3 +83,5 @@ groups:
         annotations:
           summary: "Filesystem usage is too high"
           description: "/dev/mapper/vg is {{ printf \"%0.2f\" (100 - node_filesystem_free_bytes{device=\"/dev/mapper/vg"} / node_filesystem_size_bytes{device=\"/dev/mapper/vg"} * 100) }}% full"
+
+          description: "/dev/mapper/vg_data-rke2 is {{ printf \"%0.2f\" (100 - (node_filesystem_free_bytes{device=\"/dev/mapper/vg_data-rke2\"} / node_filesystem_size_bytes{device=\"/dev/mapper/vg_data-rke2\"}) * 100) }}% full"
