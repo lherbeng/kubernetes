@@ -1,0 +1,93 @@
+
+
+groups:
+- name: kubernetes-resources
+  rules:
+  - alert: NodeMemoryPressure
+    expr: kube_node_status_condition{condition="OutOfMemory", status="true"} == 1
+    for: 5m
+    labels:
+      severity: warning
+    annotations:
+      description: 'Node {{ $labels.node }} is under memory pressure.'
+      summary: 'Node {{ $labels.node }} is under memory pressure.'
+  - alert: NodeDiskPressure
+    expr: kube_node_status_condition{condition="OutOfDisk", status="true"} == 1
+    for: 5m
+    labels:
+      severity: warning
+    annotations:
+      description: 'Node {{ $labels.node }} is under disk pressure.'
+      summary: 'Node {{ $labels.node }} is under disk pressure.'
+  - alert: NodeLowCPU
+    expr: kube_node_status_capacity{resource="cpu"} - kube_node_status_allocatable{resource="cpu"} < 0.1
+    for: 5m
+    labels:
+      severity: warning
+    annotations:
+      description: 'Node {{ $labels.node }} is running low on CPU resources.'
+      summary: 'Node {{ $labels.node }} is running low on CPU resources.'
+  - alert: NodeLowMemory
+    expr: kube_node_status_capacity{resource="memory"} - kube_node_status_allocatable{resource="memory"} < 1Gi
+    for: 5m
+    labels:
+      severity: warning
+    annotations:
+      description: 'Node {{ $labels.node }} is running low on memory resources.'
+      summary: 'Node {{ $labels.node }} is running low on memory resources.'
+
+----
+
+NodeLowCPU: This alert is triggered when the available CPU resources on a node (the difference between kube_node_status_capacity and kube_node_status_allocatable for the "cpu" resource) drop below 10%. You can adjust the threshold value (0.1) to match your specific use case.
+
+NodeLowMemory: This alert is triggered when the available memory resources on a node (the difference between kube_node_status_capacity and kube_node_status_allocatable for the "memory" resource) drop below 1Gi. Adjust the threshold value (1Gi) as needed.
+
+These alerts are based on the difference between the capacity and allocatable resources, and you can adjust the thresholds to suit your specific resource constraints and requirements.
+
+---
+
+kube_node_status_capacity{resource="cpu"} - kube_node_status_allocatable{resource="cpu"} < 0.1
+
+This expression is designed to check for nodes that are running low on CPU resources in a Kubernetes cluster. Let's break down the components:
+
+kube_node_status_capacity{resource="cpu"}: This part of the expression uses Prometheus label matching to select the kube_node_status_capacity metric for the "cpu" resource. In other words, it retrieves the total CPU capacity of each node in the cluster.
+
+-: The minus sign represents subtraction in the expression.
+
+kube_node_status_allocatable{resource="cpu"}: Similar to the first part, this section selects the kube_node_status_allocatable metric for the "cpu" resource. It represents the amount of CPU resources that are allocatable or available on each node.
+
+< 0.1: This is a comparison in the form of a less-than operator. It checks whether the difference between the capacity and allocatable CPU resources for a node is less than 0.1.
+
+To understand how this works:
+
+The expression subtracts the allocatable CPU resources from the total capacity. This calculates the difference between what a node can provide in terms of CPU capacity (kube_node_status_capacity) and what's available or allocatable (kube_node_status_allocatable).
+
+The result of this subtraction represents the remaining or unallocated CPU resources on the node.
+
+The expression then checks if this remaining CPU capacity is less than 0.1 (10% of the total capacity). If it is, the alert is triggered, indicating that the node is running low on CPU resources.
+
+You can adjust the < 0.1 threshold to a different value if you want to trigger the alert when the CPU resources drop below a different percentage of the total capacity, depending on your specific monitoring and alerting requirements.
+
+
+---
+
+kube_node_status_capacity{resource="memory"} - kube_node_status_allocatable{resource="memory"} < 1Gi
+This expression is designed to check for nodes that are running low on memory resources in a Kubernetes cluster, and here's what each part does:
+
+kube_node_status_capacity{resource="memory"}: This part of the expression uses label matching to select the kube_node_status_capacity metric for the "memory" resource. In other words, it retrieves the total memory capacity of each node in the cluster.
+
+-: The minus sign represents subtraction in the expression.
+
+kube_node_status_allocatable{resource="memory"}: Similar to the first part, this section selects the kube_node_status_allocatable metric for the "memory" resource. It represents the amount of memory resources that are allocatable or available on each node.
+
+< 1Gi: This is a comparison using the less-than operator. It checks whether the difference between the capacity and allocatable memory resources for a node is less than 1 GiB (gibibyte).
+
+To understand how this works:
+
+The expression subtracts the allocatable memory resources from the total capacity. This calculates the difference between what a node can provide in terms of memory capacity (kube_node_status_capacity) and what's available or allocatable (kube_node_status_allocatable).
+
+The result of this subtraction represents the remaining or unallocated memory resources on the node.
+
+The expression then checks if this remaining memory capacity is less than 1 GiB. If it is, the alert is triggered, indicating that the node is running low on memory resources.
+
+You can adjust the < 1Gi threshold to a different value if you want to trigger the alert when the memory resources drop below a different amount, depending on your specific monitoring and alerting requirements.
