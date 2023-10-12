@@ -88,3 +88,7 @@ groups:
 
 
 100 - (node_filesystem_free_bytes{device="/dev/mapper/vg_data-rke2"} / node_filesystem_size_bytes{device="/dev/mapper/vg_data-rke2"}) * 100
+
+
+node_filesystem_free_bytes{device="/dev/mapper/vg_data-rke2"} represents the amount of free space on the /dev/mapper/vg_data-rke2 filesystem.
+node_filesystem_size_bytes{device="/dev/mapper/vg_data-rke2"} represents the total size of the /dev/mapper/vg_data-rke2 filesystem.
