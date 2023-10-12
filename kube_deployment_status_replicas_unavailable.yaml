@@ -47,3 +47,17 @@ Visualize in Grafana: Create a Grafana dashboard to monitor the status of your D
 Threshold Tuning: Set an appropriate threshold in your alerting rule that makes sense for your application. You may need to adjust the threshold depending on the specific requirements of your application and the level of acceptable unavailability.
 
 By following these best practices, you can effectively monitor your Kubernetes Deployments using the kube_deployment_status_replicas_unavailable metric, receive alerts when issues arise, and visualize the metric's behavior over time in Grafana. This helps you maintain the stability and availability of your applications running in Kubernetes.
+
+---
+
+groups:
+- name: my-app-rules
+  rules:
+  - alert: DeploymentReplicasUnavailable
+    expr: kube_deployment_status_replicas_unavailable{namespace="your-namespace", deployment="your-deployment"} > 0
+    for: 5m
+    labels:
+      severity: critical
+    annotations:
+      summary: "Deployment {{ $labels.deployment }} has {{ $value }} unavailable pods"
+      description: "The Deployment {{ $labels.deployment }} in namespace {{ $labels.namespace }} has {{ $value }} unavailable pods."
