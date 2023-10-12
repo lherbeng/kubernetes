@@ -1,0 +1,6 @@
+"Urgent Notice: Memory Usage Alert! 🚨 Memory at {{ $labels.instance }} has exceeded 85% for the last 15 minutes. Please take immediate action."
+
+
+
+
+"Critical Alert: High CPU Usage ⚠️ - {{ $labels.instance }} has consistently exceeded 85% for the past 15 minutes. Take action now!"
