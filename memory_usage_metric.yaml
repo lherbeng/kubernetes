@@ -4,3 +4,23 @@
 
 
 "Critical Alert: High CPU Usage ⚠️ - {{ $labels.instance }} has consistently exceeded 85% for the past 15 minutes. Take action now!"
+
+In the top command, there are specific fields and information you can check to monitor CPU usage as a percentage. Here are some key details to focus on when using the top command for CPU monitoring:
+
+us (User): This is the percentage of CPU time spent running user processes, which are typically the most relevant for applications.
+
+sy (System): This is the percentage of CPU time spent running system processes, which are the kernel and other essential system tasks.
+
+ni (Nice): This is the percentage of CPU time spent running processes with a positive nice value, indicating processes that have been niced (lower priority).
+
+id (Idle): This is the percentage of CPU time when the CPU is idle and not processing any tasks.
+
+wa (I/O Wait): This is the percentage of CPU time spent waiting for I/O operations to complete.
+
+st (Steal): This is the percentage of CPU time stolen from a virtual machine (if you're using virtualization).
+
+%CPU (CPU Usage): The %CPU column represents the percentage of total CPU time that a process is using. You can sort the processes by CPU usage to identify which processes are consuming the most CPU resources.
+
+Load Average: The load average section at the top of the top output provides an overview of the system's overall load over the last 1, 5, and 15 minutes. A high load average may indicate high CPU usage.
+
+When you run the top command, it displays a dynamic list of running processes sorted by one of the columns (default is usually by %CPU). You can observe the processes with the highest %CPU values to identify which processes are currently consuming the most CPU resources.
