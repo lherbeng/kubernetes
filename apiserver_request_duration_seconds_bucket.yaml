@@ -63,3 +63,13 @@ To put it simply, this query checks whether more than 5% of the requests have a 
 
 histogram_quantile(0.95, sum(rate(apiserver_request_duration_seconds_bucket[5m])) by (le, node)) > 0.1
 
+---
+
+- alert: HighRequestLatency
+  expr: histogram_quantile(0.95, sum(rate(apiserver_request_duration_seconds_bucket[5m])) by (le)) by (node) > 0.3
+  for: 5m
+  labels:
+    severity: critical
+  annotations:
+    summary: "High request latency in Kubernetes API server"
+    description: "More than 5% of requests have a response time over 300ms in the last 5 minutes. Node: {{ $labels.node }}"
