@@ -1,0 +1,12 @@
+- alert: HighLoadAverage
+  expr: node_load1 > 2.0
+  for: 5m
+  labels:
+    severity: warning
+  annotations:
+    summary: "High load average on the server"
+    description: "The load average has exceeded 2.0 for the last 5 minutes on instance {{ $labels.instance }}"
+
+    --
+
+    In this updated configuration, the instance label is included in the annotations section using the label_replace function. This will display the specific node in the alert description when the high load average condition is met. Adjust the threshold and other parameters as needed to match your server's capacity and performance characteristics. With this modification, you can easily identify and investigate the nodes that are experiencing high load averages in your cluster.
