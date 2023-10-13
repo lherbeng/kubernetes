@@ -1,0 +1,58 @@
+To create a useful alert based on the given metric, you will need to set a threshold for the alert and configure an alerting system to trigger when the threshold is breached. Below is an example of how to set the threshold annotation and expression for the given metric:
+_
+Threshold Annotation:
+
+---
+
+annotations:
+  summary: "High error rate on Kubernetes API servers ({{ $value }}%)"
+  description: "Error rate is above the threshold (10%)."
+
+---
+
+expr: sum(rate(apiserver_request_total{job="kubernetes-apiservers",code=~"[45].."}[5m]))*100/sum(rate(apiserver_request_total{job="kubernetes-apiservers"}[5m])) > 10
+
+---
+
+This example sets the threshold at 10%, indicating that an alert will be triggered if the error rate on the Kubernetes API servers exceeds 10%.
+
+To trigger this metric to send an alert, you will need to integrate it with an alerting system such as Prometheus Alertmanager. Here is a basic example of how you might configure an alert rule for this metric:
+
+---
+
+This example sets the threshold at 10%, indicating that an alert will be triggered if the error rate on the Kubernetes API servers exceeds 10%.
+
+To trigger this metric to send an alert, you will need to integrate it with an alerting system such as Prometheus Alertmanager. Here is a basic example of how you might configure an alert rule for this metric:
+
+---
+
+groups:
+- name: example
+  rules:
+  - alert: HighErrorRate
+    expr: sum(rate(apiserver_request_total{job="kubernetes-apiservers",code=~"[45].."}[5m]))*100/sum(rate(apiserver_request_total{job="kubernetes-apiservers"}[5m])) > 10
+    for: 5m
+    annotations:
+      summary: "High error rate on Kubernetes API servers ({{ $value }}%)"
+      description: "Error rate is above the threshold (10%)."
+
+---
+
+echo 'apiserver_request_total{job="kubernetes-apiservers",code="500"} 15' | curl --data-binary @- http://localhost:9091/metrics/job/k8s-simulator
+
+---
+
+This command adds a mock metric to the Prometheus server, simulating a high error rate in the Kubernetes API server (with a value of 15 in this case).
+
+
+
+
+
+
+
+
+
+
+
+
+
