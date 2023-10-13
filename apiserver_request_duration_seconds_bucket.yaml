@@ -58,3 +58,8 @@ histogram_quantile(0.95, ... ): The histogram_quantile function takes two argume
 > 0.1: This is the threshold value you're comparing the 95th percentile latency against. In this case, 0.1 represents 100 milliseconds. So, if the 95th percentile latency is greater than 0.1 (100 milliseconds), the condition is met, and the alert will be triggered.
 
 To put it simply, this query checks whether more than 5% of the requests have a response time greater than 100 milliseconds (0.1 seconds) over the last 5 minutes. If this condition is met, the alert will be fired, indicating that the Kubernetes API server is not meeting the defined SLO of having 95% of requests with response times under 100 milliseconds.
+
+---
+
+histogram_quantile(0.95, sum(rate(apiserver_request_duration_seconds_bucket[5m])) by (le, node)) > 0.1
+
