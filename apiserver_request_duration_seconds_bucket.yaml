@@ -1,0 +1,60 @@
+Prometheus and Grafana are powerful tools for monitoring and alerting in your infrastructure. The apiserver_request_duration_seconds_bucket metric is typically used to monitor the request latency of the Kubernetes API server. To create useful alerts using this metric, you can follow these best practices:
+
+Capture Relevant Labels: When working with bucketed metrics like apiserver_request_duration_seconds_bucket, make sure to capture relevant labels for your specific use case. Labels can include the HTTP method, API endpoint, and any other labels that are useful for your organization. This way, you can create alerts that are tailored to specific API endpoints or services.
+
+Create Buckets: Prometheus histograms, like apiserver_request_duration_seconds_bucket, consist of different buckets representing request latency ranges. You can create alerts based on the sum of request counts in specific buckets to get alerts for various latency ranges. For example, if you want to create an alert for requests taking more than 2 seconds, you can sum buckets for latency values greater than 2 seconds.
+
+Define Alerting Rules: In Prometheus, define alerting rules that evaluate the metric data and trigger alerts based on certain conditions. Use the sum and rate functions to aggregate data over a time range. For example:
+
+---
+
+groups:
+  - name: example-group
+    rules:
+      - alert: HighRequestLatency
+        expr: sum(rate(apiserver_request_duration_seconds_bucket{le="2.0"}[5m])) > 10
+        for: 5m
+        labels:
+          severity: critical
+        annotations:
+          summary: "High request latency in Kubernetes API server"
+          description: "The API server is experiencing high request latency (>2 seconds) over the last 5 minutes."
+
+---
+
+In this example, the alert triggers when the sum of request latency buckets with latency greater than 2 seconds exceeds 10 requests over a 5-minute period.
+
+Grafana Visualization: In Grafana, create a dashboard to visualize the apiserver_request_duration_seconds_bucket metric. You can use the "Histogram" visualization type to display the latency distribution. Additionally, you can create threshold lines or annotations on the graph to make it easier to understand when alerts might trigger.
+
+Set Alerting Thresholds: In Grafana, use the threshold feature to set alerting thresholds on your histogram visualization. You can create horizontal threshold lines on your histogram graph to indicate when latency is reaching levels that should trigger alerts.
+
+Annotations: Annotations in Grafana can be used to mark events or specific points in time on your graph. You can use annotations to provide context to your alerts, such as marking deployments, configuration changes, or other relevant events that might impact the API server's latency.
+
+Silencing and Aggregation: In Grafana, consider using alert silencing and aggregation to avoid alert fatigue. You can configure Grafana to suppress or aggregate alerts in situations where multiple similar alerts are firing at the same time.
+
+Testing and Tuning: Before deploying your alerts in production, it's essential to thoroughly test them in a staging or testing environment. Adjust thresholds, expressions, and notification configurations based on your actual usage patterns and performance characteristics.
+
+Remember to continuously monitor and adjust your alerting rules as your application and infrastructure evolve. It's important to strike a balance between being alerted for actual issues and not being overwhelmed with false positives.
+
+---
+
+groups:
+  - name: example-group
+    rules:
+      - alert: HighRequestLatency
+        expr: histogram_quantile(0.95, sum(rate(apiserver_request_duration_seconds_bucket[5m])) by (le)) > 0.1
+        for: 5m
+        labels:
+          severity: critical
+        annotations:
+          summary: "High request latency in Kubernetes API server"
+          description: "More than 5% of requests have a response time over 100ms in the last 5 minutes."
+
+---
+sum(rate(apiserver_request_duration_seconds_bucket[5m])) by (le): This part of the query calculates the rate of change over 5 minutes for the apiserver_request_duration_seconds_bucket metric, broken down by the le label, which represents the latency buckets. The le label is used to represent the upper bound of each latency bucket.
+
+histogram_quantile(0.95, ... ): The histogram_quantile function takes two arguments: the quantile value (in this case, 0.95, which represents the 95th percentile) and the expression to evaluate. It calculates the value below which the specified fraction of the given data falls. In this context, it calculates the 95th percentile latency from the latency distribution.
+
+> 0.1: This is the threshold value you're comparing the 95th percentile latency against. In this case, 0.1 represents 100 milliseconds. So, if the 95th percentile latency is greater than 0.1 (100 milliseconds), the condition is met, and the alert will be triggered.
+
+To put it simply, this query checks whether more than 5% of the requests have a response time greater than 100 milliseconds (0.1 seconds) over the last 5 minutes. If this condition is met, the alert will be fired, indicating that the Kubernetes API server is not meeting the defined SLO of having 95% of requests with response times under 100 milliseconds.
