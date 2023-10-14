@@ -114,6 +114,19 @@ The kube_node_info{role="master"} filter specifically targets the master nodes, 
 Make sure to incorporate this adjusted metric into your Prometheus configuration to effectively monitor and differentiate latency issues between master and worker nodes in your Kubernetes environment.
 
 
+---
 
+ALERT HighApiServerRequestLatency
+  IF histogram_quantile(0.99, sum(rate(apiserver_request_duration_seconds_bucket{job="apiservers"}[60s])) by (instance, verb, le)) > 2.5
+  FOR 5m
+  LABELS {
+    severity="critical",
+    team="operations"
+  }
+  ANNOTATIONS {
+    summary = "High Latency in Kubernetes API Server Requests",
+    description = "The latency for Kubernetes API server requests has exceeded the acceptable threshold of 2.5 seconds for the 99th percentile over the last 60 seconds. Investigate immediately to ensure optimal performance.",
 
+---
 
+Adjusting the metric with the specifications provided, the 99th percentile latency threshold has been set to 2.5 seconds, with an evaluation time of 60 seconds, a duration of 5 minutes, and the appropriate labels for severity and team. Make sure to customize the metric further based on your specific performance requirements and expectations for the Kubernetes cluster. Regularly monitor the alerts and make necessary adjustments based on the cluster's actual performance and resource utilization.
