@@ -42,3 +42,57 @@ User Experience: Assess the impact of latency on the overall user experience. Fo
 System Load and Capacity: Take into account the load on your system and the capacity of your infrastructure. Higher loads might lead to increased latency, so your threshold should be set accordingly to ensure optimal performance under varying loads.
 
 Industry Standards and Best Practices: Refer to industry standards and best practices for similar applications or services to get a better understanding of what constitutes acceptable latency in your domain.
+
+---
+Updated 10/15/23
+
+apiserver_request_duration_seconds_sum
+
+Certainly, to reduce noise and improve the effectiveness of the alert based on the increase(apiserver_request_duration_seconds_sum[5m]) > 10 query, you can consider implementing the following adjustments:
+
+Smoothing and Aggregation: Instead of directly alerting on the rate of increase, you can use functions such as avg_over_time() or irate() to smooth out the variations in the data and aggregate the values over a specific time range. This can help in identifying genuine trends rather than reacting to short-term fluctuations.
+
+Threshold Adjustment: Adjust the threshold value (10 in this case) to a more appropriate level based on the normal operating behavior of your system. Set the threshold to a value that represents a significant deviation from the usual patterns, indicating a potential performance issue.
+
+Historical Analysis: Analyze historical data to understand the typical range and fluctuations in the rate of increase. Use this information to set a threshold that reflects an abnormal increase beyond the expected variations.
+
+Additional Conditions and Filters: Apply additional conditions or filters to the alerting rule to consider the context of the system and filter out transient spikes that do not last for a significant duration.
+
+---
+
+groups:
+- name: example_group
+  rules:
+  - alert: HighAPIServerRequestDurationIncrease
+    expr: |
+      avg_over_time(increase(apiserver_request_duration_seconds_sum[5m])[2m]) > 5
+    for: 10m
+    labels:
+      severity: warning
+    annotations:
+      summary: High Kube-APIserver Request Duration Increase
+      description: Significant increase in the rate of API server request duration observed.
+
+---
+
+In this adjusted version, the query applies a 2-minute averaging window to smooth out short-term fluctuations. The threshold for triggering the alert is set to 5, and the condition must persist for at least 10 minutes before the alert is fired. Adjust the parameters further as needed to align with your system's behavior and performance expectations.
+
+---
+
+The expressions avg_over_time(increase(apiserver_request_duration_seconds_sum[5m])[2m]) > 5 and increase(apiserver_request_duration_seconds_sum[5m]) > 10 both monitor the rate of change for the duration of requests handled by the kube-apiserver. However, they use different approaches for calculation and evaluation, leading to differences in how they detect and handle changes in the metric. Here's an explanation of each:
+
+avg_over_time(increase(apiserver_request_duration_seconds_sum[5m])[2m]) > 5:
+
+This expression calculates the average rate of change over 5 minutes (as indicated by the [5m] range in apiserver_request_duration_seconds_sum) and then further smooths the data by averaging it over a 2-minute window ([2m] range). The threshold is set to 5, meaning that if the smoothed average rate of increase exceeds 5, an alert will be triggered.
+increase(apiserver_request_duration_seconds_sum[5m]) > 10:
+
+This expression directly measures the rate of increase in the duration of requests over a 5-minute period. If the increase in the metric is greater than 10 within that time frame, an alert is triggered.
+The key distinction between the two lies in how they handle variations and spikes in the data. The first expression smooths out short-term fluctuations, providing a more stable and averaged view of the rate of change. On the other hand, the second expression directly looks for a significant increase without considering short-term fluctuations.
+
+The choice between the two approaches depends on your specific requirements, the expected behavior of the metric, and the level of noise you're willing to tolerate in your alerts. Adjust the parameters based on the characteristics of your system and the desired sensitivity to changes in the metric.
+
+
+
+
+
+
