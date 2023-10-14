@@ -1,1 +1,44 @@
 
+groups:
+- name: example_group
+  rules:
+  - alert: HighAPIServerRequestLatency
+    expr: sum(rate(apiserver_request_duration_seconds_sum[5m])) by (verb) > 0.5
+    for: 5m
+    labels:
+      severity: warning
+    annotations:
+      summary: High Kube-APIserver Request Latency
+      description: Kube-APIserver request latency is high, indicating potential performance issues.
+
+---
+
+In this example, the Prometheus alerting rule checks if the rate of apiserver_request_duration_seconds_sum over a 5-minute period is greater than 0.5 seconds. You can adjust the threshold value as needed based on your specific use case and requirements. The for parameter specifies the duration for which the condition should be true before triggering the alert. Adjust the severity, summary, and description labels and annotations according to your alerting policies and conventions.
+
+Make sure to integrate this rule configuration into your Prometheus configuration file, typically located at prometheus.yml. After updating the configuration file, you will need to reload or restart Prometheus to apply the changes.
+
+---
+
+The query sum(rate(apiserver_request_duration_seconds_sum[5m])) by (verb) > 0.5 is used to monitor the request latency of the kube-apiserver and trigger an alert if the request duration exceeds a predefined threshold. Here's the breakdown of this query:
+
+sum(rate(apiserver_request_duration_seconds_sum[5m])) by (verb): This part of the query calculates the per-second average rate of change of the apiserver_request_duration_seconds_sum metric over a 5-minute window, grouped by the verb label. It provides information on the rate of increase in the request duration over time, allowing you to analyze which types of requests are experiencing high latency.
+
+> 0.5: This part of the query sets the threshold at 0.5 seconds. If the calculated rate exceeds 0.5 seconds, indicating that the request latency is higher than the defined threshold, the condition evaluates to true.
+
+When the query evaluates to true for the specified duration (as indicated by the for parameter in the alerting rule), it triggers an alert. The purpose of this query is to proactively monitor and detect any significant increases in kube-apiserver request latency, which can help you identify potential performance issues and take necessary actions to resolve them before they impact the overall system performance or user experience.
+
+---
+
+For some applications or services, a latency of 500 milliseconds might be acceptable, while for others, it might be considered too high. The choice of threshold value should be based on your system's performance targets, user expectations, and the nature of the applications running on the Kubernetes cluster.
+
+Consider the following factors when determining an appropriate latency threshold:
+
+Service Level Objectives (SLOs): Define your service-level objectives, including acceptable latency levels, based on the specific requirements of your application and the expectations of your users.
+
+Application Requirements: Consider the specific requirements of your applications. Some applications might demand lower latencies for optimal performance, while others might be more tolerant of slight delays.
+
+User Experience: Assess the impact of latency on the overall user experience. For certain applications, even a slight delay might significantly affect user satisfaction and engagement.
+
+System Load and Capacity: Take into account the load on your system and the capacity of your infrastructure. Higher loads might lead to increased latency, so your threshold should be set accordingly to ensure optimal performance under varying loads.
+
+Industry Standards and Best Practices: Refer to industry standards and best practices for similar applications or services to get a better understanding of what constitutes acceptable latency in your domain.
