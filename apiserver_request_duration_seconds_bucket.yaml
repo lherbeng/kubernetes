@@ -73,3 +73,47 @@ histogram_quantile(0.95, sum(rate(apiserver_request_duration_seconds_bucket[5m])
   annotations:
     summary: "High request latency in Kubernetes API server"
     description: "More than 5% of requests have a response time over 300ms in the last 5 minutes. Node: {{ $labels.node }}"
+
+---
+
+ALERT HighApiServerRequestLatency
+  IF histogram_quantile(0.99, sum(rate(apiserver_request_duration_seconds_bucket{job="kubernetes-apiservers"}[10m])) by (verb, le)) > 2
+  FOR 5m
+  LABELS {
+    severity="critical",
+    team="operations"
+  }
+  ANNOTATIONS {
+    summary = "High Latency in Kubernetes API Server Requests",
+    description = "The latency for Kubernetes API server requests is high, exceeding the acceptable threshold of 2 seconds for the 99th percentile. Investigate immediately to ensure optimal performance.",
+  }
+
+---
+
+To determine whether the issue is occurring on master nodes or worker nodes, you can use the kube_node_info metric provided by the Kubernetes kube-state-metrics exporter. This metric provides information about the role of the node, distinguishing between master and worker nodes. By combining this information with the existing apiserver_request_duration_seconds_bucket metric, you can get insights into which type of node is experiencing latency issues. Here's an adjusted version of the metric considering node role:
+
+ALERT HighApiServerRequestLatency
+  IF histogram_quantile(0.99, sum(rate(apiserver_request_duration_seconds_bucket{job="kubernetes-apiservers"}[10m])) by (verb, le, node_role) * on (node_role) group_left() kube_node_info{role="master"}) > 2
+  FOR 5m
+  LABELS {
+    severity="critical",
+    team="operations"
+  }
+  ANNOTATIONS {
+    summary = "High Latency in Kubernetes API Server Requests",
+    description = "The latency for Kubernetes API server requests on master nodes is high, exceeding the acceptable threshold of 2 seconds for the 99th percentile. Investigate immediately to ensure optimal performance.",
+  }
+
+---
+
+In this adjusted version:
+
+We've added node_role to the apiserver_request_duration_seconds_bucket metric to distinguish between master and worker nodes.
+The * on (node_role) group_left() part ensures that the data from the kube_node_info metric is joined based on the node_role label to provide information about the node's role.
+The kube_node_info{role="master"} filter specifically targets the master nodes, allowing you to identify if the latency issue is occurring on those nodes.
+Make sure to incorporate this adjusted metric into your Prometheus configuration to effectively monitor and differentiate latency issues between master and worker nodes in your Kubernetes environment.
+
+
+
+
+
