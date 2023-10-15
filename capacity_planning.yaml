@@ -38,3 +38,14 @@ Node memory high utilization metric
 7. Please provide justification for your request why do you need to upgrade the RAM or memory.
 8. Identify a convenient time for the RAM upgrade that won't disrupt the server users.
 9. You can use the command "free -h" to check how much memory is available and confirm the completion of the requested upgrade.
+
+---
+
+Deployment replicas unavailable metrics
+
+1. Set up alerts that immediately notify the relevant team when this metric crosses a predefined threshold. This proactive approach can help prevent potential issues before they become critical.
+2. Regularly assess the capacity of the on-premises hardware infrastructure. Ensure that the servers have sufficient CPU, memory, and storage to accommodate the workload demands and potential growth.
+3.  Analyze Kubernetes logs and events to identify any specific errors or warnings related to the unavailable replicas. This can provide insights into the root cause of the issue.
+4. Monitor the status of the nodes in the cluster. Verify if any specific nodes are experiencing issues or if there are any resource constraints leading to the unavailability of replicas.
+5. Verify the deployment configurations to ensure that they align with the desired state and that the appropriate number of replicas is specified.
+6. Implement health checks within the applications to identify and handle any issues that may cause the pods to become unavailable. Configure readiness and liveness probes to monitor the health of the application.
