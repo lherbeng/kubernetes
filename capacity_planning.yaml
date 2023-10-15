@@ -16,7 +16,11 @@ Filesystem usage metrics
 1. Collect information about how we've used the disk over a long time, like many months or a whole year, so we can see how it's changed over different seasons and times.
 2. Calculate how quickly the data and storage requirements are increasing by looking at the historical data over time.
 3. Based on how fast things are growing and what we expect in the future, estimate how much storage we'll need in the coming months or years.
-4. Plan to add more space or resources, like extra storage, because we expect things to grow, and we have a limit we don't want to cross.
-5. 
+4. Regularly check the files on the server and remove any that are no longer needed to free up space.
+5. Plan to add more space or resources, like extra storage, because we expect things to grow, and we have a limit we don't want to cross.
+6. Kindly request a disk upgrade from the appropriate team.
+7.  Please provide justification for your request why do you need to upgrade the disk.
+8. Identify a convenient time for the disk upgrade that won't disrupt the server users.
+9. The command "df -Th" can be executed to verify the available disk space and confirm the completion of the requested upgrade.
 
 rate(node_filesystem_size_bytes{device="/dev/mapper/vg_data-rke2"}[1d])
