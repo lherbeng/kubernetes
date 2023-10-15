@@ -49,3 +49,21 @@ Deployment replicas unavailable metrics
 4. Monitor the status of the nodes in the cluster. Verify if any specific nodes are experiencing issues or if there are any resource constraints leading to the unavailability of replicas.
 5. Verify the deployment configurations to ensure that they align with the desired state and that the appropriate number of replicas is specified.
 6. Implement health checks within the applications to identify and handle any issues that may cause the pods to become unavailable. Configure readiness and liveness probes to monitor the health of the application.
+
+---
+
+CPU high utilization metrics
+
+1. Check regularly if the CPU, memory, and storage are used properly across different parts of your system. Make sure they're used in the best possible way.
+2. Analyze the performance of critical applications running on the cluster. Identify any resource-intensive applications that might be contributing to the increased CPU usage and take necessary optimization measures.
+3. Monitor the network traffic within the cluster to identify any potential bottlenecks or issues related to network connectivity. Ensure that the network infrastructure is capable of handling the required data transfer rates without degradation.
+4. Analyze the current workload patterns and resource utilization trends to determine if the increased CPU usage is a temporary spike or a persistent issue. 
+5. Plan for the necessary downtime and system maintenance required for upgrading the CPU cores. Ensure that you have a well-defined strategy in place to minimize the impact on ongoing operations and to facilitate a smooth transition to the upgraded hardware.
+6. Send a request to the appropriate team for a CPU cores upgrade.
+7. Please provide justification for your request why do you need to upgrade the CPU.
+6. Monitor the performance of the cluster after the CPU core upgrade to ensure that it effectively addresses the issue of exceeding the CPU threshold. Conduct thorough performance testing to validate the improvements and verify that the upgrade has resulted in the expected performance enhancements.
+
+
+
+
+
