@@ -11,7 +11,7 @@ High Load Average Metrics:
 
 ---
 
-Filesystem usage metrics
+Filesystem usage metrics:
 
 1. Collect information about how we've used the disk over a long time, like many months or a whole year, so we can see how it's changed over different seasons and times.
 2. Calculate how quickly the data and storage requirements are increasing by looking at the historical data over time.
@@ -27,7 +27,7 @@ rate(node_filesystem_size_bytes{device="/dev/mapper/vg_data-rke2"}[1d])
 
 ---
 
-Node memory high utilization metric
+Node memory high utilization metrics:
 
 1. Check how the server is running to find which application or program are using a lot of memory. This can help you see where things can be made better.
 2. Make sure your application or programare using your computer's resources efficiently. This might mean changing settings, how much memory different programs use, or using more efficient ways to handle data.
@@ -41,18 +41,19 @@ Node memory high utilization metric
 
 ---
 
-Deployment replicas unavailable metrics
+Deployment replicas unavailable metrics:
 
 1. Set up alerts that immediately notify the relevant team when this metric crosses a predefined threshold. This proactive approach can help prevent potential issues before they become critical.
 2. Regularly assess the capacity of the on-premises hardware infrastructure. Ensure that the servers have sufficient CPU, memory, and storage to accommodate the workload demands and potential growth.
 3.  Analyze Kubernetes logs and events to identify any specific errors or warnings related to the unavailable replicas. This can provide insights into the root cause of the issue.
-4. Monitor the status of the nodes in the cluster. Verify if any specific nodes are experiencing issues or if there are any resource constraints leading to the unavailability of replicas.
-5. Verify the deployment configurations to ensure that they align with the desired state and that the appropriate number of replicas is specified.
-6. Implement health checks within the applications to identify and handle any issues that may cause the pods to become unavailable. Configure readiness and liveness probes to monitor the health of the application.
+4. To check the logs and events related to the unavailable replicas run the command "kubectl get events' and "kubectl logs <pod_name> to view the logs from a specific pod, and "kubectl describe pod <pod_name> to get a detailed description of a pod, including its current state and related events
+5. Monitor the status of the nodes in the cluster. Verify if any specific nodes are experiencing issues or if there are any resource constraints leading to the unavailability of replicas.
+6. Verify the deployment configurations to ensure that they align with the desired state and that the appropriate number of replicas is specified.
+7. Implement health checks within the applications to identify and handle any issues that may cause the pods to become unavailable. Configure readiness and liveness probes to monitor the health of the application.
 
 ---
 
-CPU high utilization metrics
+CPU high utilization metrics:
 
 1. Check regularly if the CPU, memory, and storage are used properly across different parts of your system. Make sure they're used in the best possible way.
 2. Analyze the performance of critical applications running on the cluster. Identify any resource-intensive applications that might be contributing to the increased CPU usage and take necessary optimization measures.
@@ -62,6 +63,20 @@ CPU high utilization metrics
 6. Send a request to the appropriate team for a CPU cores upgrade.
 7. Please provide justification for your request why do you need to upgrade the CPU.
 6. Monitor the performance of the cluster after the CPU core upgrade to ensure that it effectively addresses the issue of exceeding the CPU threshold. Conduct thorough performance testing to validate the improvements and verify that the upgrade has resulted in the expected performance enhancements.
+
+---
+
+Pod CrashLooping Metrics:
+
+1. Ensure that you are regularly monitoring the resource allocation and utilization of your on-prem server. This involves keeping an eye on CPU, memory, and disk usage. 
+2. Ensure that the resource requests and limits are appropriately configured for your Kubernetes pods. Setting appropriate resource requests and limits ensures that your pods have enough resources to run while preventing them from consuming excess resources, which can lead to performance issues or crashes.
+3. Dive deeper into the logs of the application running inside the problematic pod. Identify the specific error that's causing the CrashLoopBackOff state. Often, detailed error logs can provide clues about the underlying issue, such as resource contention, misconfigurations, or other issues with dependencies.
+4. CrashLoopBackOff indicates that a container is repeatedly crashing after restarting. A container might crash for many reasons, and checking a Pod's logs might aid in troubleshooting the root cause.
+5. To see all Pods running in your cluster, run "kubectl get pods" and look for the Pod with the CrashLoopBackOff error and execute the "kubectl logs <pod_name> to get the Pod's logs
+6. Configure readiness and liveness probes to monitor the health of the application.
+
+---
+ 
 
 
 
