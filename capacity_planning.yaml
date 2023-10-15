@@ -77,8 +77,35 @@ Pod CrashLooping Metrics:
 
 ---
  
+Kube Node Not Ready Metrics:
 
+1. A node must have enough disk space, memory, and processing power to run Kubernetes workloads. If non-Kubernetes processes on the node are taking up too many resources, or if there are too many processes running on the node, it can be marked by the control plane as NotReady. Run "kubectl describe node" and look in the Conditions section to see if resources are missing on the node:
 
+MemoryPressure — node is running out of memory.
+DiskPressure — node is running out of disk space.
+PIDPressure — node is running too many processes.
+
+2. You can create alerting rules in Grafana to monitor the MemoryPressure, DiskPressure, and PIDPressure for nodes.
+3. The kubelet must run on each node to enable it to participate in the cluster. If the kubelet crashes or stops on a node, it cannot communicate with the API server and the node goes into a not ready state. Run "kubectl describe node [name]" and look in the Conditions section and if all the conditions are unknown, this indicates the kubelet is down.
+
+To resolve a kubelet issue, SSH into the node and run the command systemctl status kubelet
+
+Look at the value of the Active field:
+
+active (running) means the kubelet is actually operational, look for the problem elsewhere.
+active (exited) means the kubelet was exited, probably in error. Restart it.
+inactive (dead) means the kubelet crashed. To identify why, run the command journalctl -u kubelet and examine the kubelet logs.
+
+4. kube-proxy runs on every node and is responsible for regulating network traffic between the node and other entities inside and outside the cluster. If kube-proxy stops running for any reason, the node goes into a not ready state. Run kubectl get pods -n kube-system to show pods belonging to the Kubernetes system.
+
+Try looking in the following places to identify what is the issue with kube-proxy:
+
+Run the command kubectl describe pod using the name of the kube-proxy pod that failed, and check the Events section in the output.
+Run the command kubectl logs [pod-name] -n kube-system to see a full log of the failing kube-proxy pod.
+Run the command kubectl describe daemonset kube-proxy -n kube-system to see the status of the kube-proxy daemonset, which is responsible for ensuring there is a kube-proxy running on every Kubernetes node.
+
+5. Even if a node is configured perfectly, but it has no network connectivity, Kubernetes treats the node as not ready. This could be due to a disconnected network cable, no Internet access, or misconfigured networking on the machine. Run kubectl describe node [name] and look in the Conditions section—if the NetworkUnavailable flag is True, this means the node has a connectivity issue.
+6. Identify which non-Kubernetes processes are running on the node. If there are any, shut them down or reduce them to a minimum to conserve resources.
 
 
 
