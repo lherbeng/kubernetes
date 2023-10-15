@@ -1,1 +1,14 @@
+High Load Average Metrics:
+
+1. Analyze historical data trends of the node_load1 metric over a significant period to identify patterns and seasonal fluctuations.
+2. Continuously monitor the performance metrics, including CPU usage, memory utilization, and disk I/O, in addition to the load average.
+3. Identify the target system that requires the CPU performance upgrade.
+4. Send a request to the appropriate team for a CPU upgrade
+5. Please provide justification for your request why do you need to upgrade the CPU.
+6. Find a suitable time for the CPU upgrade that won't disturb the team members using the server.
+7. Run the command 'cat /proc/cpuinfo' to check the number of available CPU cores and ensure that the requested upgrade has been implemented.
+8. Conduct thorough testing to validate the successful implementation and to confirm that the expected performance gains have been achieved.
+
+---
+
 
