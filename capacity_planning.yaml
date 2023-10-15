@@ -24,3 +24,17 @@ Filesystem usage metrics
 9. The command "df -Th" can be executed to verify the available disk space and confirm the completion of the requested upgrade.
 
 rate(node_filesystem_size_bytes{device="/dev/mapper/vg_data-rke2"}[1d])
+
+---
+
+Node memory high utilization metric
+
+1. Check how the server is running to find which application or program are using a lot of memory. This can help you see where things can be made better.
+2. Make sure your application or programare using your computer's resources efficiently. This might mean changing settings, how much memory different programs use, or using more efficient ways to handle data.
+3. Use system monitoring tools like top to observe the memory usage of a specific process over an extended period
+4. Keep an eye on how much memory your programs are using. Regularly checking can help you catch any slow increases in memory use that could cause problems over time.
+5. Consider adding more memory to your server to manage the increased workload effectively. This upgrade can provide the necessary resources for improved performance and prevent slowdowns.
+6. Kindly submit a request for memory upgrade from the appropriate team.
+7. Please provide justification for your request why do you need to upgrade the RAM or memory.
+8. Identify a convenient time for the RAM upgrade that won't disrupt the server users.
+9. You can use the command "free -h" to check how much memory is available and confirm the completion of the requested upgrade.
