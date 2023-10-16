@@ -109,6 +109,7 @@ Run the command kubectl describe daemonset kube-proxy -n kube-system to see the 
 
 ---
 
+Deployment replicas mismatch metrics
 
 1. Monitor resource usage and allocate resources appropriately to ensure that your applications have enough resources to operate efficiently. This includes CPU, memory, and storage allocation based on your application's requirements and usage patterns.
 2. Periodically review your deployment and resource allocation strategy to identify any potential bottlenecks or areas for optimization. This can involve analyzing historical data, identifying trends, and making adjustments accordingly.
@@ -119,3 +120,7 @@ Run the command kubectl describe daemonset kube-proxy -n kube-system to see the 
 7. Regularly review the configuration of your replication controllers to ensure they align with your application's requirements and workload demands. Adjust the configuration as necessary to accommodate changes in traffic and usage patterns.
 8. Monitor the performance of the replication controller in scaling the application horizontally. Evaluate how effectively it responds to changes in demand and adjusts the number of pod replicas accordingly.
 9. Conduct regular tests to verify that the replication controller is working as intended, creating or removing replicas when necessary to maintain the desired state. This testing should encompass various scenarios to ensure the resilience and reliability of the replication controller.
+
+https://jamesdefabia.github.io/docs/user-guide/debugging-pods-and-replication-controllers/
+
+---
