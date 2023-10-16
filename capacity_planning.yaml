@@ -107,5 +107,6 @@ Run the command kubectl describe daemonset kube-proxy -n kube-system to see the 
 5. Even if a node is configured perfectly, but it has no network connectivity, Kubernetes treats the node as not ready. This could be due to a disconnected network cable, no Internet access, or misconfigured networking on the machine. Run kubectl describe node [name] and look in the Conditions section—if the NetworkUnavailable flag is True, this means the node has a connectivity issue.
 6. Identify which non-Kubernetes processes are running on the node. If there are any, shut them down or reduce them to a minimum to conserve resources.
 
+---
 
 
