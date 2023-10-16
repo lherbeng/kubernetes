@@ -109,7 +109,7 @@ Run the command kubectl describe daemonset kube-proxy -n kube-system to see the 
 
 ---
 
-Deployment replicas mismatch metrics
+Deployment replicas mismatch metrics:
 
 1. Monitor resource usage and allocate resources appropriately to ensure that your applications have enough resources to operate efficiently. This includes CPU, memory, and storage allocation based on your application's requirements and usage patterns.
 2. Periodically review your deployment and resource allocation strategy to identify any potential bottlenecks or areas for optimization. This can involve analyzing historical data, identifying trends, and making adjustments accordingly.
