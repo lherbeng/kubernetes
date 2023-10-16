@@ -45,7 +45,7 @@ Deployment replicas unavailable metrics:
 
 1. Set up alerts that immediately notify the relevant team when this metric crosses a predefined threshold. This proactive approach can help prevent potential issues before they become critical.
 2. Regularly assess the capacity of the on-premises hardware infrastructure. Ensure that the servers have sufficient CPU, memory, and storage to accommodate the workload demands and potential growth.
-3.  Analyze Kubernetes logs and events to identify any specific errors or warnings related to the unavailable replicas. This can provide insights into the root cause of the issue.
+3. Analyze Kubernetes logs and events to identify any specific errors or warnings related to the unavailable replicas. This can provide insights into the root cause of the issue.
 4. To check the logs and events related to the unavailable replicas run the command "kubectl get events' and "kubectl logs <pod_name> to view the logs from a specific pod, and "kubectl describe pod <pod_name> to get a detailed description of a pod, including its current state and related events
 5. Monitor the status of the nodes in the cluster. Verify if any specific nodes are experiencing issues or if there are any resource constraints leading to the unavailability of replicas.
 6. Verify the deployment configurations to ensure that they align with the desired state and that the appropriate number of replicas is specified.
@@ -110,3 +110,12 @@ Run the command kubectl describe daemonset kube-proxy -n kube-system to see the 
 ---
 
 
+1. Monitor resource usage and allocate resources appropriately to ensure that your applications have enough resources to operate efficiently. This includes CPU, memory, and storage allocation based on your application's requirements and usage patterns.
+2. Periodically review your deployment and resource allocation strategy to identify any potential bottlenecks or areas for optimization. This can involve analyzing historical data, identifying trends, and making adjustments accordingly.
+3. Use historical data and trends to forecast future resource requirements. This can help you anticipate when you might need to scale up or down your resources and plan accordingly.
+4. Analyze Kubernetes logs and events to identify any specific errors or warnings related to the replicas mismatch. This can provide insights into the root cause of the issue.
+5. To check the logs and events related to the unavailable replicas run the command "kubectl get events' and "kubectl logs <pod_name> to view the logs from a specific pod, and "kubectl describe pod <pod_name> to get a detailed description of a pod, including its current state and related events
+6. Keep track of the replication controller to ensure that the desired number of pod replicas is maintained and that they are functioning as expected. Any deviations from the desired state should trigger alerts or notifications for immediate attention.
+7. Regularly review the configuration of your replication controllers to ensure they align with your application's requirements and workload demands. Adjust the configuration as necessary to accommodate changes in traffic and usage patterns.
+8. Monitor the performance of the replication controller in scaling the application horizontally. Evaluate how effectively it responds to changes in demand and adjusts the number of pod replicas accordingly.
+9. Conduct regular tests to verify that the replication controller is working as intended, creating or removing replicas when necessary to maintain the desired state. This testing should encompass various scenarios to ensure the resilience and reliability of the replication controller.
