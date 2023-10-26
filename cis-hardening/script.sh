@@ -219,6 +219,8 @@ elif [ "$permission" = "644" ]; then
 fi
 
 echo "1.1.21 Ensure that the Kubernetes PKI key file permissions are set to 600 (Automated)"
+
+permission=$(stat -c %n\ %a /var/lib/rancher/rke2/server/tls/*.key)
 if [ "$permission" != "600" ]; then
     echo "Current permission: $permission. Result: Fail"
 elif [ "$permission" = "600" ]; then
