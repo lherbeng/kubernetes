@@ -43,4 +43,36 @@ elif [ "$ownership" = "root:root" ]; then
     echo "Current ownership: $ownership. Result: Pass"
 fi
 
+echo
+
+echo "1.1.5 Ensure that the scheduler pod specification file permissions are set to 644 or more restrictive (Automated)"
+
+ownership=$(stat -c %a /var/lib/rancher/rke2/agent/pod-manifests/kube-scheduler.yaml)
+if [ "$permission" != "644" ]; then
+    echo "Current permission: $permission. Result: Fail"
+elif [ "$permission" = "644" ]; then
+    echo "Current permission: $permission. Result: Pass"
+fi
+
+echo
+
+echo "1.1.6 Ensure that the scheduler pod specification file ownership is set to root:root (Automated)"
+
+ownership=$(stat -c %U:%G /var/lib/rancher/rke2/agent/pod-manifests/kube-scheduler.yaml)
+if [ "$ownership" != "root:root" ]; then
+    echo "Current ownership: $ownership. Result: Fail"
+elif [ "$ownership" = "root:root" ]; then
+    echo "Current ownership: $ownership. Result: Pass"
+fi
+
+echo
+
+
+
+
+
+
+
+
+
 
