@@ -111,8 +111,24 @@ fi
 
 echo
 
+echo "1.1.11 Ensure that the etcd data directory permissions are set to 700 or more restrictive (Automated)"
 
+permission=$(stat -c %a /var/lib/rancher/rke2/server/db/etcd)
+if [ "$permission" != "700" ]; then
+    echo "Current permission: $permission. Result: Fail"
+elif [ "$permission" = "700" ]; then
+    echo "Current permission: $permission. Result: Pass"
+fi
 
+echo
 
+echo "1.1.12 Ensure that the etcd data directory ownership is set to etcd:etcd (Automated)"
+
+ownership=$(stat -c %U:%G /var/lib/rancher/rke2/server/db/etcd)
+if [ "$ownership" != "etcd:etcd" ]; then
+    echo "Current ownership: $ownership. Result: Fail"
+elif [ "$ownership" = "etcd:etcd" ]; then
+    echo "Current ownership: $ownership. Result: Pass"
+fi
 
 
