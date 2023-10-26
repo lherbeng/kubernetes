@@ -383,6 +383,366 @@ echo "1.3.7 Ensure that the --bind-address argument is set to 127.0.0.1 (Automat
 
 /bin/ps -ef | grep kube-controller-manager | grep -v grep
 
+# 1.4 Scheduler
+
+echo "1.4.1 Ensure that the --profiling argument is set to false (Automated)"
+
+/bin/ps -ef | grep kube-scheduler | grep -v grep
+
+echo
+
+echo "1.4.2 Ensure that the --bind-address argument is set to 127.0.0.1 (Automated)"
+
+/bin/ps -ef | grep kube-scheduler | grep -v grep
+
+# 2 Etcd Node Configuration
+
+echo "2.1 Ensure that the cert-file and key-file fields are set as appropriate (Automated)"
+
+grep -E 'cert-file|key-file' /var/lib/rancher/rke2/server/db/etcd/config
+
+echo
+
+echo "2.2 Ensure that the client-cert-auth field is set to true (Automated)"
+
+grep 'client-cert-auth' /var/lib/rancher/rke2/server/db/etcd/config
+
+echo
+
+echo "2.3 Ensure that the auto-tls field is not set to true (Automated)"
+
+grep 'auto-tls' /var/lib/rancher/rke2/server/db/etcd/config
+
+echo
+
+echo "2.4 Ensure that the peer-cert-file and peer-key-file fields are set as appropriate (Automated)"
+
+grep -E 'peer-server-client.crt|peer-server-client.key' /var/lib/rancher/rke2/server/db/etcd/config
+
+echo
+
+echo "2.5 Ensure that the peer-client-cert-auth argument is set to true (Automated)"
+
+grep 'peer-client-cert-auth' /var/lib/rancher/rke2/server/db/etcd/config
+
+echo
+
+echo "2.6 Ensure that the peer-auto-tls field is not set to true (Automated)"
+
+grep 'peer-auto-tls' /var/lib/rancher/rke2/server/db/etcd/config
+
+echo
+
+echo "2.7 Ensure that a unique Certificate Authority is used for etcd (Manual)"
+
+# To find the ca file used by etcd:
+grep 'trusted-ca-file' /var/lib/rancher/rke2/server/db/etcd/config
+# To find the kube-apiserver process:
+/bin/ps -ef | grep kube-apiserver | grep -v grep
+
+echo
+
+# 3 Control Plane Configuration
+
+echo "3.1.1 Client certificate authentication should not be used for users (Manual)"
+
+echo "Audit: Review user access to the cluster and ensure that users are not making use of Kubernetes client certificate authentication."
+echo "Remediation: Alternative mechanisms provided by Kubernetes such as the use of OIDC should be implemented in place of client certificates."
+
+echo
+
+# 3.2 Logging 
+
+echo "3.2.1 Ensure that a minimal audit policy is created (Automated)"
+
+/bin/ps -ef | grep kube-apiserver | grep -v grep
+
+echo
+
+echo "3.2.2 Ensure that the audit policy covers key security concerns (Manual)"
+
+echo "Rationale: Security audit logs should cover access and modification of key resources in the cluster, to enable them to form an effective part of a security environment."
+
+# 4 Worker Node Security Configuration
+
+echo "4.1.1 Ensure that the kubelet service file permissions are set to 644 or more restrictive (Automated)"
+
+echo "Remediation: RKE2 doesn’t launch the kubelet as a service. It is launched and managed by the RKE2 supervisor process. All configuration is passed to it as command line arguments at run time."
+
+echo
+
+echo "4.1.2 Ensure that the kubelet service file ownership is set to root:root (Automated)"
+
+echo "Remediation: RKE2 doesn’t launch the kubelet as a service. It is launched and managed by the RKE2 supervisor process. All configuration is passed to it as command line arguments at run time."
+
+echo
+
+echo "4.1.3 Ensure that the proxy kubeconfig file permissions are set to 644 or more restrictive (Manual)"
+
+permission=$(stat -c %a /var/lib/rancher/rke2/server/manifests/rke2-kube-proxy.yaml)
+if [ "$permission" != "644" ]; then
+    echo "Current permission: $permission. Result: Fail"
+elif [ "$permission" = "644" ]; then
+    echo "Current permission: $permission. Result: Pass"
+fi
+
+echo
+
+echo "4.1.4 Ensure that the proxy kubeconfig file ownership is set to root:root (Manual)"
+
+ownership=$(stat -c %U:%G /var/lib/rancher/rke2/server/manifests/rke2-kube-proxy.yaml)
+if [ "$ownership" != "root:root" ]; then
+    echo "Current ownership: $ownership. Result: Fail"
+elif [ "$ownership" = "root:root" ]; then
+    echo "Current ownership: $ownership. Result: Pass"
+fi
+
+echo
+
+echo "4.1.5 Ensure that the kubelet.conf file permissions are set to 644 or more restrictive (Automated)"
+
+permission=$(stat -c %a /var/lib/rancher/rke2/agent/kubelet.kubeconfig)
+if [ "$permission" != "644" ]; then
+    echo "Current permission: $permission. Result: Fail"
+elif [ "$permission" = "644" ]; then
+    echo "Current permission: $permission. Result: Pass"
+fi
+
+echo 
+
+
+echo "4.1.6 Ensure that the kubelet.conf file ownership is set to root:root (Manual)"
+
+ownership=$(stat -c %U:%G /var/lib/rancher/rke2/agent/kubelet.kubeconfig)
+if [ "$ownership" != "root:root" ]; then
+    echo "Current ownership: $ownership. Result: Fail"
+elif [ "$ownership" = "root:root" ]; then
+    echo "Current ownership: $ownership. Result: Pass"
+fi
+
+echo 
+
+echo "4.1.7 Ensure that the certificate authorities file permissions are set to 644 or more restrictive (Manual)"
+
+permission=$(stat -c %a /var/lib/rancher/rke2/server/tls/server-ca.crt)
+if [ "$permission" != "644" ]; then
+    echo "Current permission: $permission. Result: Fail"
+elif [ "$permission" = "644" ]; then
+    echo "Current permission: $permission. Result: Pass"
+fi
+
+echo
+
+echo "4.1.8 Ensure that the client certificate authorities file ownership is set to root:root (Automated)"
+
+ownership=$(stat -c %U:%G /var/lib/rancher/rke2/server/tls/client-ca.crt)
+if [ "$ownership" != "root:root" ]; then
+    echo "Current ownership: $ownership. Result: Fail"
+elif [ "$ownership" = "root:root" ]; then
+    echo "Current ownership: $ownership. Result: Pass"
+fi
+
+echo
+
+echo "4.1.9 Ensure that the kubelet configuration file has permissions set to 600 or more restrictive (Automated)"
+
+echo "Remediation: RKE2 doesn’t require or maintain a configuration file for the kubelet process. All configuration is passed to it as command line arguments at run time."
+
+echo
+
+echo "4.1.10 Ensure that the kubelet configuration file ownership is set to root:root (Automated)"
+
+echo "Remediation: RKE2 doesn’t require or maintain a configuration file for the kubelet process. All configuration is passed to it as command line arguments at run time."
+
+echo
+
+# 4.2 Kubelet
+
+echo "4.2.1 Ensure that the --anonymous-auth argument is set to false (Automated)"
+
+/bin/ps -ef | grep kubelet | grep -v grep
+
+echo
+
+echo "4.2.2 Ensure that the --authorization-mode argument is not set to AlwaysAllow (Automated)"
+
+/bin/ps -ef | grep kubelet | grep -v grep
+
+echo
+
+echo "4.2.3 Ensure that the --client-ca-file argument is set as appropriate (Automated)"
+
+/bin/ps -ef | grep kubelet | grep -v grep
+
+echo
+
+echo "4.2.4 Ensure that the --read-only-port argument is set to 0 (Automated)"
+
+/bin/ps -ef | grep kubelet | grep -v grep
+
+echo
+
+echo "4.2.5 Ensure that the --streaming-connection-idle-timeout argument is not set to 0 (Automated)"
+
+/bin/ps -ef | grep kubelet | grep -v grep
+
+echo
+
+echo "4.2.6 Ensure that the --protect-kernel-defaults argument is set to true (Automated)"
+
+/bin/ps -ef | grep kubelet | grep -v grep
+
+echo
+
+echo "4.2.7 Ensure that the --make-iptables-util-chains argument is set to true (Automated)"
+
+/bin/ps -ef | grep kubelet | grep -v grep
+
+echo
+
+echo "4.2.8 Ensure that the --hostname-override argument is not set (Manual)"
+
+echo "Remediation: RKE2 does set this parameter for each host, but RKE2 also manages all certificates in the cluster. It ensures the hostname-override is included as a subject alternative name (SAN) in the kubelet's certificate."
+
+echo
+
+echo "4.2.9 Ensure that the --event-qps argument is set to 0 or a level which ensures appropriate event capture (Manual)"
+
+echo "Remediation: See CIS Benchmark guide for further details on configuring this."
+
+echo
+
+echo "4.2.10 Ensure that the --tls-cert-file and --tls-private-key-file arguments are set as appropriate (Automated)"
+
+/bin/ps -ef | grep kubelet | grep -v grep
+
+echo
+
+echo "4.2.11 Ensure that the --rotate-certificates argument is not set to false (Manual)"
+
+/bin/ps -ef | grep kubelet | grep -v grep
+
+echo
+
+echo "4.2.12 Ensure that the RotateKubeletServerCertificate argument is set to true (Manual)"
+
+/bin/ps -ef | grep kubelet | grep -v grep4.2.13
+
+echo
+
+echo "4.2.13 Ensure that the Kubelet only makes use of Strong Cryptographic Ciphers (Manual)"
+
+echo "Remediation: Configuration of the parameter is dependent on your use case. Please see the CIS Kubernetes Benchmark for suggestions on configuring this for your use case."
+
+echo
+
+# 5 Kubernetes Policies
+
+echo "5.1.1 Ensure that the cluster-admin role is only used where required (Manual)"
+
+echo "Remediation: RKE2 does not make inappropriate use of the cluster-admin role. Operators must audit their workloads of additional usage. See the CIS Benchmark guide for more details."
+
+echo
+
+echo "5.1.2 Minimize access to secrets (Manual)"
+
+echo "Remediation: RKE2 limits its use of secrets for the system components appropriately, but operators must audit the use of secrets by their workloads. See the CIS Benchmark guide for more details."
+
+echo
+
+echo "5.1.3 Minimize wildcard use in Roles and ClusterRoles (Manual)"
+
+# Retrieve the roles defined across each namespaces in the cluster and review for wildcards
+/var/lib/rancher/rke2/bin/kubectl get roles --all-namespaces -o yaml
+
+# Retrieve the cluster roles defined in the cluster and review for wildcards
+/var/lib/rancher/rke2/bin/kubectl get clusterroles -o yaml
+
+echo "Verify that there are not wildcards in use."
+
+echo
+
+echo "5.1.4 Minimize access to create pods (Manual)"
+
+echo "Remediation: Operators should review who has access to create pods in their cluster. See the CIS Benchmark guide for more details."
+
+echo
+
+echo "5.1.5 Ensure that default service accounts are not actively used. (Automated)"
+
+echo "Remediation: Create explicit service accounts wherever a Kubernetes workload requires specific access to the Kubernetes API server. Modify the configuration of each default service account to include this value"
+
+echo "automountServiceAccountToken: false"
+
+echo 
+
+echo "5.1.6 Ensure that Service Account Tokens are only mounted where necessary (Manual)"
+
+echo "Remediation: The pods launched by RKE2 are part of the control plane and generally need access to communicate with the API server, thus this control does not apply to them. Operators should review their workloads and take steps to modify the definition of pods and service accounts which do not need to mount service account tokens to disable it."
+
+echo
+
+echo "5.1.7 Avoid use of system:masters group (Manual)"
+
+echo "Remediation: Remove the system:masters group from all users in the cluster."
+
+echo
+
+echo "5.1.7 Limit use of the Bind, Impersonate and Escalate permissions in the Kubernetes cluster (Manual)"
+
+"Remediation: Where possible, remove the impersonate, bind and escalate rights from subjects."
+
+echo
+
+# 5.2 Pod Security Standards
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
