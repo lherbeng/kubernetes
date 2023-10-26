@@ -131,4 +131,104 @@ elif [ "$ownership" = "etcd:etcd" ]; then
     echo "Current ownership: $ownership. Result: Pass"
 fi
 
+echo
+
+echo "1.1.13 Ensure that the admin.conf file permissions are set to 644 or more restrictive (Automated)"
+
+permission=$(stat -c %a /var/lib/rancher/rke2/server/cred/admin.kubeconfig)
+if [ "$permission" != "644" ]; then
+    echo "Current permission: $permission. Result: Fail"
+elif [ "$permission" = "644" ]; then
+    echo "Current permission: $permission. Result: Pass"
+fi
+
+echo
+
+echo "1.1.14 Ensure that the admin.conf file ownership is set to root:root (Automated)"
+
+ownership=$(stat -c %U:%G /var/lib/rancher/rke2/server/cred/admin.kubeconfig)
+if [ "$ownership" != "root:root" ]; then
+    echo "Current ownership: $ownership. Result: Fail"
+elif [ "$ownership" = "root:root" ]; then
+    echo "Current ownership: $ownership. Result: Pass"
+fi
+
+echo
+
+echo "1.1.15 Ensure that the scheduler.conf file permissions are set to 644 or more restrictive (Automated)"
+
+permission=$(stat -c %a /var/lib/rancher/rke2/server/cred/scheduler.kubeconfig)
+if [ "$permission" != "644" ]; then
+    echo "Current permission: $permission. Result: Fail"
+elif [ "$permission" = "644" ]; then
+    echo "Current permission: $permission. Result: Pass"
+fi
+
+echo
+
+echo "1.1.16 Ensure that the scheduler.conf file ownership is set to root:root (Automated)"
+
+ownership=$(stat -c %U:%G /var/lib/rancher/rke2/server/cred/scheduler.kubeconfig)
+if [ "$ownership" != "root:root" ]; then
+    echo "Current ownership: $ownership. Result: Fail"
+elif [ "$ownership" = "root:root" ]; then
+    echo "Current ownership: $ownership. Result: Pass"
+fi
+
+echo
+
+echo "1.1.17 Ensure that the controller.kubeconfig file permissions are set to 644 or more restrictive (Automated)"
+permission=$(stat -c %a /var/lib/rancher/rke2/server/cred/controller.kubeconfig)
+if [ "$permission" != "644" ]; then
+    echo "Current permission: $permission. Result: Fail"
+elif [ "$permission" = "644" ]; then
+    echo "Current permission: $permission. Result: Pass"
+fi
+
+echo
+
+echo "1.1.18 Ensure that the controller.kubeconfig file ownership is set to root:root (Automated)"
+
+ownership=$(stat -c %U:%G /var/lib/rancher/rke2/server/cred/controller.kubeconfig)
+if [ "$ownership" != "root:root" ]; then
+    echo "Current ownership: $ownership. Result: Fail"
+elif [ "$ownership" = "root:root" ]; then
+    echo "Current ownership: $ownership. Result: Pass"
+fi
+
+echo
+
+echo "1.1.19 Ensure that the Kubernetes PKI directory and file ownership is set to root:root (Automated)"
+
+ownership=$(stat -c %U:%G /var/lib/rancher/rke2/server/tls)
+if [ "$ownership" != "root:root" ]; then
+    echo "Current ownership: $ownership. Result: Fail"
+elif [ "$ownership" = "root:root" ]; then
+    echo "Current ownership: $ownership. Result: Pass"
+fi
+
+echo
+
+echo "1.1.20 Ensure that the Kubernetes PKI certificate file permissions are set to 644 or more restrictive (Automated)"
+
+permission=$(stat -c %n\ %a /var/lib/rancher/rke2/server/tls/*.crt)
+if [ "$permission" != "644" ]; then
+    echo "Current permission: $permission. Result: Fail"
+elif [ "$permission" = "644" ]; then
+    echo "Current permission: $permission. Result: Pass"
+fi
+
+echo "1.1.21 Ensure that the Kubernetes PKI key file permissions are set to 600 (Automated)"
+if [ "$permission" != "600" ]; then
+    echo "Current permission: $permission. Result: Fail"
+elif [ "$permission" = "600" ]; then
+    echo "Current permission: $permission. Result: Pass"
+fi
+
+echo
+
+
+
+
+
 
