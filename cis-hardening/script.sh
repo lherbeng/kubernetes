@@ -769,7 +769,7 @@ echo
 
 echo "5.1.7 Limit use of the Bind, Impersonate and Escalate permissions in the Kubernetes cluster (Manual)"
 
-"Remediation: Where possible, remove the impersonate, bind and escalate rights from subjects."
+echo "Remediation: Where possible, remove the impersonate, bind and escalate rights from subjects."
 
 echo
 
