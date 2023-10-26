@@ -211,23 +211,23 @@ echo
 
 echo "1.1.20 Ensure that the Kubernetes PKI certificate file permissions are set to 644 or more restrictive (Automated)"
 
-permission=$(stat -c %n\ %a /var/lib/rancher/rke2/server/tls/*.crt)
-if [ "$permission" != "644" ]; then
-    echo "Current permission: $permission. Result: Fail"
-elif [ "$permission" = "644" ]; then
-    echo "Current permission: $permission. Result: Pass"
-fi
+stat -c %n\ %a /var/lib/rancher/rke2/server/tls/*.crt
+
+echo
 
 echo "1.1.21 Ensure that the Kubernetes PKI key file permissions are set to 600 (Automated)"
 
-permission=$(stat -c %n\ %a /var/lib/rancher/rke2/server/tls/*.key)
-if [ "$permission" != "600" ]; then
-    echo "Current permission: $permission. Result: Fail"
-elif [ "$permission" = "600" ]; then
-    echo "Current permission: $permission. Result: Pass"
-fi
+stat -c %n\ %a /var/lib/rancher/rke2/server/tls/*.key
 
 echo
+
+# 1.2 API Server
+
+echo "1.2.1 Ensure that the --anonymous-auth argument is set to false (Manual)"
+
+/bin/ps -ef | grep kube-apiserver | grep -v grep
+
+/bin/ps -ef | grep kube-apiserver | grep -v grep | grep -- --anonymous-auth=false
 
 
 
