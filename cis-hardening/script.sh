@@ -1,5 +1,7 @@
 #!/bin/bash
 
+{
+
 # 1.1 Master Node Configuration Files
 
 echo "1.1.1 Ensure that the API server pod specification file permissions are set to 644 or more restrictive (Automated)"
@@ -961,6 +963,8 @@ echo
 echo "5.7.4 The default namespace should not be used (Manual)"
 
 /var/lib/rancher/rke2/bin/kubectl get all -n default
+
+} >> self-assessment.txt
 
 
 
