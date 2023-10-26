@@ -226,6 +226,9 @@ echo
 echo "1.2.1 Ensure that the --anonymous-auth argument is set to false (Manual)"
 
 /bin/ps -ef | grep kube-apiserver | grep -v grep | grep -- --anonymous-auth=false | awk '{print $8}'
+/bin/ps -ef | grep kube-apiserver | grep -v grep | grep -o -- --anonymous-auth=false
+
+
 
 echo
 
