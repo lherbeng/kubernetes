@@ -964,7 +964,11 @@ echo "5.7.4 The default namespace should not be used (Manual)"
 
 /var/lib/rancher/rke2/bin/kubectl get all -n default
 
-} >> "self-assessment_summary_$(hostname).txt"
+} >> "self-assessment_summary_$(hostname).txt" 2>&1 | grep "Fail" >> "self-assessment_failed_$(hostname).txt"
+
+>> "self-assessment_summary_$(hostname).txt
+
+
 
 
 
