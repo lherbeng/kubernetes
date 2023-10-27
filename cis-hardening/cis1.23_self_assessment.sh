@@ -4,207 +4,207 @@
 
 # 1.1 Master Node Configuration Files
 
-echo "1.1.1 Ensure that the API server pod specification file permissions are set to 644 or more restrictive (Automated)"
+echo "1.1.1 Ensure that the API server pod specification file permissions are set to 644 or more restrictive (Automated)" >> "self-assessment_failed_$(hostname).txt"
 
 permission=$(stat -c %a /var/lib/rancher/rke2/agent/pod-manifests/kube-apiserver.yaml)
 if [ "$permission" != "644" ]; then
-    echo "Current permission: $permission. Result: Fail"
+    echo "Current permission: $permission. Result: Fail" >> "self-assessment_failed_$(hostname).txt"
 elif [ "$permission" = "644" ]; then
     echo "Current permission: $permission. Result: Pass"
 fi
 
 echo
 
-echo "1.1.2 Ensure that the API server pod specification file ownership is set to root:root (Automated)"
+echo "1.1.2 Ensure that the API server pod specification file ownership is set to root:root (Automated)" >> "self-assessment_failed_$(hostname).txt"
 ownership=$(stat -c %U:%G /var/lib/rancher/rke2/agent/pod-manifests/kube-apiserver.yaml)
 if [ "$ownership" != "root:root" ]; then
-    echo "Current ownership: $ownership. Result: Fail"
+    echo "Current ownership: $ownership. Result: Fail" >> "self-assessment_failed_$(hostname).txt"
 elif [ "$ownership" = "root:root" ]; then
     echo "Current ownership: $ownership. Result: Pass"
 fi
 
 echo
 
-echo "1.1.3 Ensure that the controller manager pod specification file permissions are set to 644 or more restrictive (Automated)"
+echo "1.1.3 Ensure that the controller manager pod specification file permissions are set to 644 or more restrictive (Automated)" >> "self-assessment_failed_$(hostname).txt"
 
 permission=$(stat -c %a /var/lib/rancher/rke2/agent/pod-manifests/kube-controller-manager.yaml)
 if [ "$permission" != "644" ]; then
-    echo "Current permission: $permission. Result: Fail"
+    echo "Current permission: $permission. Result: Fail" >> "self-assessment_failed_$(hostname).txt"
 elif [ "$permission" = "644" ]; then
     echo "Current permission: $permission. Result: Pass"
 fi
 
 echo
 
-echo "1.1.4 Ensure that the controller manager pod specification file ownership is set to root:root (Automated)"
+echo "1.1.4 Ensure that the controller manager pod specification file ownership is set to root:root (Automated)" >> "self-assessment_failed_$(hostname).txt"
 
 ownership=$(stat -c %U:%G /var/lib/rancher/rke2/agent/pod-manifests/kube-controller-manager.yaml)
 if [ "$ownership" != "root:root" ]; then
-    echo "Current ownership: $ownership. Result: Fail"
+    echo "Current ownership: $ownership. Result: Fail" >> "self-assessment_failed_$(hostname).txt"
 elif [ "$ownership" = "root:root" ]; then
     echo "Current ownership: $ownership. Result: Pass"
 fi
 
 echo
 
-echo "1.1.5 Ensure that the scheduler pod specification file permissions are set to 644 or more restrictive (Automated)"
+echo "1.1.5 Ensure that the scheduler pod specification file permissions are set to 644 or more restrictive (Automated)" >> "self-assessment_failed_$(hostname).txt"
 
 permission=$(stat -c %a /var/lib/rancher/rke2/agent/pod-manifests/kube-scheduler.yaml)
 if [ "$permission" != "644" ]; then
-    echo "Current permission: $permission. Result: Fail"
+    echo "Current permission: $permission. Result: Fail" >> "self-assessment_failed_$(hostname).txt"
 elif [ "$permission" = "644" ]; then
     echo "Current permission: $permission. Result: Pass"
 fi
 
 echo
 
-echo "1.1.6 Ensure that the scheduler pod specification file ownership is set to root:root (Automated)"
+echo "1.1.6 Ensure that the scheduler pod specification file ownership is set to root:root (Automated)" >> "self-assessment_failed_$(hostname).txt"
 
 ownership=$(stat -c %U:%G /var/lib/rancher/rke2/agent/pod-manifests/kube-scheduler.yaml)
 if [ "$ownership" != "root:root" ]; then
-    echo "Current ownership: $ownership. Result: Fail"
+    echo "Current ownership: $ownership. Result: Fail" >> "self-assessment_failed_$(hostname).txt"
 elif [ "$ownership" = "root:root" ]; then
     echo "Current ownership: $ownership. Result: Pass"
 fi
 
 echo
 
-echo "1.1.7 Ensure that the etcd pod specification file permissions are set to 644 or more restrictive (Automated)"
+echo "1.1.7 Ensure that the etcd pod specification file permissions are set to 644 or more restrictive (Automated)" >> "self-assessment_failed_$(hostname).txt"
 
 permission=$(stat -c %a /var/lib/rancher/rke2/agent/pod-manifests/etcd.yaml)
 if [ "$permission" != "644" ]; then
-    echo "Current permission: $permission. Result: Fail"
+    echo "Current permission: $permission. Result: Fail" >> "self-assessment_failed_$(hostname).txt"
 elif [ "$permission" = "644" ]; then
     echo "Current permission: $permission. Result: Pass"
 fi
 
 echo 
 
-echo "1.1.8 Ensure that the etcd pod specification file ownership is set to root:root (Automated)"
+echo "1.1.8 Ensure that the etcd pod specification file ownership is set to root:root (Automated)" >> "self-assessment_failed_$(hostname).txt"
 
 ownership=$(stat -c %U:%G /var/lib/rancher/rke2/agent/pod-manifests/etcd.yaml)
 if [ "$ownership" != "root:root" ]; then
-    echo "Current ownership: $ownership. Result: Fail"
+    echo "Current ownership: $ownership. Result: Fail" >> "self-assessment_failed_$(hostname).txt"
 elif [ "$ownership" = "root:root" ]; then
     echo "Current ownership: $ownership. Result: Pass"
 fi
 
 echo
 
-echo "1.1.9 Ensure that the Container Network Interface file permissions are set to 644 or more restrictive (Manual)"
+echo "1.1.9 Ensure that the Container Network Interface file permissions are set to 644 or more restrictive (Manual)" >> "self-assessment_failed_$(hostname).txt"
 
 permission=$(stat -c %a /var/lib/rancher/rke2/server/manifests/rke2-canal.yaml)
 if [ "$permission" != "644" ]; then
-    echo "Current permission: $permission. Result: Fail"
+    echo "Current permission: $permission. Result: Fail" >> "self-assessment_failed_$(hostname).txt"
 elif [ "$permission" = "644" ]; then
     echo "Current permission: $permission. Result: Pass"
 fi
 
 echo
 
-echo "1.1.10 Ensure that the Container Network Interface file ownership is set to root:root (Manual)"
+echo "1.1.10 Ensure that the Container Network Interface file ownership is set to root:root (Manual)" >> "self-assessment_failed_$(hostname).txt"
 
 ownership=$(stat -c %U:%G /var/lib/rancher/rke2/server/manifests/rke2-canal.yaml)
 if [ "$ownership" != "root:root" ]; then
-    echo "Current ownership: $ownership. Result: Fail"
+    echo "Current ownership: $ownership. Result: Fail" >> "self-assessment_failed_$(hostname).txt"
 elif [ "$ownership" = "root:root" ]; then
     echo "Current ownership: $ownership. Result: Pass"
 fi
 
 echo
 
-echo "1.1.11 Ensure that the etcd data directory permissions are set to 700 or more restrictive (Automated)"
+echo "1.1.11 Ensure that the etcd data directory permissions are set to 700 or more restrictive (Automated)" >> "self-assessment_failed_$(hostname).txt"
 
 permission=$(stat -c %a /var/lib/rancher/rke2/server/db/etcd)
 if [ "$permission" != "700" ]; then
-    echo "Current permission: $permission. Result: Fail"
+    echo "Current permission: $permission. Result: Fail" >> "self-assessment_failed_$(hostname).txt"
 elif [ "$permission" = "700" ]; then
     echo "Current permission: $permission. Result: Pass"
 fi
 
 echo
 
-echo "1.1.12 Ensure that the etcd data directory ownership is set to etcd:etcd (Automated)"
+echo "1.1.12 Ensure that the etcd data directory ownership is set to etcd:etcd (Automated)" >> "self-assessment_failed_$(hostname).txt"
 
 ownership=$(stat -c %U:%G /var/lib/rancher/rke2/server/db/etcd)
 if [ "$ownership" != "etcd:etcd" ]; then
-    echo "Current ownership: $ownership. Result: Fail"
+    echo "Current ownership: $ownership. Result: Fail" >> "self-assessment_failed_$(hostname).txt"
 elif [ "$ownership" = "etcd:etcd" ]; then
     echo "Current ownership: $ownership. Result: Pass"
 fi
 
 echo
 
-echo "1.1.13 Ensure that the admin.conf file permissions are set to 644 or more restrictive (Automated)"
+echo "1.1.13 Ensure that the admin.conf file permissions are set to 644 or more restrictive (Automated)" >> "self-assessment_failed_$(hostname).txt"
 
 permission=$(stat -c %a /var/lib/rancher/rke2/server/cred/admin.kubeconfig)
 if [ "$permission" != "644" ]; then
-    echo "Current permission: $permission. Result: Fail"
+    echo "Current permission: $permission. Result: Fail" >> "self-assessment_failed_$(hostname).txt"
 elif [ "$permission" = "644" ]; then
     echo "Current permission: $permission. Result: Pass"
 fi
 
 echo
 
-echo "1.1.14 Ensure that the admin.conf file ownership is set to root:root (Automated)"
+echo "1.1.14 Ensure that the admin.conf file ownership is set to root:root (Automated)" >> "self-assessment_failed_$(hostname).txt"
 
 ownership=$(stat -c %U:%G /var/lib/rancher/rke2/server/cred/admin.kubeconfig)
 if [ "$ownership" != "root:root" ]; then
-    echo "Current ownership: $ownership. Result: Fail"
+    echo "Current ownership: $ownership. Result: Fail" >> "self-assessment_failed_$(hostname).txt"
 elif [ "$ownership" = "root:root" ]; then
     echo "Current ownership: $ownership. Result: Pass"
 fi
 
 echo
 
-echo "1.1.15 Ensure that the scheduler.conf file permissions are set to 644 or more restrictive (Automated)"
+echo "1.1.15 Ensure that the scheduler.conf file permissions are set to 644 or more restrictive (Automated)" >> "self-assessment_failed_$(hostname).txt"
 
 permission=$(stat -c %a /var/lib/rancher/rke2/server/cred/scheduler.kubeconfig)
 if [ "$permission" != "644" ]; then
-    echo "Current permission: $permission. Result: Fail"
+    echo "Current permission: $permission. Result: Fail" >> "self-assessment_failed_$(hostname).txt"
 elif [ "$permission" = "644" ]; then
     echo "Current permission: $permission. Result: Pass"
 fi
 
 echo
 
-echo "1.1.16 Ensure that the scheduler.conf file ownership is set to root:root (Automated)"
+echo "1.1.16 Ensure that the scheduler.conf file ownership is set to root:root (Automated)" >> "self-assessment_failed_$(hostname).txt"
 
 ownership=$(stat -c %U:%G /var/lib/rancher/rke2/server/cred/scheduler.kubeconfig)
 if [ "$ownership" != "root:root" ]; then
-    echo "Current ownership: $ownership. Result: Fail"
+    echo "Current ownership: $ownership. Result: Fail" >> "self-assessment_failed_$(hostname).txt"
 elif [ "$ownership" = "root:root" ]; then
     echo "Current ownership: $ownership. Result: Pass"
 fi
 
 echo
 
-echo "1.1.17 Ensure that the controller.kubeconfig file permissions are set to 644 or more restrictive (Automated)"
+echo "1.1.17 Ensure that the controller.kubeconfig file permissions are set to 644 or more restrictive (Automated)" >> "self-assessment_failed_$(hostname).txt"
 permission=$(stat -c %a /var/lib/rancher/rke2/server/cred/controller.kubeconfig)
 if [ "$permission" != "644" ]; then
-    echo "Current permission: $permission. Result: Fail"
+    echo "Current permission: $permission. Result: Fail" >> "self-assessment_failed_$(hostname).txt"
 elif [ "$permission" = "644" ]; then
     echo "Current permission: $permission. Result: Pass"
 fi
 
 echo
 
-echo "1.1.18 Ensure that the controller.kubeconfig file ownership is set to root:root (Automated)"
+echo "1.1.18 Ensure that the controller.kubeconfig file ownership is set to root:root (Automated)" >> "self-assessment_failed_$(hostname).txt"
 
 ownership=$(stat -c %U:%G /var/lib/rancher/rke2/server/cred/controller.kubeconfig)
 if [ "$ownership" != "root:root" ]; then
-    echo "Current ownership: $ownership. Result: Fail"
+    echo "Current ownership: $ownership. Result: Fail" >> "self-assessment_failed_$(hostname).txt"
 elif [ "$ownership" = "root:root" ]; then
     echo "Current ownership: $ownership. Result: Pass"
 fi
 
 echo
 
-echo "1.1.19 Ensure that the Kubernetes PKI directory and file ownership is set to root:root (Automated)"
+echo "1.1.19 Ensure that the Kubernetes PKI directory and file ownership is set to root:root (Automated)" >> "self-assessment_failed_$(hostname).txt"
 
 ownership=$(stat -c %U:%G /var/lib/rancher/rke2/server/tls)
 if [ "$ownership" != "root:root" ]; then
-    echo "Current ownership: $ownership. Result: Fail"
+    echo "Current ownership: $ownership. Result: Fail" >> "self-assessment_failed_$(hostname).txt"
 elif [ "$ownership" = "root:root" ]; then
     echo "Current ownership: $ownership. Result: Pass"
 fi
@@ -559,66 +559,66 @@ echo "Remediation: RKE2 doesn’t launch the kubelet as a service. It is launche
 
 echo
 
-echo "4.1.3 Ensure that the proxy kubeconfig file permissions are set to 644 or more restrictive (Manual)"
+echo "4.1.3 Ensure that the proxy kubeconfig file permissions are set to 644 or more restrictive (Manual)" >> "self-assessment_failed_$(hostname).txt"
 
 permission=$(stat -c %a /var/lib/rancher/rke2/server/manifests/rke2-kube-proxy.yaml)
 if [ "$permission" != "644" ]; then
-    echo "Current permission: $permission. Result: Fail"
+    echo "Current permission: $permission. Result: Fail" >> "self-assessment_failed_$(hostname).txt"
 elif [ "$permission" = "644" ]; then
     echo "Current permission: $permission. Result: Pass"
 fi
 
 echo
 
-echo "4.1.4 Ensure that the proxy kubeconfig file ownership is set to root:root (Manual)"
+echo "4.1.4 Ensure that the proxy kubeconfig file ownership is set to root:root (Manual)" >> "self-assessment_failed_$(hostname).txt"
 
 ownership=$(stat -c %U:%G /var/lib/rancher/rke2/server/manifests/rke2-kube-proxy.yaml)
 if [ "$ownership" != "root:root" ]; then
-    echo "Current ownership: $ownership. Result: Fail"
+    echo "Current ownership: $ownership. Result: Fail" >> "self-assessment_failed_$(hostname).txt"
 elif [ "$ownership" = "root:root" ]; then
     echo "Current ownership: $ownership. Result: Pass"
 fi
 
 echo
 
-echo "4.1.5 Ensure that the kubelet.conf file permissions are set to 644 or more restrictive (Automated)"
+echo "4.1.5 Ensure that the kubelet.conf file permissions are set to 644 or more restrictive (Automated)" >> "self-assessment_failed_$(hostname).txt"
 
 permission=$(stat -c %a /var/lib/rancher/rke2/agent/kubelet.kubeconfig)
 if [ "$permission" != "644" ]; then
-    echo "Current permission: $permission. Result: Fail"
+    echo "Current permission: $permission. Result: Fail" >> "self-assessment_failed_$(hostname).txt"
 elif [ "$permission" = "644" ]; then
     echo "Current permission: $permission. Result: Pass"
 fi
 
 echo 
 
-echo "4.1.6 Ensure that the kubelet.conf file ownership is set to root:root (Manual)"
+echo "4.1.6 Ensure that the kubelet.conf file ownership is set to root:root (Manual)" >> "self-assessment_failed_$(hostname).txt"
 
 ownership=$(stat -c %U:%G /var/lib/rancher/rke2/agent/kubelet.kubeconfig)
 if [ "$ownership" != "root:root" ]; then
-    echo "Current ownership: $ownership. Result: Fail"
+    echo "Current ownership: $ownership. Result: Fail" >> "self-assessment_failed_$(hostname).txt"
 elif [ "$ownership" = "root:root" ]; then
     echo "Current ownership: $ownership. Result: Pass"
 fi
 
 echo 
 
-echo "4.1.7 Ensure that the certificate authorities file permissions are set to 644 or more restrictive (Manual)"
+echo "4.1.7 Ensure that the certificate authorities file permissions are set to 644 or more restrictive (Manual)" >> "self-assessment_failed_$(hostname).txt"
 
 permission=$(stat -c %a /var/lib/rancher/rke2/server/tls/server-ca.crt)
 if [ "$permission" != "644" ]; then
-    echo "Current permission: $permission. Result: Fail"
+    echo "Current permission: $permission. Result: Fail" >> "self-assessment_failed_$(hostname).txt"
 elif [ "$permission" = "644" ]; then
     echo "Current permission: $permission. Result: Pass"
 fi
 
 echo
 
-echo "4.1.8 Ensure that the client certificate authorities file ownership is set to root:root (Automated)"
+echo "4.1.8 Ensure that the client certificate authorities file ownership is set to root:root (Automated)" >> "self-assessment_failed_$(hostname).txt"
 
 ownership=$(stat -c %U:%G /var/lib/rancher/rke2/server/tls/client-ca.crt)
 if [ "$ownership" != "root:root" ]; then
-    echo "Current ownership: $ownership. Result: Fail"
+    echo "Current ownership: $ownership. Result: Fail" >> "self-assessment_failed_$(hostname).txt"
 elif [ "$ownership" = "root:root" ]; then
     echo "Current ownership: $ownership. Result: Pass"
 fi
@@ -966,7 +966,8 @@ echo "5.7.4 The default namespace should not be used (Manual)"
 
 } >> "self-assessment_summary_$(hostname).txt" 2>&1 | grep "Fail" >> "self-assessment_failed_$(hostname).txt"
 
->> "self-assessment_summary_$(hostname).txt
+cp "self-assessment_summary_$(hostname).txt" /d3/data01/cishardening
+cp "self-assessment_failed_$(hostname).txt" /d3/data01/cishardening
 
 
 
