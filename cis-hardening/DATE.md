@@ -1,3 +1,9 @@
+"I recognize the need for enhanced organization in managing my Emails, SDM queues, HO reports, and Confluence. To achieve this, I plan to schedule regular Email checks, prioritize the review of SDM queues, and promptly respond to HO reports upon receipt. Additionally, I intend to undergo SDM training to facilitate efficient handling of absence filings and closure of change orders."
+
+
+
+
+
 
 
 "I am committed to achieving this task by the deadline of December 8th."
