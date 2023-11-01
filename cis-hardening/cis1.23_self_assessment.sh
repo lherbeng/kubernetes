@@ -973,6 +973,17 @@ fi
 cp "self-assessment_summary_$(hostname).txt" /d3/data01/cishardening
 cp "self-assessment_failed_$(hostname).txt" /d3/data01/cishardening
 
+# Set the necessary variables
+GRAFANA_URL="http://your_grafana_server"
+
+# Read the service account token
+SERVICE_ACCOUNT_TOKEN_PATH="/var/run/secrets/kubernetes.io/serviceaccount/token"
+SERVICE_ACCOUNT_TOKEN=$(cat "$SERVICE_ACCOUNT_TOKEN_PATH")
+
+# Trigger the alert using the service account token
+curl -X POST -H "Authorization: Bearer $SERVICE_ACCOUNT_TOKEN" -H "Content-Type: application/json" -d '{"evalMatches": [], "message": "CIS hardening script executed", "ruleId": 1, "ruleName": "CISAlertRule"}' "$GRAFANA_URL/api/alerts"
+
+
 
 
 
