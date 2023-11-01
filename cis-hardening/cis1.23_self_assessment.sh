@@ -988,6 +988,15 @@ TOKEN=$(cat "$TOKEN_PATH")
 
 wget --header="Authorization: Bearer $TOKEN" "$URL" -O alerts.json
 
+---
+
+USERNAME="your_admin_username"
+PASSWORD="your_admin_password"
+URL="http://your_grafana_server/api/alerts"
+
+wget --user="$USERNAME" --password="$PASSWORD" "$URL" -O alerts.json
+
+
 
 
 
