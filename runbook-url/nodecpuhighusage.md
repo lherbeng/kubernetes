@@ -20,3 +20,8 @@ OTher things to check
 - 
 
 Mitigation
+
+- Implement code optimizations, such as reducing unnecessary computations and improving algorithm efficiency.
+- Utilize caching mechanisms to reduce redundant computations and database queries.
+- Consider horizontal scaling by distributing the workload across multiple instances.
+- Use monitoring tools to set up alerts for abnormal CPU usage and performance degradation.
