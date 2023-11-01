@@ -973,28 +973,15 @@ fi
 cp "self-assessment_summary_$(hostname).txt" /d3/data01/cishardening
 cp "self-assessment_failed_$(hostname).txt" /d3/data01/cishardening
 
-GRAFANA_URL="http://your_grafana_server/api/alerts"
-SERVICE_ACCOUNT_TOKEN_PATH="/var/run/secrets/kubernetes.io/serviceaccount/token"
-SERVICE_ACCOUNT_TOKEN=$(cat "$SERVICE_ACCOUNT_TOKEN_PATH")
+# Sending the email with attachments
+recipient="recipient@example.com"
+subject="Self-Assessment Summary"
+body="self-assessment_summary_$(hostname).txt"
+failed_logs="self-assessment_failed_$(hostname).txt"
 
-curl -X POST -H "Authorization: Bearer $SERVICE_ACCOUNT_TOKEN" -H "Content-Type: application/json" -d '{"evalMatches": [], "message": "CIS hardening script executed"}' "$GRAFANA_URL"
+mail -s "$subject" -a "$body" -a "$failed_logs" "$recipient" < /dev/null
 
---
 
-TOKEN_PATH="/path/to/your/service_account_token"
-URL="http://your_grafana_server/api/alerts"
-
-TOKEN=$(cat "$TOKEN_PATH")
-
-wget --header="Authorization: Bearer $TOKEN" "$URL" -O alerts.json
-
----
-
-USERNAME="your_admin_username"
-PASSWORD="your_admin_password"
-URL="http://your_grafana_server/api/alerts"
-
-wget --user="$USERNAME" --password="$PASSWORD" "$URL" -O alerts.json
 
 
 
