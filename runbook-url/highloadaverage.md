@@ -1,8 +1,8 @@
 ## HighLoadAverage
 
-Meaning: High load average indicates that the system is experiencing more demand than it can handle.
+Meaning: High load average means the system is getting more work requests than it can manage.
 
-Impact: High load can cause system slowdowns, unresponsiveness, and potentially lead to service interruptions.
+Impact: High load can make the system slow, unresponsive, and may even stop some services from working.
 
 ** Diagnosis: **
 
