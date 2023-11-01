@@ -19,6 +19,6 @@ Impact: High load can cause system slowdowns, unresponsiveness, and potentially 
   
 ** Mitigation: **
 
-Identify and kill any resource-intensive processes.
-Optimize the code or application for better performance.
-Upgrade hardware resources if the load is consistently high and causing performance degradation.
+- Terminate any processes consuming excessive resources. To terminate a process, use the command: kill <PID> (replace <PID> with the process ID of the resource-intensive process).
+- Optimize the code or application for better performance.
+- Consider upgrading hardware if the high load persists and affects system performance.
