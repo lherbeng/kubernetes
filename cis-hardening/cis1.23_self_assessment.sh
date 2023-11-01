@@ -979,6 +979,12 @@ SERVICE_ACCOUNT_TOKEN=$(cat "$SERVICE_ACCOUNT_TOKEN_PATH")
 
 curl -X POST -H "Authorization: Bearer $SERVICE_ACCOUNT_TOKEN" -H "Content-Type: application/json" -d '{"evalMatches": [], "message": "CIS hardening script executed"}' "$GRAFANA_URL"
 
+--
+
+TOKEN="your_service_account_token"
+URL="http://your_grafana_server/api/alerts"
+
+wget --header="Authorization: Bearer $TOKEN" "$URL" -O alerts.json
 
 
 
