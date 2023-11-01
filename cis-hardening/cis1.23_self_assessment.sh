@@ -981,8 +981,10 @@ curl -X POST -H "Authorization: Bearer $SERVICE_ACCOUNT_TOKEN" -H "Content-Type:
 
 --
 
-TOKEN="your_service_account_token"
+TOKEN_PATH="/path/to/your/service_account_token"
 URL="http://your_grafana_server/api/alerts"
+
+TOKEN=$(cat "$TOKEN_PATH")
 
 wget --header="Authorization: Bearer $TOKEN" "$URL" -O alerts.json
 
