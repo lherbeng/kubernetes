@@ -1008,6 +1008,19 @@ done | mail -s "$subject" "$recipient" file in self-assessment_summary_*.txt sel
 done | mail -s "$subject" "$recipient"
 
 
+---
+
+# Send each file as an attachment in a single email
+recipient="recipient@example.com"
+subject="Self-Assessment Summary"
+attachments=""
+
+for file in self-assessment_summary_*.txt self-assessment_failed_*.txt; do
+    attachments+="--attach=$file "
+done
+
+echo "See attached files." | mail -s "$subject" $attachments "$recipient"
+
 
 
 
