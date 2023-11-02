@@ -981,7 +981,19 @@ failed_logs="self-assessment_failed_$(hostname).txt"
 
 mail -s "$subject" -a "$body" -a "$failed_logs" "$recipient" < /dev/null
 
+---
 
+# Send all files in a single email
+recipient="recipient@example.com"
+subject="Self-Assessment Summary"
+body=""
+
+for file in self-assessment_summary_*.txt self-assessment_failed_*.txt; do
+    body+="Content of $file:\n"
+    body+="$(cat $file)\n\n"
+done
+
+echo -e "$body" | mail -s "$subject" "$recipient"
 
 
 
