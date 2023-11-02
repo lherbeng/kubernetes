@@ -995,6 +995,18 @@ done
 
 echo -e "$body" | mail -s "$subject" "$recipient"
 
+---
+
+# Send each file as an attachment in a single email
+recipient="recipient@example.com"
+subject="Self-Assessment Summary"
+
+for file in self-assessment_summary_*.txt self-assessment_failed_*.txt; do
+    uuencode "$file" "$file"
+done | mail -s "$subject" "$recipient" file in self-assessment_summary_*.txt self-assessment_failed_*.txt; do
+    uuencode "$file" "$file"
+done | mail -s "$subject" "$recipient"
+
 
 
 
