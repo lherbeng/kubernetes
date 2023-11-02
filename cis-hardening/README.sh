@@ -41,14 +41,4 @@ body+="$(cat $file)\n\n": This line appends the actual content of the file to th
 
 The loop essentially collects the content of each matched file and concatenates it to the body variable, creating a single string that contains all the file contents to be sent in the email.
 
----
 
-# Send each file as an attachment in a single email
-recipient="recipient@example.com"
-subject="Self-Assessment Summary"
-
-for file in self-assessment_summary_*.txt self-assessment_failed_*.txt; do
-    uuencode "$file" "$file"
-done | mail -s "$subject" "$recipient" file in self-assessment_summary_*.txt self-assessment_failed_*.txt; do
-    uuencode "$file" "$file"
-done | mail -s "$subject" "$recipient"
