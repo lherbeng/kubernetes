@@ -1,0 +1,19 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: grafana
+  # Other metadata fields...
+spec:
+  # Other spec fields...
+  template:
+    spec:
+      volumes:
+      - name: alerting-rules-volume
+        configMap:
+          name: grafana-alerting-rules
+      containers:
+      - name: grafana
+        # Other container fields...
+        volumeMounts:
+        - name: alerting-rules-volume
+          mountPath: /etc/grafana/provisioning/alerting
