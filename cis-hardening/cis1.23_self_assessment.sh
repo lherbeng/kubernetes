@@ -1022,6 +1022,8 @@ echo "See attached files." | mailx -s "$subject" "${attachments[@]}" "$recipient
 
 ---
 
+
+
 #!/bin/bash
 
 # Your script commands here
@@ -1039,17 +1041,15 @@ fi
 cp "self-assessment_summary_$(hostname).txt" "/d3/data01/cishardening/"
 cp "self-assessment_failed_$(hostname).txt" "/d3/data01/cishardening/"
 
-# Send files as attachments in a single email
+# Send all files in /d3/data01/cishardening as attachments in a single email
 recipient="recipient@example.com"
 subject="Self-Assessment Summary"
+body="See attached files."
 
-attachments=""
-for file in self-assessment_summary_*.txt self-assessment_failed_*.txt; do
-    attachments+=" -a $file"
-done
+cd /d3/data01/cishardening/
+attachments=$(find . -maxdepth 1 -type f -name "*.txt" -exec printf "{} " \;)
 
-echo "See attached files." | mail -s "$subject" $attachments -- "$recipient"
-
+echo -e "$body" | mail -s "$subject" $attachments -- "$recipient"
 
 
 
