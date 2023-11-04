@@ -1020,6 +1020,33 @@ done
 # Send the email with the files as attachments
 echo "See attached files." | mailx -s "$subject" "${attachments[@]}" "$recipient"
 
+---
+
+#!/bin/bash
+
+# Your script commands here
+
+{
+    # Your commands
+} >> "self-assessment_summary_$(hostname).txt" 2>&1
+
+grep "Fail" "self-assessment_summary_$(hostname).txt" >> "self-assessment_failed_$(hostname).txt"
+
+if [ ! -d "/d3/data01/cishardening" ]; then
+    mkdir -p "/d3/data01/cishardening"
+fi
+
+cp "self-assessment_summary_$(hostname).txt" "/d3/data01/cishardening/"
+cp "self-assessment_failed_$(hostname).txt" "/d3/data01/cishardening/"
+
+# Send each file as an attachment
+recipient="recipient@example.com"
+subject="Self-Assessment Summary"
+body="See attached files."
+
+for file in self-assessment_summary_*.txt self-assessment_failed_*.txt; do
+    echo -e "$body" | mail -s "$subject" -A "$file" -- "$recipient"
+done
 
 
 
