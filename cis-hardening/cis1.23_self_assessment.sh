@@ -1062,11 +1062,23 @@ echo -e "$body" | mail -s "$subject" --attach=$attachments $recipient
 
 
 ---
+didn't work
 
 cd /d3/data01/cishardening/
 attachments=$(find . -maxdepth 1 -type f -name "*.txt" -exec printf "{} " \;)
 
 echo -e "$body" | mail -s "$subject" -a $attachments $recipient
+
+---
+
+# Compose the attachment list
+attachments=""
+for file in *txt; do
+    attachments+="-a $file "
+done
+
+# Send email with all attachments
+echo -e "$body" | mailx -s "$subject" $attachments $recipient
 
 
 
