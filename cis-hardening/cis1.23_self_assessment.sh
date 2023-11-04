@@ -1106,11 +1106,26 @@ echo -e "$body" | mailx -s "$subject" $attachments $recipient
 
 # Create a temporary directory to consolidate the files
 temp_dir="/d3/data01/cishardening/temp_dir"
-mkdir -p "$temp_dir/hostnameA" "$temp_dir/hostnameB" "$temp_dir/hostnameC"
-cp /d3/data01/cishardening/*_"$(hostname)".txt "$temp_dir/$(hostname)"
+mkdir -p "$temp_dir"
 
 # Check if all files from all hostnames are present
-if [ -f "$temp_dir/hostnameA/self-assessment_summary_hostnameA.txt" ] && [ -f "$temp_dir/hostnameA/self-assessment_failed_hostnameA.txt" ] && [ -f "$temp_dir/hostnameB/self-assessment_summary_hostnameB.txt" ] && [ -f "$temp_dir/hostnameB/self-assessment_failed_hostnameB.txt" ] && [ -f "$temp_dir/hostnameC/self-assessment_summary_hostnameC.txt" ] && [ -f "$temp_dir/hostnameC/self-assessment_failed_hostnameC.txt" ]; then
+all_files_present=1
+
+for host in "${hostnames[@]}"; do
+    if [ ! -f "/d3/data01/cishardening/self-assessment_summary_$host.txt" ] || [ ! -f "/d3/data01/cishardening/self-assessment_failed_$host.txt" ]; then
+        all_files_present=0
+        break
+    fi
+done
+
+if [ "$all_files_present" -eq 1 ]; then
+    # Copy files from different hostnames to the temporary directory
+    for host in "${hostnames[@]}"; do
+        mkdir -p "$temp_dir/$host"
+        cp "/d3/data01/cishardening/self-assessment_summary_$host.txt" "$temp_dir/$host"
+        cp "/d3/data01/cishardening/self-assessment_failed_$host.txt" "$temp_dir/$host"
+    done
+
     # Send email with all attachments
     recipient="recipient@example.com"
     subject="Self-Assessment Summary"
