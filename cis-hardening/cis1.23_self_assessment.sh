@@ -1104,6 +1104,33 @@ echo -e "$body" | mailx -s "$subject" $attachments $recipient
 
 ---
 
+#!/bin/bash
+
+# Check if the number of arguments is at least one
+if [ "$#" -lt 1 ]; then
+    echo "Usage: $0 <hostname1> <hostname2> <hostname3>"
+    exit 1
+fi
+
+# Extract the hostnames from the arguments
+hostnames=("$@")
+
+# Your script commands here
+
+{
+    # Your commands
+} >> "/d3/data01/cishardening/self-assessment_summary_$(hostname).txt" 2>&1
+
+grep "Fail" "/d3/data01/cishardening/self-assessment_summary_$(hostname).txt" >> "/d3/data01/cishardening/self-assessment_failed_$(hostname).txt"
+
+# Move the files to the common directory
+if [ ! -d "/d3/data01/cishardening" ]; then
+    mkdir -p "/d3/data01/cishardening"
+fi
+
+cp "/d3/data01/cishardening/self-assessment_summary_$(hostname).txt" "/d3/data01/cishardening/self-assessment_summary_$(hostname).txt"
+cp "/d3/data01/cishardening/self-assessment_failed_$(hostname).txt" "/d3/data01/cishardening/self-assessment_failed_$(hostname).txt"
+
 # Check if all hostnames have completed running the script
 if [ "$(hostname)" == "${hostnames[-1]}" ]; then
     # Consolidate all files in a single email
@@ -1120,7 +1147,6 @@ if [ "$(hostname)" == "${hostnames[-1]}" ]; then
 
     echo -e "$body" | mailx -s "$subject" $attachments $recipient
 fi
-
 
 
 
