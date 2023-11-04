@@ -1051,6 +1051,39 @@ attachments=$(find . -maxdepth 1 -type f -name "*.txt" -exec printf "{} " \;)
 
 echo -e "$body" | mail -s "$subject" $attachments -- "$recipient"
 
+---
+
+https://stackoverflow.com/questions/30384962/using-sendmail-command-while-using-uuencode-to-send-attachment
+
+#!/bin/bash
+
+# Your script commands here
+
+{
+    # Your commands
+} >> "self-assessment_summary_$(hostname).txt" 2>&1
+
+grep "Fail" "self-assessment_summary_$(hostname).txt" >> "self-assessment_failed_$(hostname).txt"
+
+if [ ! -d "/d3/data01/cishardening" ]; then
+    mkdir -p "/d3/data01/cishardening"
+fi
+
+cp "self-assessment_summary_$(hostname).txt" "/d3/data01/cishardening/"
+cp "self-assessment_failed_$(hostname).txt" "/d3/data01/cishardening/"
+
+# Send all files in /d3/data01/cishardening as attachments in a single email
+recipient="recipient@example.com"
+subject="Self-Assessment Summary"
+body="See attached files."
+
+cd /d3/data01/cishardening/
+
+for file in *txt; do
+    (echo -e "$body"; uuencode "$file" "$file") | mail -s "$subject" "$recipient"
+done
+
+
 
 
 
