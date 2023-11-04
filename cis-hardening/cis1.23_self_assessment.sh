@@ -1039,14 +1039,16 @@ fi
 cp "self-assessment_summary_$(hostname).txt" "/d3/data01/cishardening/"
 cp "self-assessment_failed_$(hostname).txt" "/d3/data01/cishardening/"
 
-# Send each file as an attachment
+# Send files as attachments in a single email
 recipient="recipient@example.com"
 subject="Self-Assessment Summary"
-body="See attached files."
 
+attachments=""
 for file in self-assessment_summary_*.txt self-assessment_failed_*.txt; do
-    echo -e "$body" | mail -s "$subject" -A "$file" -- "$recipient"
+    attachments+=" -a $file"
 done
+
+echo "See attached files." | mail -s "$subject" $attachments -- "$recipient"
 
 
 
