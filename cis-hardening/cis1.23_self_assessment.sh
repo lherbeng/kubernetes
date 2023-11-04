@@ -1071,6 +1071,8 @@ echo -e "$body" | mail -s "$subject" -a $attachments $recipient
 
 ---
 
+It works! however still receiving 3 emails
+
 # Compose the attachment list
 attachments=""
 for file in *txt; do
