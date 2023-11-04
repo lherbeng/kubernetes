@@ -1081,7 +1081,22 @@ done
 echo -e "$body" | mailx -s "$subject" $attachments $recipient
 
 
+---
 
+# Create a list of all .txt files
+cd /d3/data01/cishardening/
+attachments=""
+
+for file in *txt; do
+    attachments+=" -a $file"
+done
+
+# Send email with all attachments
+recipient="recipient@example.com"
+subject="Self-Assessment Summary"
+body="See attached files."
+
+echo -e "$body" | mailx -s "$subject" $attachments $recipient
 
 
 
