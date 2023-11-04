@@ -1112,7 +1112,7 @@ mkdir -p "$temp_dir"
 all_files_present=1
 
 for host in "${hostnames[@]}"; do
-    if [ ! -f "/d3/data01/cishardening/self-assessment_summary_$host.txt" ] || [ ! -f "/d3/data01/cishardening/self-assessment_failed_$host.txt" ]; then
+    if [ ! -f "/d3/data01/cishardening/self-assessment_summary_$(hostname).txt" ] || [ ! -f "/d3/data01/cishardening/self-assessment_failed_$(hostname).txt" ]; then
         all_files_present=0
         break
     fi
@@ -1121,9 +1121,9 @@ done
 if [ "$all_files_present" -eq 1 ]; then
     # Copy files from different hostnames to the temporary directory
     for host in "${hostnames[@]}"; do
-        mkdir -p "$temp_dir/$host"
-        cp "/d3/data01/cishardening/self-assessment_summary_$host.txt" "$temp_dir/$host"
-        cp "/d3/data01/cishardening/self-assessment_failed_$host.txt" "$temp_dir/$host"
+        mkdir -p "$temp_dir/$(hostname)"
+        cp "/d3/data01/cishardening/self-assessment_summary_$(hostname).txt" "$temp_dir/$(hostname)"
+        cp "/d3/data01/cishardening/self-assessment_failed_$(hostname).txt" "$temp_dir/$(hostname)"
     done
 
     # Send email with all attachments
@@ -1143,7 +1143,6 @@ if [ "$all_files_present" -eq 1 ]; then
     # Clean up the temporary directory
     rm -r "$temp_dir"
 fi
-
 
 
 
