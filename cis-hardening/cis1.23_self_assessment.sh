@@ -1104,62 +1104,22 @@ echo -e "$body" | mailx -s "$subject" $attachments $recipient
 
 ---
 
-# Create a temporary directory to consolidate the files
-temp_dir="/d3/data01/cishardening/temp_dir"
-mkdir -p "$temp_dir"
-
-# Check if all files from all hostnames are present
-all_files_present=1
-
-for host in "${hostnames[@]}"; do
-    if [ ! -f "/d3/data01/cishardening/self-assessment_summary_$(hostname).txt" ] || [ ! -f "/d3/data01/cishardening/self-assessment_failed_$(hostname).txt" ]; then
-        all_files_present=0
-        break
-    fi
-done
-
-if [ "$all_files_present" -eq 1 ]; then
-    # Copy files from different hostnames to the temporary directory
-    for host in "${hostnames[@]}"; do
-        mkdir -p "$temp_dir/$(hostname)"
-        cp "/d3/data01/cishardening/self-assessment_summary_$(hostname).txt" "$temp_dir/$(hostname)"
-        cp "/d3/data01/cishardening/self-assessment_failed_$(hostname).txt" "$temp_dir/$(hostname)"
-    done
-
-    # Send email with all attachments
+# Check if all hostnames have completed running the script
+if [ "$(hostname)" == "${hostnames[-1]}" ]; then
+    # Consolidate all files in a single email
     recipient="recipient@example.com"
     subject="Self-Assessment Summary"
     body="See attached files."
 
-    cd "$temp_dir"
+    cd /d3/data01/cishardening/
     attachments=""
 
-    for file in $(find . -name "*.txt"); do
+    for file in self-assessment_summary_*.txt self-assessment_failed_*.txt; do
         attachments+=" -a $file"
     done
 
     echo -e "$body" | mailx -s "$subject" $attachments $recipient
-
-    # Clean up the temporary directory
-    rm -r "$temp_dir"
 fi
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 
