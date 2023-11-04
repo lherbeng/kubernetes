@@ -983,65 +983,21 @@ mail -s "$subject" -a "$body" -a "$failed_logs" "$recipient" < /dev/null
 
 ---
 
-# Send all files in a single email
-recipient="recipient@example.com"
-subject="Self-Assessment Summary"
-body=""
+#!/bin/bash
 
+# Define the recipient email address
+recipient="recipient@example.com"
+
+# Define the subject of the email
+subject="Self-Assessment Summary"
+
+# Loop through all the self-assessment files and attach them to the email
 for file in self-assessment_summary_*.txt self-assessment_failed_*.txt; do
-    body+="Content of $file:\n"
-    body+="$(cat $file)\n\n"
+    attachments+=("-a" "$file")
 done
 
-echo -e "$body" | mail -s "$subject" "$recipient"
-
----
-
-# Send each file as an attachment in a single email
-recipient="recipient@example.com"
-subject="Self-Assessment Summary"
-
-for file in self-assessment_summary_*.txt self-assessment_failed_*.txt; do
-    uuencode "$file" "$file"
-done | mail -s "$subject" "$recipient" file in self-assessment_summary_*.txt self-assessment_failed_*.txt; do
-    uuencode "$file" "$file"
-done | mail -s "$subject" "$recipient"
-
-
----
-
-# Send each file as an attachment in a single email
-recipient="recipient@example.com"
-subject="Self-Assessment Summary"
-attachments=""
-
-for file in self-assessment_summary_*.txt self-assessment_failed_*.txt; do
-    attachments+="--attach=$file "
-done
-
-echo "See attached files." | mail -s "$subject" $attachments "$recipient"
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+# Send the email with the files as attachments
+echo "See attached files." | mailx -s "$subject" "${attachments[@]}" "$recipient"
 
 
 
