@@ -1061,8 +1061,12 @@ attachments=$(find . -maxdepth 1 -type f -name "*.txt" -exec printf "{} " \;)
 echo -e "$body" | mail -s "$subject" --attach=$attachments $recipient
 
 
+---
 
+cd /d3/data01/cishardening/
+attachments=$(find . -maxdepth 1 -type f -name "*.txt" -exec printf "{} " \;)
 
+echo -e "$body" | mail -s "$subject" -a $attachments $recipient
 
 
 
