@@ -1085,6 +1085,8 @@ echo -e "$body" | mailx -s "$subject" $attachments $recipient
 
 ---
 
+It works! however still receiving 3 emails
+
 # Create a list of all .txt files
 cd /d3/data01/cishardening/
 attachments=""
@@ -1100,7 +1102,32 @@ body="See attached files."
 
 echo -e "$body" | mailx -s "$subject" $attachments $recipient
 
+---
 
+# Create a temporary directory to consolidate the files
+temp_dir="/d3/data01/cishardening/temp_dir"
+mkdir -p "$temp_dir/hostnameA" "$temp_dir/hostnameB" "$temp_dir/hostnameC"
+cp /d3/data01/cishardening/*_"$(hostname)".txt "$temp_dir/$(hostname)"
+
+# Check if all files from all hostnames are present
+if [ -f "$temp_dir/hostnameA/self-assessment_summary_hostnameA.txt" ] && [ -f "$temp_dir/hostnameA/self-assessment_failed_hostnameA.txt" ] && [ -f "$temp_dir/hostnameB/self-assessment_summary_hostnameB.txt" ] && [ -f "$temp_dir/hostnameB/self-assessment_failed_hostnameB.txt" ] && [ -f "$temp_dir/hostnameC/self-assessment_summary_hostnameC.txt" ] && [ -f "$temp_dir/hostnameC/self-assessment_failed_hostnameC.txt" ]; then
+    # Send email with all attachments
+    recipient="recipient@example.com"
+    subject="Self-Assessment Summary"
+    body="See attached files."
+
+    cd "$temp_dir"
+    attachments=""
+
+    for file in $(find . -name "*.txt"); do
+        attachments+=" -a $file"
+    done
+
+    echo -e "$body" | mailx -s "$subject" $attachments $recipient
+
+    # Clean up the temporary directory
+    rm -r "$temp_dir"
+fi
 
 
 
