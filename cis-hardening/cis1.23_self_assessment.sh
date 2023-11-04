@@ -999,7 +999,26 @@ done
 # Send the email with the files as attachments
 echo "See attached files." | mailx -s "$subject" "${attachments[@]}" "$recipient"
 
+---
 
+#!/bin/bash
+
+# Define the recipient email address
+recipient="recipient@example.com"
+
+# Define the subject of the email
+subject="Self-Assessment Summary"
+
+# Initialize the attachments array
+attachments=()
+
+# Loop through all the .txt files and add them to the attachments array
+for file in self-assessment_summary_*.txt self-assessment_failed_*.txt; do
+    attachments+=("-a" "$file")
+done
+
+# Send the email with the files as attachments
+echo "See attached files." | mailx -s "$subject" "${attachments[@]}" "$recipient"
 
 
 
