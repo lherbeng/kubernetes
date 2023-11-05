@@ -1109,8 +1109,25 @@ if [[ $(hostname) == $hostnameA ]]; then
     echo -e "$body" | mailx -s "$subject" $attachments $recipient
 fi
 
+---
 
 
+declare -a hostnames=("hostnameA" "hostnameB" "hostnameC")  # Add more hostnames as needed
+
+cd /d3/data01/cishardening/
+
+# Compose the attachment list
+attachments=""
+for file in *txt; do
+    attachments+="-a $file "
+done
+
+# Send email with all attachments for specified hostnames
+for h in "${hostnames[@]}"; do
+    if [[ $(hostname) == $h ]]; then
+        echo -e "$body" | mailx -s "$subject" $attachments $recipient
+    fi
+done
 
 
 
