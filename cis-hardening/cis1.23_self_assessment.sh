@@ -1139,30 +1139,29 @@ done
 
 ---
 
-cp "self-assessment_summary_$(hostname).txt" "/d3/data01/cishardening/"
-cp "self-assessment_failed_$(hostname).txt" "/d3/data01/cishardening/"
+current_hostname=$(hostname)
 
-# Send all files in /d3/data01/cishardening as attachments in a single email for specified hostnames
-recipient="recipient@example.com"
-subject="Self-Assessment Summary"
-body="See attached files."
-
-hostnames=("hostnameA" "hostnameB" "hostnameC")  # Add more hostnames as needed
-
-cd /d3/data01/cishardening/
-
-# Compose the attachment list
-attachments=""
-for file in *txt; do
-    attachments+="-a $file "
-done
-
-# Send email with all attachments for specified hostnames
-for h in "${hostnames[@]}"; do
-    if [ "$(hostname)" = "$h" ]; then
-        echo -e "$body" | mailx -s "$subject" $attachments $recipient
-    fi
-done
+if [ "$current_hostname" = "hostnameA" ]; then
+    attachments=""
+    for file in /d3/data01/cishardening/*txt; do
+        attachments+="-a $file "
+    done
+    echo -e "$body" | mailx -s "$subject" $attachments $recipient
+elif [ "$current_hostname" = "hostnameB" ]; then
+    attachments=""
+    for file in /d3/data01/cishardening/*txt; do
+        attachments+="-a $file "
+    done
+    echo -e "$body" | mailx -s "$subject" $attachments $recipient
+elif [ "$current_hostname" = "hostnameC" ]; then
+    attachments=""
+    for file in /d3/data01/cishardening/*txt; do
+        attachments+="-a $file "
+    done
+    echo -e "$body" | mailx -s "$subject" $attachments $recipient
+else
+    echo "Hostname not recognized."
+fi
 
 
 
