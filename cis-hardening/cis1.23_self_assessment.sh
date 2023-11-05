@@ -1112,6 +1112,14 @@ fi
 ---
 
 
+cp "self-assessment_summary_$(hostname).txt" "/d3/data01/cishardening/"
+cp "self-assessment_failed_$(hostname).txt" "/d3/data01/cishardening/"
+
+# Send all files in /d3/data01/cishardening as attachments in a single email for specified hostnames
+recipient="recipient@example.com"
+subject="Self-Assessment Summary"
+body="See attached files."
+
 declare -a hostnames=("hostnameA" "hostnameB" "hostnameC")  # Add more hostnames as needed
 
 cd /d3/data01/cishardening/
@@ -1128,7 +1136,6 @@ for h in "${hostnames[@]}"; do
         echo -e "$body" | mailx -s "$subject" $attachments $recipient
     fi
 done
-
 
 
 
