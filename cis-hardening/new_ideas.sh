@@ -1,50 +1,42 @@
-#!/bin/bash
+To achieve the desired functionality, you can modify the Jenkinsfile script to include conditional logic and ensure that the `cis1.23_self_assessment_email.sh` script only runs on `hostnameA` after the `cis1.23_self_assessment.sh` script has finished running on the three nodes. Here is an example of how you can modify the script:
 
-# Get the current hostname
-current_hostname=$(hostname)
-
-# Function to send email for a specific hostname
-send_email() {
-    hostname=$1
-    recipient="recipient@example.com"  # Replace with the actual recipient email address
-    subject="Self-Assessment Summary for $hostname"
-    body="See attached files for the self-assessment summary of $hostname."
-
-    # Create a list of all .txt files
-    cd /d3/data01/cishardening/ || exit
-    attachments=""
-
-    for file in *.txt; do
-        attachments+=" -a $file"
-    done
-
-    # Send email with all attachments
-    echo -e "$body" | mailx -s "$subject" $attachments $recipient
-
-    # Delete files in the directory
-    rm -f ./*"${hostname}"*.txt
+```groovy
+def runAssessmentScript = {
+    sh """
+        sed -i 's/HostameParam/${params.Hostname}/' `pwd`/infra/scripts/cis1.23_self_assessment.sh
+    """
 }
 
-# Synchronization using a lock file
-lock_file="/tmp/cluster_script.lock"
+def runEmailScript = {
+    sh """
+        sed -i 's/HostameParam/${params.Hostname}/' `pwd`/infra/scripts/cis1.23_self_assessment_email.sh
+    """
+}
 
-# Wait for the lock to be released by other hosts
-while [ -f "$lock_file" ]; do
-    sleep 1
-done
+// Function to wait for a job to finish on all nodes
+def waitForJobToFinish() {
+    // Implementation to check if the job has finished on three nodes
+    // Replace the following line with the implementation for checking job completion
+    def isJobFinishedOnThreeNodes = false
 
-# Acquire the lock
-touch "$lock_file"
+    while (!isJobFinishedOnThreeNodes) {
+        // Add a sleep to avoid continuous polling and reduce load
+        sleep 60 // Adjust the time interval as needed
+        // Check if the job is finished on three nodes
+        isJobFinishedOnThreeNodes = checkIfJobFinishedOnThreeNodes() // Function to be implemented
+    }
+}
 
-# Your existing logic for sending emails and processing files
-# ...
+if (params.Hostname != "") {
+    runAssessmentScript()
 
-# Release the lock
-rm -f "$lock_file"
+    // Wait for the assessment script to finish on three nodes
+    waitForJobToFinish()
 
-# Check if the current hostname matches the predefined hostname and send the email
-if [ "$current_hostname" == "hostnameA" ] || [ "$current_hostname" == "hostnameB" ] || [ "$current_hostname" == "hostnameC" ] || [ "$current_hostname" == "hostnameD" ]; then
-    send_email "$current_hostname"
-else
-    echo "Current hostname not found in the predefined hostnames."
-fi
+    if (params.Hostname == "hostnameA") {
+        runEmailScript()
+    }
+}
+```
+
+In this modified script, `runAssessmentScript` and `runEmailScript` are defined as separate functions. The `waitForJobToFinish` function is used to ensure that the `cis1.23_self_assessment.sh` script finishes running on all nodes before executing the `cis1.23_self_assessment_email.sh` script on `hostnameA` only. You will need to implement the `checkIfJobFinishedOnThreeNodes` function to check if the job has finished running on three nodes. Adjust the time interval in the `sleep` statement as needed.
