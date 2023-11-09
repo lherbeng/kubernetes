@@ -1,42 +1,56 @@
-To achieve the desired functionality, you can modify the Jenkinsfile script to include conditional logic and ensure that the `cis1.23_self_assessment_email.sh` script only runs on `hostnameA` after the `cis1.23_self_assessment.sh` script has finished running on the three nodes. Here is an example of how you can modify the script:
+Certainly, here's how you can modify your script to incorporate the changes:
 
-```groovy
-def runAssessmentScript = {
-    sh """
-        sed -i 's/HostameParam/${params.Hostname}/' `pwd`/infra/scripts/cis1.23_self_assessment.sh
-    """
-}
 
-def runEmailScript = {
-    sh """
-        sed -i 's/HostameParam/${params.Hostname}/' `pwd`/infra/scripts/cis1.23_self_assessment_email.sh
-    """
-}
 
-// Function to wait for a job to finish on all nodes
-def waitForJobToFinish() {
-    // Implementation to check if the job has finished on three nodes
-    // Replace the following line with the implementation for checking job completion
-    def isJobFinishedOnThreeNodes = false
+stage('SANDBOX-DEV Install') {
+    options { skipDefaultCheckout(false) }
+    when {
+        expression {
+            params.Action == "Install" && params.Hostname != "" && params.Environment == "sandbox"
+        }
+    }
+    agent { label "on-prem-dev-static-worker-jenkins" }
 
-    while (!isJobFinishedOnThreeNodes) {
-        // Add a sleep to avoid continuous polling and reduce load
-        sleep 60 // Adjust the time interval as needed
-        // Check if the job is finished on three nodes
-        isJobFinishedOnThreeNodes = checkIfJobFinishedOnThreeNodes() // Function to be implemented
+    steps {
+
+        Script {
+            def runAssessmentScript = {
+                sh """
+                    sed -i 's/HostameParam/${params.Hostname}/' `pwd`/infra/scripts/cis1.23_self_assessment.sh
+                """
+            }
+
+            def runEmailScript = {
+                sh """
+                    sed -i 's/HostameParam/${params.Hostname}/' `pwd`/infra/scripts/cis1.23_self_assessment_email.sh
+                """
+            }
+
+            def waitForJobToFinish() {
+                // Implementation to check if the job has finished on three nodes
+                // Replace the following line with the implementation for checking job completion
+                def isJobFinishedOnThreeNodes = false
+
+                while (!isJobFinishedOnThreeNodes) {
+                    // Add a sleep to avoid continuous polling and reduce load
+                    sleep 60 // Adjust the time interval as needed
+                    // Check if the job is finished on three nodes
+                    isJobFinishedOnThreeNodes = checkIfJobFinishedOnThreeNodes() // Function to be implemented
+                }
+            }
+
+            if (params.Hostname != "") {
+                runAssessmentScript()
+
+                // Wait for the assessment script to finish on three nodes
+                waitForJobToFinish()
+
+                if (params.Hostname == "hostnameA") {
+                    runEmailScript()
+                }
+            }
+        }
     }
 }
 
-if (params.Hostname != "") {
-    runAssessmentScript()
-
-    // Wait for the assessment script to finish on three nodes
-    waitForJobToFinish()
-
-    if (params.Hostname == "hostnameA") {
-        runEmailScript()
-    }
-}
-```
-
-In this modified script, `runAssessmentScript` and `runEmailScript` are defined as separate functions. The `waitForJobToFinish` function is used to ensure that the `cis1.23_self_assessment.sh` script finishes running on all nodes before executing the `cis1.23_self_assessment_email.sh` script on `hostnameA` only. You will need to implement the `checkIfJobFinishedOnThreeNodes` function to check if the job has finished running on three nodes. Adjust the time interval in the `sleep` statement as needed.
+In this modified script, I've encapsulated the previous logic into a Script block, and I've included the runAssessmentScript, runEmailScript, and waitForJobToFinish functions, as well as a placeholder checkIfJobFinishedOnThreeNodes function that you will need to implement. Adjust the sleep interval and the conditions within the script as needed for your specific use case.
