@@ -1,6 +1,6 @@
 #!/bin/bash
 
-# Define the current hostname and subject variables
+# Define the current hostname
 current_hostname=$(hostname)
 
 # Define the subject variable based on the current hostname
