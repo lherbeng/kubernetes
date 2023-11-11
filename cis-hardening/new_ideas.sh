@@ -28,7 +28,7 @@ send_email() {
     echo -e "$body" | mailx -s "$subject" $attachments $recipient
 
     # Delete files in the directory
-    rm -f ./*"${hostname}"*.txt
+    rm -f /d3/data01/cishardening/*.txt
 }
 
 # Check if the current hostname matches the predefined hostname and send the email
