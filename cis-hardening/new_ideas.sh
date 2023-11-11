@@ -2,7 +2,20 @@
 
 # Define the current hostname and subject variables
 current_hostname=$(hostname)
-subject_variable="Sandbox"
+
+# Define the subject variable based on the current hostname
+if [ "$current_hostname" == "hostnameA" ]; then
+    subject_variable="SANDBOX"
+elif [ "$current_hostname" == "hostnameB" ]; then
+    subject_variable="DEV"
+elif [ "$current_hostname" == "hostnameC" ]; then
+    subject_variable="TST"
+elif [ "$current_hostname" == "hostnameD" ]; then
+    subject_variable="PROD"
+else
+    # Default subject variable if the current hostname doesn't match predefined ones
+    subject_variable="UNKNOWN"
+fi
 
 # Function to send email for a specific hostname
 send_email() {
