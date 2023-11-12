@@ -22,11 +22,11 @@ send_email() {
     echo -e "$body" | mailx -s "$subject" $attachments $recipient
 
     # Delete files in the directory
-    rm -f ./*"${hostname}"*.txt
+    rm -f /d3/data01/cishardening/*.txt
 }
 
 # Check if the current hostname matches the predefined hostname and send the email
-if [ "$current_hostname" == "hostnameA" ] || [ "$current_hostname" == "hostnameB" ] || [ "$current_hostname" == "hostnameC" ] || [ "$current_hostname" == "hostnameD" ]; then
+if [ "$current_hostname" == "brn0vlappdv098a" ] || [ "$current_hostname" == "brn0vlappdv079a" ] || [ "$current_hostname" == "brn0vlappua079a" ] || [ "$current_hostname" == "gen0vlapp079a" ]; then
     send_email "$current_hostname"
 else
     echo "Current hostname not found in the predefined hostnames."
