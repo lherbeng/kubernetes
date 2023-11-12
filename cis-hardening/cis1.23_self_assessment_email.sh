@@ -5,6 +5,7 @@ current_hostname=$(hostname)
 
 # Function to send email for a specific hostname
 send_email() {
+
 hostname=$1
 recipient="recipient@example.com"  # Replace with the actual recipient email address
 subject="Self-Assessment Summary for $hostname"
