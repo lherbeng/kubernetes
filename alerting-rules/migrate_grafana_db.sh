@@ -1,0 +1,25 @@
+#!/bin/bash
+
+# Source server details
+source_server="user@source_server_ip"
+source_grafana_db_path="/var/lib/grafana/grafana.db"
+
+# Destination server details
+destination_server="user@destination_server_ip"
+destination_grafana_db_path="/var/lib/grafana/grafana.db"
+
+# Backup on the source server
+ssh $source_server "sudo cp $source_grafana_db_path $source_grafana_db_path.backup"
+
+# Copy the backup to the local machine
+scp $source_server:$source_grafana_db_path.backup .
+
+# Copy the backup to the destination server
+scp ./grafana.db.backup $destination_server:$destination_grafana_db_path
+
+# Restore on the destination server
+ssh $destination_server "sudo cp $destination_grafana_db_path $destination_grafana_db_path.backup"
+ssh $destination_server "sudo cp grafana.db.backup $destination_grafana_db_path"
+
+# Clean up local backup
+rm grafana.db.backup
