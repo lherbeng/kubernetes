@@ -5,7 +5,9 @@ source_server="root@brn0vlappdv079a"
 source_grafana_db_path="/d3/data01/grafana/grafana.db"
 
 # Destination server details
-destination_server="user@destination_server_ip"
+destination_server="root@brn0vlappdv098a"
+destination_server="root@brn0vlappua079a"
+destination_server="root@gen0vlapp079a"
 destination_grafana_db_path="/d3/data01/grafana/grafana.db"
 
 # Backup on the source server
