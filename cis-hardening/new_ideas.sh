@@ -50,3 +50,5 @@ if [ "$current_hostname" == "hostnameA" ] || [ "$current_hostname" == "hostnameB
 else
     echo "Current hostname not found in the predefined hostnames."
 fi
+
+https://ranchermanager.docs.rancher.com/reference-guides/rancher-security/hardening-guides/rke2-hardening-guide/rke2-self-assessment-guide-with-cis-v1.23-k8s-v1.23
