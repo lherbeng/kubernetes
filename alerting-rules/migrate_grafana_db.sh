@@ -1,12 +1,12 @@
 #!/bin/bash
 
 # Source server details
-source_server="user@source_server_ip"
-source_grafana_db_path="/var/lib/grafana/grafana.db"
+source_server="root@brn0vlappdv079a"
+source_grafana_db_path="/d3/data01/grafana/grafana.db"
 
 # Destination server details
 destination_server="user@destination_server_ip"
-destination_grafana_db_path="/var/lib/grafana/grafana.db"
+destination_grafana_db_path="/d3/data01/grafana/grafana.db"
 
 # Backup on the source server
 ssh $source_server "sudo cp $source_grafana_db_path $source_grafana_db_path.backup"
