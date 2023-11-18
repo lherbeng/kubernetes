@@ -10,5 +10,11 @@ This might imply that no nodes are in a "Ready" state, which could affect the st
 
 **Diagnosis:**
 
+- Check kube-state-metrics Pod Status:
+
+kubectl get pods -n <namespace> | grep kube-state-metrics
+
+
+
 
 
