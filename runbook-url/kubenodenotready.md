@@ -12,13 +12,13 @@ This might imply that no nodes are in a "Ready" state, which could affect the st
 
 - Check kube-state-metrics Pod Status:
 
-kubectl get pods -n <namespace> | grep kube-state-metrics
+kubectl get pods -n $NAMESPACE | grep kube-state-metrics
 
 Ensure that the kube-state-metrics pod is running without errors.
 
 - Inspect kube-state-metrics Logs:
 
-kubectl logs -n <namespace> <kube-state-metrics-pod-name>
+kubectl logs -n $NAMESPACE $kube-state-metrics-pod-name
 
 Look for any error messages or issues reported in the logs.
 
@@ -46,7 +46,7 @@ Look for events related to node readiness or kube-state-metrics that might provi
 
 - Restart kube-state-metrics:
 
-kubectl delete pod -n <namespace> <kube-state-metrics-pod-name>
+kubectl delete pod -n $NAMESPACE kube-state-metrics-pod-name
 
 Deleting the pod will trigger its recreation. Check if this resolves the issue.
 
