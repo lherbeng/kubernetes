@@ -26,7 +26,7 @@ Manual - Operator Dependent: This designation is applied to controls that are ma
 
 ---
 
-The script is designed to perform a self-assessment of the security configurations related to the Kubernetes API server on a master node and workernode. It checks specific settings and permissions, and records the results in summary and failed assessment files. Additionally, it checks if the default namespace is used and lists resources in that namespace.
+We created a self-assessment script and it is designed to perform a self-assessment of the security configurations related to the Kubernetes API server on a master node and workernode. It checks specific settings and permissions, and records the results in summary and failed assessment files. Additionally, it checks if the default namespace is used and lists resources in that namespace.
 
 This script seems to complement the self-assessment script from the previous example. The other script is responsible for performing the self-assessment and creating summary and failed assessment files. This script takes those files, sends an email with the assessment summary, and deletes the files afterward. Together, they create a workflow for automated self-assessment and reporting.
 
