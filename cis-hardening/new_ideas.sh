@@ -79,6 +79,22 @@ fi
 
 # Rest of your script...
 
+# Copy assessment results to the correct directory
+if [ -d "/d3/data01/cishardening/" ]; then
+    # If /d3/data01/ directory exists, copy the results to /d3/data01/cishardening/
+    cp "self-assessment_summary_$current_hostname.txt" /d3/data01/cishardening
+    cp "self-assessment_failed_$current_hostname.txt" /d3/data01/cishardening
+    echo "Copied assessment results to /d3/data01/cishardening/ directory."
+elif [ -d "/d1/data01/cishardening/" ]; then
+    # If /d1/data01/ directory exists, copy the results to /d1/data01/cishardening/
+    cp "self-assessment_summary_$current_hostname.txt" /d1/data01/cishardening
+    cp "self-assessment_failed_$current_hostname.txt" /d1/data01/cishardening
+    echo "Copied assessment results to /d1/data01/cishardening/ directory."
+else
+    echo "Error: Neither /d3/data01/cishardening/ nor /d1/data01/cishardening/ directory found."
+    exit 1
+fi
+
 ---
 
 #!/bin/bash
