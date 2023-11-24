@@ -157,3 +157,16 @@ if [ "$current_hostname" == "hostnameA" ] || [ "$current_hostname" == "hostnameB
 else
     echo "Current hostname not found in the predefined hostnames."
 fi
+
+---
+
+# Delete files in the directories
+    if [ -d "/d3/data01/cishardening/" ]; then
+        rm -f /d3/data01/cishardening/*.txt
+        echo "Deleted files in /d3/data01/cishardening/ directory."
+    fi
+
+    if [ -d "/d1/data01/cishardening/" ]; then
+        rm -f /d1/data01/cishardening/*.txt
+        echo "Deleted files in /d1/data01/cishardening/ directory."
+    fi
