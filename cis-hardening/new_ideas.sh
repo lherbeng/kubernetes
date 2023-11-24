@@ -52,3 +52,29 @@ else
 fi
 
 https://ranchermanager.docs.rancher.com/reference-guides/rancher-security/hardening-guides/rke2-hardening-guide/rke2-self-assessment-guide-with-cis-v1.23-k8s-v1.23
+
+---
+
+if [ ! -d "/d3/data01/cishardening" ]; then
+    # If /d3/data01/ directory doesn't exist, check /d1/data01/ and create the directory
+    if [ -d "/d1/data01/" ]; then
+        mkdir -p /d1/data01/cishardening
+        echo "Created /d1/data01/cishardening directory."
+    else
+        echo "Error: /d1/data01/ directory not found."
+        exit 1
+    fi
+else
+    echo "/d3/data01/cishardening directory already exists."
+fi
+
+# If /d3/data01/ directory exists, or if /d1/data01/ directory doesn't exist
+# (because we've already checked /d3/data01/ above), create the directory in /d3/data01/
+if [ ! -d "/d1/data01/cishardening" ]; then
+    mkdir -p /d3/data01/cishardening
+    echo "Created /d3/data01/cishardening directory."
+else
+    echo "/d1/data01/cishardening directory already exists."
+fi
+
+# Rest of your script...
