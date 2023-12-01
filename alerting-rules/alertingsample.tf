@@ -115,7 +115,10 @@ resource "grafana_rule_group" "filesystem_alert" {
     exec_err_state = "Alerting"
 
     annotations = {
-      description = 'Attention: The disk usage for /var/lib/rancher has reached 85% capacity, requiring immediate attention.'
+      description = <<-EOT
+        Attention: The disk usage for /var/lib/rancher has reached 85% capacity,
+        requiring immediate attention.
+      EOT
       runbook_url = "https://confluence.citco.com/display/KUB/Grafana+Alert+-+FileSystemUsageTooHigh"
       summary     = "Filesystem usage is too high"
     }
@@ -188,4 +191,6 @@ resource "grafana_rule_group" "filesystem_alert" {
       })
     }
   }
+}
+
 }
