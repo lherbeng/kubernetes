@@ -55,3 +55,25 @@ if [ "$current_hostname" == "hostnameA" ] || [ "$current_hostname" == "hostnameB
 else
     echo "Current hostname not found in the predefined hostnames."
 fi
+
+---
+
+# Define the subject variable based on the current hostname
+case "$current_hostname" in
+    "hostnameA")
+        subject_variable="SANDBOX"
+        ;;
+    "hostnameB"|"hostnameE"|"hostnameF")
+        subject_variable="DEV"
+        ;;
+    "hostnameC")
+        subject_variable="TST"
+        ;;
+    "hostnameD"|"hostnameG")
+        subject_variable="PROD"
+        ;;
+    *)
+        # Default subject variable if the current hostname doesn't match predefined ones
+        subject_variable="UNKNOWN"
+        ;;
+esac
