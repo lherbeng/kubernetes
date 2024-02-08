@@ -33,9 +33,9 @@ events {
 stream {
     upstream rancher_servers_http {
         least_conn;
-        server 192.168.254.184:80 max_fails=3 fail_timeout=5s;
-        server 192.168.254.180:80 max_fails=3 fail_timeout=5s;
-        server 192.168.254.181:80 max_fails=3 fail_timeout=5s;
+        server 192.168.1.7:80 max_fails=3 fail_timeout=5s;
+        server 192.168.1.5:80 max_fails=3 fail_timeout=5s;
+        server 192.168.1.9:80 max_fails=3 fail_timeout=5s;
     }
     server {
         listen 80;
@@ -44,9 +44,9 @@ stream {
 
     upstream rancher_servers_https {
         least_conn;
-        server 192.168.254.184:443 max_fails=3 fail_timeout=5s;
-        server 192.168.254.180:443 max_fails=3 fail_timeout=5s;
-        server 192.168.254.181:443 max_fails=3 fail_timeout=5s;
+        server 192.168.1.7:443 max_fails=3 fail_timeout=5s;
+        server 192.168.1.5:443 max_fails=3 fail_timeout=5s;
+        server 192.168.1.9:443 max_fails=3 fail_timeout=5s;
     }
 }
 
