@@ -1,0 +1,93 @@
+pipeline {
+    agent none
+
+    stages {
+        stage('Install RKE2 on Master Node 1') {
+            agent { label 'masternode1-agent' }
+            steps {
+                script {
+                    dir('rancher') {
+                        sh 'chmod +x ./install_rke2_master.sh'
+                        sh 'sudo ./install_rke2_master.sh'
+                    }
+                }
+            }
+        }
+
+        stage('Verify Installation on Master Node 1') {
+            agent { label 'masternode1-agent' }
+            steps {
+                script {
+                    sh 'kubectl version'
+                }
+            }
+        }
+
+        stage('Install RKE2 on Worker Node 1') {
+            agent { label 'workernode1-agent' }
+            steps {
+                script {
+                    dir('rancher') {
+                        sh 'chmod +x ./install_rke2_worker1.sh'
+                        sh 'sudo ./install_rke2_worker1.sh'
+                    }
+                }
+            }
+        }
+
+        stage('Verify Installation on Worker Node 1') {
+            agent { label 'workernode1-agent' }
+            steps {
+                script {
+                    sh 'kubectl version'
+                }
+            }
+        }
+
+        stage('Install RKE2 on Worker Node 2') {
+            agent { label 'workernode2-agent' }
+            steps {
+                script {
+                    dir('rancher') {
+                        sh 'chmod +x ./install_rke2_worker2.sh'
+                        sh 'sudo ./install_rke2_worker2.sh'
+                    }
+                }
+            }
+        }
+
+        stage('Verify Installation on Worker Node 2') {
+            agent { label 'workernode2-agent' }
+            steps {
+                script {
+                    sh 'kubectl version'
+                }
+            }
+        }
+
+        stage('Install NGINX LoadBalancer on Nginx LoadBalancer') {
+            agent { label 'nginxloadbalancer-agent' }
+            steps {
+                script {
+                    dir('rancher') {
+                        sh 'chmod +x ./install_nginx_loadbalancer.sh'
+                        sh 'sudo ./install_nginx_loadbalancer.sh'
+                        sh 'nginx -v' // Check NGINX version
+                    }
+                }
+            }
+        }
+    }
+
+    post {
+        success {
+            echo 'RKE2 installation and verification succeeded!'
+        }
+        failure {
+            echo 'RKE2 installation or verification failed!'
+        }
+        always {
+            echo 'Post-build cleanup...'
+        }
+    }
+}
