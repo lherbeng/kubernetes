@@ -70,8 +70,20 @@ pipeline {
                 }
             }
         }
-    }     
-                    
+    }
+
+    stage('Install NGINX LoadBalancer on Nginx LoadBalancer') {
+            agent { label 'nginxloadbalancer-agent' } // Specify the label for the NGINX LoadBalancer
+            steps {
+                script {
+                    // Navigate to the rancher directory
+                    dir('rancher') {
+                        sh 'chmod +x ./install_nginx_loadbalancer.sh'
+                        sh 'sudo ./install_nginx_loadbalancer.sh'
+                    }
+                }   
+            }
+        }           
     post {
         success {
             echo 'RKE2 installation and verification succeeded!'
