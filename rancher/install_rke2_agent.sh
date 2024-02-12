@@ -21,3 +21,25 @@ mkdir -p /etc/rancher/rke2/
 vi /etc/rancher/rke2/config.yaml
 server:https//RKE2_SERVER_IP_ADDRESS:9345
 token:TOKEN_FROM_RKE2_SERVER
+
+# Enable and start RKE2 Agent service
+systemctl enable rke2-agent.service
+systemctl start rke2-agent.service
+
+# Check if RKE2 Agent is running
+systemctl status rke2-agent.service
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
