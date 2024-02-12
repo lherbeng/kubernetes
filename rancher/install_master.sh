@@ -1,13 +1,16 @@
 #!/bin/bash
 
 
-#Stop Firewall
+# Stop Firewall
 systemctl disable --now ufw
 
 # Run updates and upgrade and install packages
 apt update
 apt install nfs-common open-iscsi -y
 apt upgrade -y
+
+# Automatic removal of unnecessary packages
+apt autoremove -y
 
 # Generate a random token
 RKE2_TOKEN=$(openssl rand -base64 32)
