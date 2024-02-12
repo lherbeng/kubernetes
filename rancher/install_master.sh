@@ -1,6 +1,5 @@
 #!/bin/bash
 
-
 # Stop Firewall
 systemctl disable --now ufw
 
@@ -30,3 +29,21 @@ curl -sfL https://get.rke2.io | sh -
 # Enable and start RKE2 Server service
 systemctl enable rke2-server.service
 systemctl start rke2-server.service
+
+# Check is RKE2 Service is running
+systemctl status rke2-server.service
+
+# Simlink all the things - kubectl
+ln -s $(find /var/lib/rancher/rke2/data -name kubectl) /usr/local/bin/kubectl
+
+# Add kubectl conf
+export KUBECONFIG=/etc/rancher/rke2/rke2.yaml
+
+# check if kubectl works
+kubectl get node -o wide
+
+# Getr server IP address Of RKE2 Server
+ipaddr | grep inet
+
+# Get Server token and copy it somwhere
+cat /var/lib/rancher/rke2/server/node-token
