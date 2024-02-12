@@ -23,3 +23,10 @@ mkdir -p /etc/rancher/rke2/
 cat << EOF > /etc/rancher/rke2/config.yaml
 token: $RKE2_TOKEN
 EOF
+
+# Install RKE2 server
+curl -sfL https://get.rke2.io | sh -
+
+# Enable and start RKE2 Server service
+systemctl enable rke2-server.service
+systemctl start rke2-server.service
