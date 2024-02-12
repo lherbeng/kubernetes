@@ -30,7 +30,7 @@ curl -sfL https://get.rke2.io | sh -
 systemctl enable rke2-server.service
 systemctl start rke2-server.service
 
-# Check is RKE2 Service is running
+# Check if RKE2 Service is running
 systemctl status rke2-server.service
 
 # Simlink all the things - kubectl
@@ -42,7 +42,7 @@ export KUBECONFIG=/etc/rancher/rke2/rke2.yaml
 # check if kubectl works
 kubectl get node -o wide
 
-# Getr server IP address Of RKE2 Server
+# Get server IP address Of RKE2 Server
 ipaddr | grep inet
 
 # Get Server token and copy it somwhere
