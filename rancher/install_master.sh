@@ -26,6 +26,9 @@ EOF
 # Install RKE2 server
 curl -sfL https://get.rke2.io | INSTALL_RKE2_TYPE=server sh -
 
+# For specific RKE2 Server version
+# curl -sfL https://get.rke2.io | INSTALL_RKE2_CHANNEL=v1.26 INSTALL_RKE2_TYPE=server sh -
+
 # Enable and start RKE2 Server service
 systemctl enable rke2-server.service
 systemctl start rke2-server.service
