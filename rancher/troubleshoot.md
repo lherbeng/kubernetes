@@ -18,4 +18,8 @@ no network config found in /etc/cni/net.d: cni plugin not initialized: failed to
 
 https://stackoverflow.com/questions/72213264/rancher-rke2-etcd-backup-and-restore-infinit-loop
 
+---
+
+https://gist.github.com/superseb/3b78f47989e0dbc1295486c186e944bf#on-the-etcd-host-itself
+
 
