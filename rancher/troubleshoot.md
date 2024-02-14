@@ -23,7 +23,12 @@ https://stackoverflow.com/questions/72213264/rancher-rke2-etcd-backup-and-restor
 https://gist.github.com/superseb/3b78f47989e0dbc1295486c186e944bf#on-the-etcd-host-itself
 
 
-# Check manifest file in RKE2
+## Check manifest file in RKE2
 
 ls -lah /var/lib/rancher/rke2/server/manifests/
+
+## kube-apiserver
+
+ /var/lib/rancher/rke2/agent/pod-manifests/etcd.yaml /var/lib/rancher/rke2/agent/pod-manifests/kube-apiserver.yaml
+
 
