@@ -35,6 +35,10 @@ ls -lah /var/lib/rancher/rke2/server/manifests/
 
  apt install net-tools
 
+##
+
+journalctl -f -u rke2-server
+
 
  
 
