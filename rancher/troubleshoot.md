@@ -41,7 +41,9 @@ journalctl -f -u rke2-server
 
 swapoff -a
 
+# uninstall rke2 script location
 
+/usr/local/bin/
  
 
 
