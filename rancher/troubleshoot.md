@@ -31,4 +31,11 @@ ls -lah /var/lib/rancher/rke2/server/manifests/
 
  /var/lib/rancher/rke2/agent/pod-manifests/etcd.yaml /var/lib/rancher/rke2/agent/pod-manifests/kube-apiserver.yaml
 
+ ##
+
+ apt install net-tools
+
+
+ 
+
 
