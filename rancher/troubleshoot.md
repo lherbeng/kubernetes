@@ -39,6 +39,8 @@ ls -lah /var/lib/rancher/rke2/server/manifests/
 
 journalctl -f -u rke2-server
 
+swapoff -a
+
 
  
 
