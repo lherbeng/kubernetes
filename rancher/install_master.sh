@@ -25,7 +25,8 @@ systemctl start rke2-server.service
 systemctl status rke2-server.service
 
 # Simlink all the things - kubectl
-ln -s $(find /var/lib/rancher/rke2/data -name kubectl) /usr/local/bin/kubectl
+# ln -s $(find /var/lib/rancher/rke2/data -name kubectl) /usr/local/bin/kubectl
+sudo ln -s /var/lib/rancher/rke2/data/v1.28.12-rke2r1-aa38cd526ddb/bin/kubectl /usr/local/bin/kubectl
 
 # Add kubectl conf
 export KUBECONFIG=/etc/rancher/rke2/rke2.yaml
